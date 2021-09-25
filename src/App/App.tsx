@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ProgressTrackersPage from '../ProgressTrackersPage/ProgressTrackersPage';
+import ProgressTrackersPage from '../pages/ProgressTrackersPage';
 import FirebaseApp from './FirebaseApp';
 
 function App(): JSX.Element {
