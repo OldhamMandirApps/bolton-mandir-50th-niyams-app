@@ -1,7 +1,7 @@
 import React from 'react';
 import { Niyam } from '../../config/niyams';
 import { slugify } from '../../utils/string';
-import { Box, Card, LinearProgress, Typography } from '@mui/material';
+import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
 import useNiyamProgressInfo from '../../hooks/useNiyamProgressInfo';
 
 interface ProgressTrackerProps {
@@ -10,20 +10,23 @@ interface ProgressTrackerProps {
 
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(props.niyam);
-  // TODO: components to use Card, Box, LinearProgress, Typography
-  // inspiration: https://github.com/mui-org/material-ui/blob/686ec23b59a60105ad7b6ce51c29d4bc0aa9696e/docs/src/components/showcase/TaskCard.tsx#L79
+
+  function progressBarValue(progress: number, target: number) {
+    const percentage = (progress / target) * 100;
+
+    return percentage > 100 ? 100 : percentage;
+  }
 
   return (
-    <div data-testid={`tracker-${slugify(props.niyam)}`}>
+    <Grid item data-testid={`tracker-${slugify(props.niyam)}`}>
       <Card
         raised
         variant='gradient'
         sx={{
-          minWidth: 280,
-          maxWidth: 360,
           display: 'flex',
           flexDirection: 'column',
           p: 2.5,
+          pt: 2,
         }}
       >
         <Box>
@@ -31,11 +34,11 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
             {props.niyam}
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
           <LinearProgress
-            aria-label='Progress'
+            aria-label='Niyam Progress'
             variant='determinate'
-            value={data ? (data.progress / data.target) * 100 : 0}
+            value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
           <Typography color='#00C8FF' variant='body2' sx={{ ml: 2 }}>
@@ -45,7 +48,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           </Typography>
         </Box>
       </Card>
-    </div>
+    </Grid>
   );
 }
 
