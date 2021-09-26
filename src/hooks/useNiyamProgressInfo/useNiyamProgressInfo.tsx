@@ -1,11 +1,11 @@
 import useFirestoreData from '../useFirestoreData';
 import { Niyam } from '../../config/niyams';
-import { NiyamData } from '../../types';
+import { NiyamData, Nullable, Optional } from '../../types';
 
 interface ProgressInfo {
   loading: boolean;
-  error: Error | null | undefined;
-  data: NiyamData | null;
+  error: Optional<Error>;
+  data: Nullable<NiyamData>;
 }
 
 function useNiyamProgressInfo(niyam: Niyam): ProgressInfo {
@@ -25,7 +25,7 @@ const loading = (): ProgressInfo => {
   return response(true, null, null);
 };
 
-const error = (err: Error | undefined): ProgressInfo => {
+const error = (err: Optional<Error>): ProgressInfo => {
   return response(false, err, null);
 };
 
@@ -39,7 +39,7 @@ const success = (data: NiyamData[], niyam: string): ProgressInfo => {
   }
 };
 
-const response = (loading: boolean, error: Error | null | undefined, data: NiyamData | null): ProgressInfo => {
+const response = (loading: boolean, error: Optional<Error>, data: Nullable<NiyamData>): ProgressInfo => {
   return {
     loading,
     error,
