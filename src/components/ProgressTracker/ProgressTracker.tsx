@@ -10,8 +10,6 @@ interface ProgressTrackerProps {
 
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(props.niyam);
-  // TODO: components to use Card, Box, LinearProgress, Typography
-  // inspiration: https://github.com/mui-org/material-ui/blob/686ec23b59a60105ad7b6ce51c29d4bc0aa9696e/docs/src/components/showcase/TaskCard.tsx#L79
 
   return (
     <div data-testid={`tracker-${slugify(props.niyam)}`}>
@@ -19,8 +17,6 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
         raised
         variant='gradient'
         sx={{
-          minWidth: 280,
-          maxWidth: 360,
           display: 'flex',
           flexDirection: 'column',
           p: 2.5,
@@ -31,7 +27,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
             {props.niyam}
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
           <LinearProgress
             aria-label='Progress'
             variant='determinate'
