@@ -1,8 +1,9 @@
 name: Deploy to Firebase Hosting on PR
-"on": pull_request
+'on': pull_request
 jobs:
   build_and_preview:
-    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
+    environment: staging
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,6 +27,6 @@ jobs:
           CI: true
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUTAN_UTSAV_APP_STAGING }}"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUTAN_UTSAV_APP_STAGING }}'
           projectId: nutan-utsav-app-staging
