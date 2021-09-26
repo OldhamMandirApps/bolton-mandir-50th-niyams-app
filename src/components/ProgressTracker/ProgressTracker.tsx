@@ -1,7 +1,7 @@
 import React from 'react';
 import { Niyam } from '../../config/niyams';
 import { slugify } from '../../utils/string';
-import { Box, Card, LinearProgress, Typography } from '@mui/material';
+import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
 import useNiyamProgressInfo from '../../hooks/useNiyamProgressInfo';
 
 interface ProgressTrackerProps {
@@ -12,7 +12,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(props.niyam);
 
   return (
-    <div data-testid={`tracker-${slugify(props.niyam)}`}>
+    <Grid item data-testid={`tracker-${slugify(props.niyam)}`}>
       <Card
         raised
         variant='gradient'
@@ -20,6 +20,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           display: 'flex',
           flexDirection: 'column',
           p: 2.5,
+          pt: 2,
         }}
       >
         <Box>
@@ -41,7 +42,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           </Typography>
         </Box>
       </Card>
-    </div>
+    </Grid>
   );
 }
 

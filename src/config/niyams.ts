@@ -1,7 +1,7 @@
 export enum Niyam {
-  OradaNaPads = 'Orada na Pads',
   ShantiPaath = 'Shanti Paath',
-  JanmangalStotram = 'Janmangal Stotram',
   JanmangalNamavali = 'Janmangal Namavali',
+  JanmangalStotram = 'Janmangal Stotram',
+  OradaNaPads = 'Orada na Pads',
   UtsavKirtan = 'Utsav Kirtan',
 }
