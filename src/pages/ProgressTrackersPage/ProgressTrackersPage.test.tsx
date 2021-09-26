@@ -14,7 +14,7 @@ describe('ProgressTrackersPage', () => {
 
   const useNiyamProgressInfoMock = useNiyamProgressInfo as jest.Mock;
 
-  test('should render progress trackers', () => {
+  test('should render progress trackers and page heading', () => {
     useNiyamProgressInfoMock.mockImplementation((niyam: Niyam) => {
       return {
         data: NiyamBuilder(niyam, 1000, 10000),
@@ -23,6 +23,8 @@ describe('ProgressTrackersPage', () => {
       };
     });
     renderPage();
+
+    screen.getByText('Niyam Progress');
 
     screen.getByTestId(`tracker-${slugify(Niyam.ShantiPaath)}`);
     screen.getByTestId(`tracker-${slugify(Niyam.JanmangalNamavali)}`);
