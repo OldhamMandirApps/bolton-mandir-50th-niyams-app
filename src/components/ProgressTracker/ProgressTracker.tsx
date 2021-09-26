@@ -11,6 +11,12 @@ interface ProgressTrackerProps {
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(props.niyam);
 
+  function progressBarValue(progress: number, target: number) {
+    const percentage = (progress / target) * 100;
+
+    return percentage > 100 ? 100 : percentage;
+  }
+
   return (
     <Grid item data-testid={`tracker-${slugify(props.niyam)}`}>
       <Card
@@ -30,9 +36,9 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
           <LinearProgress
-            aria-label='Progress'
+            aria-label='Niyam Progress'
             variant='determinate'
-            value={data ? (data.progress / data.target) * 100 : 0}
+            value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
           <Typography color='#00C8FF' variant='body2' sx={{ ml: 2 }}>
