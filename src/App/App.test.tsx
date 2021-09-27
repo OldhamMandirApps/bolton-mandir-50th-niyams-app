@@ -14,9 +14,15 @@ describe('App', () => {
     );
   }
 
-  test('should display progress trackers page', async () => {
+  test('should display progress trackers page', () => {
     renderApp('/');
 
     screen.getByTestId('progress-trackers-page');
+  });
+
+  test('should display add niyams page', () => {
+    renderApp('/add-niyams');
+
+    screen.getByTestId('add-niyams-page');
   });
 });
