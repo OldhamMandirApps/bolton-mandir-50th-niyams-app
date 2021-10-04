@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "./scripts/dev.sh",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test --watchAll=false",
