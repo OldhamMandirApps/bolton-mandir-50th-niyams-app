@@ -6,9 +6,10 @@ describe('AddNiyamsPage', () => {
     return render(<AddNiyamsPage />);
   }
 
-  test('should render page heading', () => {
+  test('should render page heading and components to add niyam', () => {
     renderPage();
 
-    screen.getByText('Add Niyams');
+    screen.getByRole('heading', { name: /add niyams/i });
+    screen.getByTestId('add-niyam-progress-form');
   });
 });
