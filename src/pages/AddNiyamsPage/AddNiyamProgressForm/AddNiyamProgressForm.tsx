@@ -1,6 +1,7 @@
 import React from 'react';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
+import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
 
 function AddNiyamProgressForm(): JSX.Element {
   return (
@@ -8,6 +9,7 @@ function AddNiyamProgressForm(): JSX.Element {
       <form>
         <NiyamSelect />
         <NiyamProgressInput />
+        <AddNiyamProgressSubmitButton />
       </form>
     </div>
   );
