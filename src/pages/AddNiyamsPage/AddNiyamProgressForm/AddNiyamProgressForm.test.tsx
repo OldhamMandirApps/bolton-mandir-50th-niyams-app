@@ -10,5 +10,6 @@ describe('AddNiyamProgressForm', () => {
     renderForm();
 
     screen.getByTestId('niyam-select-field');
+    screen.getByTestId('niyam-progress-input-field');
   });
 });
