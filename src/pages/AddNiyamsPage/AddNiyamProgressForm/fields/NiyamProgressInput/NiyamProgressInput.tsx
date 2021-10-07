@@ -1,15 +1,23 @@
 import React from 'react';
-import { TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 
 function NiyamProgressInput(): JSX.Element {
   return (
-    <TextField
-      id='niyam-progress-input'
-      data-testid='niyam-progress-input-field'
-      aria-label='niyam progress'
-      label='Progress'
-      variant='outlined'
-    />
+    <Grid item>
+      <TextField
+        id='niyam-progress-input'
+        data-testid='niyam-progress-input-field'
+        aria-label='niyam progress'
+        label='Progress'
+        variant='outlined'
+        type='number'
+        InputProps={{
+          inputProps: {
+            min: 1,
+          },
+        }}
+      />
+    </Grid>
   );
 }
 

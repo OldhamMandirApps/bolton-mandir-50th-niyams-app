@@ -9,6 +9,6 @@ describe('NiyamProgressInput', () => {
   test('should render input field for niyam progress input', () => {
     renderInputField();
 
-    screen.getByRole('textbox', { name: /progress/i });
+    screen.getByRole('spinbutton', { name: /progress/i });
   });
 });
