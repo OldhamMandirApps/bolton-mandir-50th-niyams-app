@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
 import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
@@ -11,10 +11,12 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 }));
 
 function AddNiyamProgressForm(): JSX.Element {
+  const [selectedNiyam, setSelectedNiyam] = useState('');
+
   return (
     <div data-testid='add-niyam-progress-form'>
       <FormContainer container spacing={2} direction='column'>
-        <NiyamSelect />
+        <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
         <NiyamProgressInput />
         <AddNiyamProgressSubmitButton />
       </FormContainer>

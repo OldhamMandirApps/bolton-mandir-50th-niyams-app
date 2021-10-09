@@ -11,4 +11,7 @@ describe('NiyamProgressInput', () => {
 
     screen.getByRole('spinbutton', { name: /progress/i });
   });
+
+  // TODO: test for minimum 1 no negative values
+  // TODO: test for setValue
 });
