@@ -10,7 +10,8 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
   const { value, setValue } = props;
 
   function onNiyamProgressChanged(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(Number(event.target.value));
+    const newValue = event.target.value === '' ? null : Number(event.target.value);
+    setValue(newValue);
   }
 
   return (

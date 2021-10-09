@@ -22,11 +22,19 @@ describe('NiyamProgressInput', () => {
     expect(setValueMock).toBeCalledWith(100);
   });
 
+  test('should set value to be null if removing all text from input', () => {
+    const setValueMock = jest.fn();
+    renderInputField(800, setValueMock);
+
+    userEvent.clear(screen.getByRole('spinbutton', { name: /progress/i }));
+
+    expect(setValueMock).toBeCalledWith(null);
+  });
+
   test('should set value to be empty string if value is null', () => {
     renderInputField(null, jest.fn());
 
     expect(screen.getByRole('spinbutton', { name: /progress/i })).toHaveDisplayValue('');
   });
   // TODO: test for minimum 1 no negative values
-  // TODO: test for setting value to null if removing entire value
 });
