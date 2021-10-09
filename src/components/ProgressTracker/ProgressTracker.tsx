@@ -30,7 +30,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
         }}
       >
         <Box>
-          <Typography variant='h6' component='div' sx={{ fontWeight: 500 }}>
+          <Typography variant='h6' component='div' sx={{ fontWeight: 500, color: 'white' }}>
             {props.niyam}
           </Typography>
         </Box>

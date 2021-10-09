@@ -10,8 +10,8 @@ function NiyamSelect(): JSX.Element {
   return (
     <Grid item>
       <FormControl fullWidth data-testid='niyam-select-field'>
-        <InputLabel id='select-niyam-label'>Select Niyam</InputLabel>
-        <Select labelId='select-niyam-label' id='select-niyam' label='Select Niyam'>
+        <InputLabel id='select-niyam-label'>Niyam</InputLabel>
+        <Select labelId='select-niyam-label' id='select-niyam' label='Niyam'>
           {niyams.map((niyam) => (
             <MenuItem key={niyam} value={niyam}>
               {niyam}

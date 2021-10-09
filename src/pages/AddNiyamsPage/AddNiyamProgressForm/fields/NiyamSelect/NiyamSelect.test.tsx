@@ -10,13 +10,13 @@ describe('NiyamSelect', () => {
   test('should render select field', () => {
     renderSelectField();
 
-    screen.getByRole('button', { name: /select niyam/i });
+    screen.getByRole('button', { name: /niyam/i });
   });
 
   test('should display all niyams in drop-down list when clicking on select field', () => {
     renderSelectField();
 
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
+    userEvent.click(screen.getByRole('button', { name: /niyam/i }));
 
     screen.getByRole('option', { name: /shanti paath/i });
     screen.getByRole('option', { name: /janmangal namavali/i });
