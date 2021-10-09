@@ -1,7 +1,18 @@
 import React from 'react';
 import { Grid, TextField } from '@mui/material';
 
-function NiyamProgressInput(): JSX.Element {
+interface NiyamProgressInputProps {
+  value: number | null;
+  setValue: (value: number | null) => void;
+}
+
+function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
+  const { value, setValue } = props;
+
+  function onNiyamProgressChanged(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(Number(event.target.value));
+  }
+
   return (
     <Grid item>
       <TextField
@@ -16,6 +27,8 @@ function NiyamProgressInput(): JSX.Element {
             min: 1,
           },
         }}
+        value={value !== null ? value : ''}
+        onChange={onNiyamProgressChanged}
       />
     </Grid>
   );

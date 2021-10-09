@@ -12,12 +12,13 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 
 function AddNiyamProgressForm(): JSX.Element {
   const [selectedNiyam, setSelectedNiyam] = useState('');
+  const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
 
   return (
     <div data-testid='add-niyam-progress-form'>
       <FormContainer container spacing={2} direction='column'>
         <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
-        <NiyamProgressInput />
+        <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
         <AddNiyamProgressSubmitButton />
       </FormContainer>
     </div>
