@@ -1,7 +1,7 @@
 import React from 'react';
-import { Niyam } from '../../config/niyams';
-import ProgressTracker from '../../components/ProgressTracker';
 import { Grid } from '@mui/material';
+import { Niyam } from '../../config/niyams';
+import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
 
 function ProgressTrackersPage(): JSX.Element {
