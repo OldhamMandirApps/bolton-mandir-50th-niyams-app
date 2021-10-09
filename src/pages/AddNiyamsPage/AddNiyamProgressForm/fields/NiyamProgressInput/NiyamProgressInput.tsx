@@ -18,7 +18,6 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
       <TextField
         id='niyam-progress-input'
         data-testid='niyam-progress-input-field'
-        aria-label='niyam progress'
         label='Progress'
         variant='outlined'
         type='number'
@@ -27,6 +26,7 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             min: 1,
           },
         }}
+        fullWidth
         value={value !== null ? value : ''}
         onChange={onNiyamProgressChanged}
       />
