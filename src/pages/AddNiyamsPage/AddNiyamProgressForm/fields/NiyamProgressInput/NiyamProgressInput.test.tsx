@@ -36,5 +36,4 @@ describe('NiyamProgressInput', () => {
 
     expect(screen.getByRole('spinbutton', { name: /progress/i })).toHaveDisplayValue('');
   });
-  // TODO: test for minimum 1 no negative values
 });

@@ -1,6 +1,7 @@
-import { collection, query, QueryDocumentSnapshot, SnapshotOptions, where } from 'firebase/firestore';
 import { useFirestore, useFirestoreCollectionData } from 'reactfire';
+import { getNiyamQuery } from '../../db/niyams';
 import { NiyamData } from '../../types';
+import { Niyam } from '../../config/niyams';
 
 interface UseFirestoreData {
   status: 'loading' | 'error' | 'success';
@@ -8,19 +9,11 @@ interface UseFirestoreData {
   error: Error | undefined;
 }
 
-const niyamConverter = {
-  toFirestore: (data: NiyamData) => data,
-  fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions) => snapshot.data(options) as NiyamData,
-};
-
-function useFirestoreData(niyam: string): UseFirestoreData {
+function useFirestoreData(niyam: Niyam): UseFirestoreData {
   const firestore = useFirestore();
-  const niyamsCollection = collection(firestore, 'niyams').withConverter(niyamConverter);
-  const niyamQuery = query(niyamsCollection, where('name', '==', niyam));
+  const niyamQuery = getNiyamQuery(firestore, niyam);
 
-  const { status, data, error } = useFirestoreCollectionData(niyamQuery);
-
-  return { status, data, error };
+  return useFirestoreCollectionData(niyamQuery);
 }
 
 export default useFirestoreData;

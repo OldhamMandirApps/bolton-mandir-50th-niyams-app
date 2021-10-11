@@ -14,14 +14,18 @@ function AddNiyamProgressForm(): JSX.Element {
   const [selectedNiyam, setSelectedNiyam] = useState('');
   const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
 
+  function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
   return (
-    <div data-testid='add-niyam-progress-form'>
+    <form data-testid='add-niyam-progress-form' onSubmit={onSubmitHandler}>
       <FormContainer container spacing={2} direction='column'>
         <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
         <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
         <AddNiyamProgressSubmitButton />
       </FormContainer>
-    </div>
+    </form>
   );
 }
 

@@ -14,6 +14,7 @@ describe('AddNiyamProgressForm', () => {
     screen.getByTestId('niyam-progress-submit-button');
   });
 
-  // TODO: required fields test
-  // TODO: submit test
+  // TODO: required fields test - don't call onSubmitHandler
+  // TODO: submit test - call onSubmitHandler
+  // TODO: write hook that returns a function to update progress - https://stackoverflow.com/questions/61617176/returning-array-of-functions-from-custom-react-hook
 });
