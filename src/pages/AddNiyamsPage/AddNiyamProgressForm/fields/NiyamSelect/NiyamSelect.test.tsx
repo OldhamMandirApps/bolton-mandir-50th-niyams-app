@@ -4,18 +4,18 @@ import userEvent from '@testing-library/user-event';
 import { Niyam } from '../../../../../config/niyams';
 
 describe('NiyamSelect', () => {
-  function renderSelectField(value: string, setValue: jest.Mock) {
+  function renderSelectField(value: Niyam | null, setValue: jest.Mock) {
     return render(<NiyamSelect value={value} setValue={setValue} />);
   }
 
   test('should render select field', () => {
-    renderSelectField('', jest.fn());
+    renderSelectField(null, jest.fn());
 
     screen.getByRole('button', { name: /niyam/i });
   });
 
   test('should display all niyams in drop-down list when clicking on select field', () => {
-    renderSelectField('', jest.fn());
+    renderSelectField(null, jest.fn());
 
     userEvent.click(screen.getByRole('button', { name: /niyam/i }));
 

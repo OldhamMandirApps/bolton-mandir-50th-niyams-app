@@ -3,7 +3,7 @@ import AddNiyamProgressSubmitButton from './AddNiyamProgressSubmitButton';
 
 describe('AddNiyamSubmitButton', () => {
   function renderSubmitButton() {
-    return render(<AddNiyamProgressSubmitButton />);
+    return render(<AddNiyamProgressSubmitButton loading={false} />);
   }
 
   test('should render submit button', () => {

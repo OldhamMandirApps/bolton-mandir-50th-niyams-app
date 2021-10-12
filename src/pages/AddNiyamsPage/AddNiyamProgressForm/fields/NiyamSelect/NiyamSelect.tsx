@@ -20,14 +20,16 @@ function NiyamSelect(props: NiyamSelectProps): JSX.Element {
 
   return (
     <Grid item>
-      <FormControl fullWidth data-testid='niyam-select-field'>
+      <FormControl fullWidth required>
         <InputLabel id='select-niyam-label'>Niyam</InputLabel>
         <Select
-          labelId='select-niyam-label'
           id='select-niyam'
+          labelId='select-niyam-label'
+          data-testid='niyam-select-field'
           label='Niyam'
           value={value || ''}
           onChange={onNiyamSelected}
+          inputProps={{ 'aria-label': 'select niyam' }}
         >
           {niyams.map((niyam) => (
             <MenuItem key={niyam} value={niyam}>

@@ -5,6 +5,7 @@ import NiyamProgressInput from './fields/NiyamProgressInput';
 import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import { Niyam } from '../../../config/niyams';
+import validate from './validate';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -16,11 +17,13 @@ function AddNiyamProgressForm(): JSX.Element {
   const [selectedNiyam, setSelectedNiyam] = useState<Niyam | null>(null);
   const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
 
-  const { execute } = useUpdateNiyamProgress();
+  const { execute, status } = useUpdateNiyamProgress();
 
   function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    execute(selectedNiyam as Niyam, niyamProgress as number);
+    if (validate(selectedNiyam, niyamProgress)) {
+      execute(selectedNiyam as Niyam, niyamProgress as number);
+    }
   }
 
   return (
@@ -28,7 +31,7 @@ function AddNiyamProgressForm(): JSX.Element {
       <FormContainer container spacing={2} direction='column'>
         <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
         <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
-        <AddNiyamProgressSubmitButton />
+        <AddNiyamProgressSubmitButton loading={status === 'loading'} />
       </FormContainer>
     </form>
   );
