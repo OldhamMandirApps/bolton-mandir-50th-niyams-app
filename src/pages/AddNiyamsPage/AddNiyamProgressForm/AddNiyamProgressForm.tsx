@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Grid, styled } from '@mui/material';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
 import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
-import { Grid, styled } from '@mui/material';
+import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import { Niyam } from '../../../config/niyams';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -11,11 +13,14 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 }));
 
 function AddNiyamProgressForm(): JSX.Element {
-  const [selectedNiyam, setSelectedNiyam] = useState('');
+  const [selectedNiyam, setSelectedNiyam] = useState<Niyam | null>(null);
   const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
+
+  const { execute } = useUpdateNiyamProgress();
 
   function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    execute(selectedNiyam as Niyam, niyamProgress as number);
   }
 
   return (
