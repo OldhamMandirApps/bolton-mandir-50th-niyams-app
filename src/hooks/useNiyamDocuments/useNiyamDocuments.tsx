@@ -7,7 +7,7 @@ export interface NiyamDocument extends NiyamData {
   id: string;
 }
 
-function useNiyamDocuments() {
+function useNiyamDocuments(): NiyamDocument[] {
   const [documents, setDocuments] = useState<NiyamDocument[]>([]);
   const db = useFirestore();
 
