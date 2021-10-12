@@ -22,6 +22,7 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
         label='Progress'
         variant='outlined'
         type='number'
+        required
         InputProps={{
           inputProps: {
             min: 1,
