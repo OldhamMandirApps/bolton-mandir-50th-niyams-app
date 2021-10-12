@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
-import ProgressTrackersPage from '../pages/ProgressTrackersPage';
 import FirebaseApp from './FirebaseApp';
-import AddNiyamsPage from '../pages/AddNiyamsPage';
 import theme from './theme';
+import ProgressTrackersPage from '../pages/ProgressTrackersPage';
+import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
 
 function App(): JSX.Element {
   return (
@@ -16,8 +16,8 @@ function App(): JSX.Element {
               <Route exact path='/'>
                 <ProgressTrackersPage />
               </Route>
-              <Route exact path='/add-niyams'>
-                <AddNiyamsPage />
+              <Route exact path='/add-your-niyam-progress'>
+                <AddNiyamProgressPage />
               </Route>
             </Switch>
           </Router>

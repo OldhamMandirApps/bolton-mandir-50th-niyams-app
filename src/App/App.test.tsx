@@ -14,15 +14,12 @@ describe('App', () => {
     );
   }
 
-  test('should display progress trackers page', () => {
-    renderApp('/');
+  test.each([
+    { path: '/', testId: 'progress-trackers-page' },
+    { path: '/add-your-niyam-progress', testId: 'add-niyam-progress-page' },
+  ])('should display $testId at $path', ({ path, testId }) => {
+    renderApp(path);
 
-    screen.getByTestId('progress-trackers-page');
-  });
-
-  test('should display add niyams page', () => {
-    renderApp('/add-niyams');
-
-    screen.getByTestId('add-niyams-page');
+    screen.getByTestId(testId);
   });
 });

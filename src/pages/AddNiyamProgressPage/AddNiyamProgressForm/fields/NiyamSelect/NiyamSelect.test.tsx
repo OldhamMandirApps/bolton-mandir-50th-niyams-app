@@ -17,7 +17,7 @@ describe('NiyamSelect', () => {
   test('should display all niyams in drop-down list when clicking on select field', () => {
     renderSelectField(null, jest.fn());
 
-    userEvent.click(screen.getByRole('button', { name: /niyam/i }));
+    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
 
     screen.getByRole('option', { name: /shanti paath/i });
     screen.getByRole('option', { name: /janmangal namavali/i });
@@ -30,7 +30,7 @@ describe('NiyamSelect', () => {
     const setValueMock = jest.fn();
     renderSelectField(Niyam.JanmangalNamavali, setValueMock);
 
-    userEvent.click(screen.getByRole('button', { name: /niyam janmangal namavali/i }));
+    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(screen.getByRole('option', { name: /orada na pads/i }));
 
     expect(setValueMock).toBeCalledWith(Niyam.OradaNaPads);
