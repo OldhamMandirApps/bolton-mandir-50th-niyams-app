@@ -13,7 +13,7 @@ function PageContainer(props: React.PropsWithChildren<unknown>): JSX.Element {
 function H1(props: React.PropsWithChildren<unknown>): JSX.Element {
   const { children, ...other } = props;
   return (
-    <Typography variant='h4' component='h1' sx={{ fontWeight: 700, mb: 4 }} {...other}>
+    <Typography variant='h4' component='h1' sx={{ fontWeight: 700 }} {...other}>
       {children}
     </Typography>
   );

@@ -1,8 +1,11 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import AddNiyamProgressForm from './AddNiyamProgressForm';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import userEvent from '@testing-library/user-event';
 import { Niyam } from '../../../config/niyams';
+import { RecoilRoot } from 'recoil';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 
 jest.mock('../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress');
 describe('AddNiyamProgressForm', () => {
@@ -13,7 +16,16 @@ describe('AddNiyamProgressForm', () => {
   });
 
   function renderForm() {
-    return render(<AddNiyamProgressForm />);
+    const history = createMemoryHistory();
+    history.push('/add-your-niyam-progress');
+    const app = render(
+      <RecoilRoot>
+        <Router history={history}>
+          <AddNiyamProgressForm />
+        </Router>
+      </RecoilRoot>,
+    );
+    return { history, app };
   }
 
   test('should render select and input fields and submit button', () => {
@@ -61,22 +73,22 @@ describe('AddNiyamProgressForm', () => {
   });
 
   test('should update niyam progress when both niyam has been selected and progress has been inputted', async () => {
-    const executeMock = jest.fn();
+    const executeMock = jest.fn().mockImplementation(() => Promise.resolve());
     useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
 
-    renderForm();
+    const { history } = renderForm();
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
     userEvent.type(screen.getByRole('spinbutton', { name: /progress/i }), '100');
 
-    act(() => {
-      userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-    });
+    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
 
     expect(executeMock).toHaveBeenCalledTimes(1);
     expect(executeMock).toBeCalledWith(Niyam.JanmangalNamavali, 100);
-  });
 
-  // TODO: submit test - call onSubmitHandler
+    await waitFor(() => {
+      expect(history.location.pathname).toEqual('/');
+    });
+  });
 });

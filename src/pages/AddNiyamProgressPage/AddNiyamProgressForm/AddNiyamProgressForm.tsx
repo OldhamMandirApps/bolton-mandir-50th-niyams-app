@@ -6,6 +6,9 @@ import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton'
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import { Niyam } from '../../../config/niyams';
 import validate from './validate';
+import { useHistory } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -18,11 +21,22 @@ function AddNiyamProgressForm(): JSX.Element {
   const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
 
   const { execute, status } = useUpdateNiyamProgress();
+  const setSnackbarState = useSetRecoilState(snackbarAtom);
 
-  function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
+  const router = useHistory();
+
+  async function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (validate(selectedNiyam, niyamProgress)) {
-      execute(selectedNiyam as Niyam, niyamProgress as number);
+      try {
+        await execute(selectedNiyam as Niyam, niyamProgress as number);
+        setSnackbarState({
+          message: 'You have successfully registered your niyam progress!',
+          open: true,
+          status: SnackbarStatus.successful,
+        });
+        router.push('/');
+      } catch {}
     }
   }
 
