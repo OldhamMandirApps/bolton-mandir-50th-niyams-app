@@ -11,8 +11,8 @@ import { useSetRecoilState } from 'recoil';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.up('lg')]: {
-    maxWidth: '40vw',
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: '500px',
   },
 }));
 
