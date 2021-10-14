@@ -15,7 +15,7 @@ const primary = {
 };
 
 const theme = createTheme({
-  palette: { mode: 'dark', primary },
+  palette: { primary },
   shape: {
     borderRadius: 10,
   },

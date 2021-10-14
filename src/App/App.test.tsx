@@ -14,9 +14,12 @@ describe('App', () => {
     );
   }
 
-  test('should display progress trackers page', async () => {
-    renderApp('/');
+  test.each([
+    { path: '/', testId: 'progress-trackers-page' },
+    { path: '/add-your-niyam-progress', testId: 'add-niyam-progress-page' },
+  ])('should display $testId at $path', ({ path, testId }) => {
+    renderApp(path);
 
-    screen.getByTestId('progress-trackers-page');
+    screen.getByTestId(testId);
   });
 });

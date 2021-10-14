@@ -1,8 +1,8 @@
 import React from 'react';
-import { Niyam } from '../../config/niyams';
-import { slugify } from '../../utils/string';
 import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
-import useNiyamProgressInfo from '../../hooks/useNiyamProgressInfo';
+import { Niyam } from '../../../config/niyams';
+import { slugify } from '../../../utils/string';
+import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
@@ -13,7 +13,6 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
 
   function progressBarValue(progress: number, target: number) {
     const percentage = (progress / target) * 100;
-
     return percentage > 100 ? 100 : percentage;
   }
 
@@ -30,7 +29,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
         }}
       >
         <Box>
-          <Typography variant='h6' component='div' sx={{ fontWeight: 500 }}>
+          <Typography variant='h6' component='div' sx={{ fontWeight: 500, color: 'white' }}>
             {props.niyam}
           </Typography>
         </Box>
