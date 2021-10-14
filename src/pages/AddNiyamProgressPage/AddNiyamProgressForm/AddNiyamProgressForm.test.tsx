@@ -91,4 +91,21 @@ describe('AddNiyamProgressForm', () => {
       expect(history.location.pathname).toEqual('/');
     });
   });
+
+  test('should navigate to progress trackers page if niyam progress update was unsuccessful', async () => {
+    const executeMock = jest.fn().mockImplementation(() => Promise.reject());
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
+
+    const { history } = renderForm();
+
+    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
+    userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
+    userEvent.type(screen.getByRole('spinbutton', { name: /progress/i }), '100');
+
+    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
+
+    await waitFor(() => {
+      expect(history.location.pathname).toEqual('/');
+    });
+  });
 });

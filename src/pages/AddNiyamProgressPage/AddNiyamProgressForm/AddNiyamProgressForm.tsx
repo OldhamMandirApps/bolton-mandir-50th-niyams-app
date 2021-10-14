@@ -36,7 +36,14 @@ function AddNiyamProgressForm(): JSX.Element {
           status: SnackbarStatus.successful,
         });
         router.push('/');
-      } catch {}
+      } catch {
+        setSnackbarState({
+          message: 'Something went wrong whilst registering your niyam progress. Please try again later.',
+          open: true,
+          status: SnackbarStatus.error,
+        });
+        router.push('/');
+      }
     }
   }
 
