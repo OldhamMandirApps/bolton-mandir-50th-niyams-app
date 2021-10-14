@@ -41,7 +41,7 @@ function AddNiyamProgressForm(): JSX.Element {
   }
 
   return (
-    <Box mt={32}>
+    <Box mt={3}>
       <form data-testid='add-niyam-progress-form' onSubmit={onSubmitHandler}>
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
