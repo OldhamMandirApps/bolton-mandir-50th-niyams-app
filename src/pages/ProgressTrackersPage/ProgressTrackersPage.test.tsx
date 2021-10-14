@@ -44,7 +44,6 @@ describe('ProgressTrackersPage', () => {
     screen.getByTestId(`tracker-${slugify(Niyam.JanmangalNamavali)}`);
     screen.getByTestId(`tracker-${slugify(Niyam.JanmangalStotram)}`);
     screen.getByTestId(`tracker-${slugify(Niyam.OradaNaPads)}`);
-    screen.getByTestId(`tracker-${slugify(Niyam.UtsavKirtan)}`);
   });
 
   test('should send to add niyam progress page when clicking on add your niyam progress button', () => {

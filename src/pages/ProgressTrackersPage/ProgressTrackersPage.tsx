@@ -44,7 +44,6 @@ function ProgressTrackersPage(): JSX.Element {
         <ProgressTracker niyam={Niyam.JanmangalNamavali} />
         <ProgressTracker niyam={Niyam.JanmangalStotram} />
         <ProgressTracker niyam={Niyam.OradaNaPads} />
-        <ProgressTracker niyam={Niyam.UtsavKirtan} />
       </TrackersGrid>
       <Snackbar />
     </PageContainer>

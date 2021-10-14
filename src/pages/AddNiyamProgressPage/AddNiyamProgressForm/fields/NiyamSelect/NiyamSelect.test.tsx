@@ -23,7 +23,6 @@ describe('NiyamSelect', () => {
     screen.getByRole('option', { name: /janmangal namavali/i });
     screen.getByRole('option', { name: /janmangal stotram/i });
     screen.getByRole('option', { name: /orada na pads/i });
-    screen.getByRole('option', { name: /utsav kirtan/i });
   });
 
   test('should call setValue function when niyam is selected', () => {
