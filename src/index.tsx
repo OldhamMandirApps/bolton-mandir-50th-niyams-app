@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { firebaseConfig } from './config';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 
+import './config/i18n';
+
 ReactDOM.render(
   <React.StrictMode>
     <ServiceWorkerWrapper />
