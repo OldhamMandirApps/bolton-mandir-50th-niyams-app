@@ -4,13 +4,13 @@ import { initReactI18next } from 'react-i18next';
 
 export const resources = {
   en: {
-    oradaNaPadsEn,
+    'orada-na-pads': oradaNaPadsEn,
   },
 } as const;
 
 i18n.use(initReactI18next).init({
   lng: 'en',
-  ns: ['oradaNaPadsEn'],
+  ns: ['orada-na-pads'],
   resources,
   returnObjects: true,
   react: {

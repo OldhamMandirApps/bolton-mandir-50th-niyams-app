@@ -1,12 +1,12 @@
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import FirebaseApp from './FirebaseApp';
-import theme from './theme';
 import ProgressTrackersPage from '../pages/ProgressTrackersPage';
 import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
-import { RecoilRoot } from 'recoil';
-import NiyamPage from '../pages/NiyamPage/NiyamPage';
+import NiyamPage from '../pages/NiyamPage';
+import theme from './theme';
 
 function App(): JSX.Element {
   return (

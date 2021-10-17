@@ -22,13 +22,4 @@ describe('App', () => {
 
     screen.getByTestId(testId);
   });
-
-  test.each([{ path: '/niyam/orada-na-pads', testId: 'orada-na-pads' }])(
-    'should be able to read niyams',
-    ({ path, testId }) => {
-      renderApp(path);
-
-      screen.getByTestId(testId);
-    },
-  );
 });
