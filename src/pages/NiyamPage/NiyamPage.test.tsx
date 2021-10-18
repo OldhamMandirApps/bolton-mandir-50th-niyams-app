@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 function getTranslations(niyamId: string, property: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return resources.en[niyamId][property];
+  return resources.en[niyamId]?.[property];
 }
 
 jest.mock('react-i18next');
@@ -25,10 +25,17 @@ describe('NiyamPage', () => {
     });
   });
 
-  test.each([{ niyamId: 'orada-na-pads' }])('should be able to read niyams', ({ niyamId }) => {
+  test.each([
+    { niyamId: 'orada-na-pads', title: 'Orada na Pads' },
+    {
+      niyamId: 'janmangal-namavali-stotram',
+      title: 'Janmangal Namavali/Stotram',
+    },
+  ])('should be able to read niyams', ({ niyamId, title }) => {
     renderPage(niyamId);
 
     screen.getByTestId(niyamId);
+    screen.getByText(title);
     screen.getByTestId('tabs-container');
   });
 

@@ -5,7 +5,7 @@ import StyledTabs from '../StyledTabs';
 interface NiyamTabsProps {
   tabIndex: number;
   onTabChange: (event: React.SyntheticEvent<Element, Event>, newValue: number) => void;
-  tabs: Tab[];
+  tabs: Tab[] | undefined;
 }
 
 function NiyamTabs(props: NiyamTabsProps): JSX.Element {
@@ -19,8 +19,8 @@ function NiyamTabs(props: NiyamTabsProps): JSX.Element {
   }
 
   return (
-    <StyledTabs value={tabIndex} onChange={onTabChange}>
-      {tabs.map((tab) => (
+    <StyledTabs data-testid='niyam-tabs' value={tabIndex} onChange={onTabChange}>
+      {tabs?.map((tab) => (
         <StyledTab key={tab.name} label={tab.name} {...a11yProps(tabIndex)} />
       ))}
     </StyledTabs>

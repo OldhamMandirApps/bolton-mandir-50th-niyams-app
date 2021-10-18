@@ -5,6 +5,7 @@ import { isSupportedNiyam } from '../../config/niyams';
 import NotFoundPage from '../404';
 import { H1, PageContainer } from '../common/components';
 import TabsContainer from './TabsContainer';
+import { RouteParams } from '../../App/types';
 
 function NiyamPage(): JSX.Element {
   const { niyamId } = useParams<RouteParams>();

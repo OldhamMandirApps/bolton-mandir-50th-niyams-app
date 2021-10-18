@@ -1,3 +1,5 @@
+import { NiyamOption } from '../config/niyams';
+
 interface RouteParams {
-  niyamId?: string;
+  niyamId?: NiyamOption;
 }
