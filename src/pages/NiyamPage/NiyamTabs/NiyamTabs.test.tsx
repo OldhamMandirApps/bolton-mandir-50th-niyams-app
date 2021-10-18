@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { NiyamOption } from '../../../config/niyams';
 import NiyamTabs from './NiyamTabs';
 import { resources } from '../../../config/i18n';
@@ -19,5 +19,9 @@ describe('NiyamTabs', () => {
     },
   ])('should display correct tab titles', ({ tabs, tabTitles }) => {
     renderTabs(tabs);
+
+    const tabElements = screen.getAllByRole('tab');
+
+    expect(tabElements.map((tab) => tab.textContent)).toEqual(tabTitles);
   });
 });
