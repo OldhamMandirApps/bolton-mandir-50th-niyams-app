@@ -115,6 +115,7 @@ const niyam: NiyamConfig = {
         '106. oṃ śrī sadācārapriyatarāya namaḥ',
         '107. oṃ śrī puṇyaśravaṇakīrtanāya namaḥ',
         '108. oṃ śrī sarvamaṃgalasadrupa nānāguṇaviceṣṭitāya namaḥ',
+        '\n।। īti śrī janamaṃgala nāmāvali samāpta ।।',
       ],
     },
     {
