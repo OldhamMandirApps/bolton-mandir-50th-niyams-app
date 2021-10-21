@@ -5,6 +5,7 @@ import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
 import Snackbar from './Snackbar';
 import { useHistory } from 'react-router-dom';
+import { niyamLinks } from './config';
 
 const AddNiyamProgressButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -41,8 +42,8 @@ function ProgressTrackersPage(): JSX.Element {
 
       <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
         <ProgressTracker niyam={Niyam.ShantiPaath} />
-        <ProgressTracker niyam={Niyam.JanmangalNamavali} />
-        <ProgressTracker niyam={Niyam.JanmangalStotram} />
+        <ProgressTracker niyam={Niyam.JanmangalNamavali} niyamLink={niyamLinks.janmangal} tabIndex={0} />
+        <ProgressTracker niyam={Niyam.JanmangalStotram} niyamLink={niyamLinks.janmangal} tabIndex={1} />
         <ProgressTracker niyam={Niyam.OradaNaPads} />
       </TrackersGrid>
       <Snackbar />

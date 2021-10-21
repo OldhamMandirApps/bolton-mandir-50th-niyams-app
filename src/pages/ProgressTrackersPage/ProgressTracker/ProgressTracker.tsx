@@ -1,15 +1,22 @@
 import React from 'react';
-import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
+import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Niyam } from '../../../config/niyams';
 import { slugify } from '../../../utils/string';
 import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
+import { useHistory } from 'react-router-dom';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
+  niyamLink?: string;
+  tabIndex?: number;
 }
 
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
-  const { data } = useNiyamProgressInfo(props.niyam);
+  const { niyam, niyamLink, tabIndex } = props;
+
+  const { data } = useNiyamProgressInfo(niyam);
+  const router = useHistory();
 
   function progressBarValue(progress: number, target: number) {
     const percentage = (progress / target) * 100;
@@ -17,7 +24,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   }
 
   return (
-    <Grid item data-testid={`tracker-${slugify(props.niyam)}`}>
+    <Grid item data-testid={`tracker-${slugify(niyam)}`}>
       <Card
         raised
         variant='gradient'
@@ -25,14 +32,27 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           display: 'flex',
           flexDirection: 'column',
           p: 2.5,
-          pt: 2,
+          pt: 1.0,
         }}
       >
-        <Box>
+        <Grid container direction='row' justifyContent='space-between' alignItems='center' minHeight='40px'>
           <Typography variant='h6' component='div' sx={{ fontWeight: 500, color: 'white' }}>
-            {props.niyam}
+            {niyam}
           </Typography>
-        </Box>
+          {niyamLink ? (
+            <IconButton
+              aria-label='go to niyam'
+              disableFocusRipple
+              disableRipple
+              disableTouchRipple
+              onClick={() => {
+                router.push(niyamLink, { tabIndex });
+              }}
+            >
+              <ChevronRightIcon sx={{ fontWeight: 500, color: 'white' }} />
+            </IconButton>
+          ) : null}
+        </Grid>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
           <LinearProgress
             aria-label='Niyam Progress'
