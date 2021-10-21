@@ -13,6 +13,8 @@ export const resources = {
 
 i18n.use(initReactI18next).init({
   lng: 'en',
+  fallbackLng: 'en',
+  supportedLngs: ['en', 'gu'],
   ns: supportedNiyams,
   resources,
   returnObjects: true,

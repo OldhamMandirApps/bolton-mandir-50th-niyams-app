@@ -3,7 +3,7 @@ import NiyamTabs from '../NiyamTabs';
 import NiyamTabPanels from '../NiyamTabPanels';
 
 interface TabsContainerProps {
-  tabs: Tab[];
+  tabs: Tab[] | undefined;
   tabIndex: number | undefined;
 }
 

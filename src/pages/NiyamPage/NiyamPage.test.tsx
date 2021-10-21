@@ -3,6 +3,7 @@ import { renderWithRouter } from '../../../test/testUtils';
 import NiyamPage from './NiyamPage';
 import { resources } from '../../config/i18n';
 import { useTranslation } from 'react-i18next';
+import { RecoilRoot } from 'recoil';
 
 function getTranslations(niyamId: string, property: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -14,13 +15,26 @@ jest.mock('react-i18next');
 
 describe('NiyamPage', () => {
   function renderPage(niyamId: string) {
-    return renderWithRouter(<NiyamPage />, '/niyam/:niyamId', { route: `/niyam/${niyamId}` });
+    return renderWithRouter(
+      <RecoilRoot>
+        <NiyamPage />
+      </RecoilRoot>,
+      '/niyam/:niyamId',
+      { route: `/niyam/${niyamId}` },
+    );
   }
 
   beforeEach(() => {
     (useTranslation as jest.Mock).mockImplementation((niyamId) => {
+      let language: string | undefined = 'en';
       return {
         t: (key: string) => getTranslations(niyamId, key),
+        i18n: {
+          changeLanguage(lng?: string) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            language = lng;
+          },
+        },
       };
     });
   });
