@@ -7,6 +7,7 @@ import ProgressTrackersPage from '../pages/ProgressTrackersPage';
 import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
 import NiyamPage from '../pages/NiyamPage';
 import theme from './theme';
+import ScrollToTop from './ScrollToTop';
 
 function App(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ function App(): JSX.Element {
         <FirebaseApp>
           <ThemeProvider theme={theme}>
             <Router>
+              <ScrollToTop />
               <Switch>
                 <Route exact path='/' component={ProgressTrackersPage} />
                 <Route exact path='/add-your-niyam-progress' component={AddNiyamProgressPage} />

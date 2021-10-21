@@ -13,18 +13,14 @@ interface LocationState {
 
 function NiyamPage(): JSX.Element {
   const { niyamId } = useParams<RouteParams>();
-  const {
-    location: {
-      state: { tabIndex },
-    },
-  } = useHistory<LocationState>();
+  const history = useHistory<LocationState>();
   const { t } = useTranslation(niyamId as Namespace | undefined);
 
   if (isSupportedNiyam(niyamId)) {
     return (
       <PageContainer data-testid={niyamId}>
         <H1>{t('name')}</H1>
-        <TabsContainer tabs={t('tabs')} tabIndex={tabIndex as unknown as number} />
+        <TabsContainer tabs={t('tabs')} tabIndex={history.location.state?.tabIndex ?? 0} />
       </PageContainer>
     );
   } else {
