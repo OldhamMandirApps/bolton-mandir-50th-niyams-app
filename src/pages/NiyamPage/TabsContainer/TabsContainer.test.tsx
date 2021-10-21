@@ -3,7 +3,7 @@ import TabsContainer from './TabsContainer';
 
 describe('TabsContainer', () => {
   function renderContainer() {
-    return render(<TabsContainer tabs={[]} />);
+    return render(<TabsContainer tabs={[]} tabIndex={0} />);
   }
 
   test('should render tabs and panels', () => {

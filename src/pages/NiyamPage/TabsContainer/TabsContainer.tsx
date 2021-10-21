@@ -4,10 +4,12 @@ import NiyamTabPanels from '../NiyamTabPanels';
 
 interface TabsContainerProps {
   tabs: Tab[];
+  tabIndex: number | undefined;
 }
 
 function TabsContainer(props: TabsContainerProps): JSX.Element {
-  const [value, setValue] = React.useState(0);
+  const { tabs, tabIndex = 0 } = props;
+  const [value, setValue] = React.useState<number>(tabIndex);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -19,8 +21,8 @@ function TabsContainer(props: TabsContainerProps): JSX.Element {
 
   return (
     <div data-testid='tabs-container'>
-      <NiyamTabs tabIndex={value} onTabChange={handleTabChange} tabs={props.tabs} />
-      <NiyamTabPanels tabIndex={value} onTabChange={handleChangeTabPanel} tabs={props.tabs} />
+      <NiyamTabs tabIndex={value} onTabChange={handleTabChange} tabs={tabs} />
+      <NiyamTabPanels tabIndex={value} onTabChange={handleChangeTabPanel} tabs={tabs} />
     </div>
   );
 }

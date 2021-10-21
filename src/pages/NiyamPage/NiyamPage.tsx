@@ -8,14 +8,14 @@ import TabsContainer from './TabsContainer';
 import { RouteParams } from '../../App/types';
 
 function NiyamPage(): JSX.Element {
-  const { niyamId } = useParams<RouteParams>();
+  const { niyamId, tabIndex } = useParams<RouteParams>();
   const { t } = useTranslation(niyamId as Namespace | undefined);
 
   if (isSupportedNiyam(niyamId)) {
     return (
       <PageContainer data-testid={niyamId}>
         <H1>{t('name')}</H1>
-        <TabsContainer tabs={t('tabs')} />
+        <TabsContainer tabs={t('tabs')} tabIndex={tabIndex as unknown as number} />
       </PageContainer>
     );
   } else {
