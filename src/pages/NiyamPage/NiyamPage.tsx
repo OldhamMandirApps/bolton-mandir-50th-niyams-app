@@ -14,7 +14,7 @@ function NiyamPage(): JSX.Element {
   if (isSupportedNiyam(niyamId)) {
     return (
       <PageContainer data-testid={niyamId}>
-        <H1 pl='24px'>{t('name')}</H1>
+        <H1>{t('name')}</H1>
         <TabsContainer tabs={t('tabs')} />
       </PageContainer>
     );

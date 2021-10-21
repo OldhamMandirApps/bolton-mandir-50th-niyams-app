@@ -19,7 +19,7 @@ function TabPanel(props: TabPanelProps): JSX.Element {
       {...other}
     >
       {value === index && (
-        <Box p='24px'>
+        <Box p='24px' pl={0}>
           {content.map((line, idx) => (
             <Typography key={idx} paragraph whiteSpace='pre-line'>
               {line}
