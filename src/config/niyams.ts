@@ -6,7 +6,7 @@ export enum Niyam {
 }
 
 export type NiyamOption = typeof supportedNiyams[number];
-export const supportedNiyams = ['orada-na-pads', 'janmangal-namavali-stotram'] as const;
+export const supportedNiyams = ['orada-na-pads', 'janmangal-namavali-stotram', 'shanti-paath'] as const;
 
 export function isSupportedNiyam(niyamId: NiyamOption | undefined): boolean {
   if (niyamId) {

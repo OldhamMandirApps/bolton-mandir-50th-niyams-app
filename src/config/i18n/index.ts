@@ -2,13 +2,14 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { supportedNiyams } from '../niyams';
 
-import { janmangalNamavaliStotramEn, oradaNaPadsEn } from './en';
+import { janmangalNamavaliStotramEn, oradaNaPadsEn, shantiPaathEn } from './en';
 import { janmangalNamavaliStotramGu, oradaNaPadsGu } from './gu';
 
 export const resources = {
   en: {
     'orada-na-pads': oradaNaPadsEn,
     'janmangal-namavali-stotram': janmangalNamavaliStotramEn,
+    'shanti-paath': shantiPaathEn,
   },
   gu: {
     'orada-na-pads': oradaNaPadsGu,
