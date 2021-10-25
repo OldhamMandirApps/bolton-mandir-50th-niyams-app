@@ -8,7 +8,12 @@ interface StyledTabsProps {
 }
 
 const StyledTabs = styled((props: StyledTabsProps) => (
-  <Tabs {...props} TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }} />
+  <Tabs
+    {...props}
+    variant='scrollable'
+    scrollButtons='auto'
+    TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
+  />
 ))({
   '& .MuiTabs-indicator': {
     display: 'flex',
