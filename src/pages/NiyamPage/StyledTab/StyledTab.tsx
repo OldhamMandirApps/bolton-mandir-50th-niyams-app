@@ -13,6 +13,7 @@ const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props
   'paddingRight': 0,
   [theme.breakpoints.down('sm')]: {
     marginRight: theme.spacing(0.5),
+    paddingRight: theme.spacing(1),
   },
   '&.Mui-focusVisible': {
     backgroundColor: 'rgba(100, 95, 228, 0.32)',
