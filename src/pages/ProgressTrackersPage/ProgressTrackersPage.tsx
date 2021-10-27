@@ -32,16 +32,16 @@ function ProgressTrackersPage(): JSX.Element {
           <AddNiyamProgressButton
             variant='contained'
             onClick={() => {
-              history.push('/add-your-niyam-progress');
+              history.push('/add-your-niyam-count');
             }}
           >
-            Add your niyam progress
+            Add your niyam count
           </AddNiyamProgressButton>
         </Grid>
       </Grid>
 
       <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
-        <ProgressTracker niyam={Niyam.ShantiPaath} />
+        <ProgressTracker niyam={Niyam.ShantiPaath} niyamLink={niyamLinks.shantiPaath} />
         <ProgressTracker niyam={Niyam.JanmangalNamavali} niyamLink={niyamLinks.janmangal} tabIndex={0} />
         <ProgressTracker niyam={Niyam.JanmangalStotram} niyamLink={niyamLinks.janmangal} tabIndex={1} />
         <ProgressTracker niyam={Niyam.OradaNaPads} niyamLink={niyamLinks.oradaNaPads} />

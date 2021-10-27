@@ -19,7 +19,7 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
       <TextField
         id='niyam-progress-input'
         data-testid='niyam-progress-input-field'
-        label='Progress'
+        label='Niyam Count'
         variant='outlined'
         type='number'
         required

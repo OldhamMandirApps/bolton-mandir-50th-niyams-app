@@ -38,7 +38,7 @@ describe('ProgressTrackersPage', () => {
     renderPage();
 
     screen.getByRole('heading', { name: /niyam progress/i });
-    screen.getByRole('button', { name: /add your niyam progress/i });
+    screen.getByRole('button', { name: /add your niyam count/i });
 
     screen.getByTestId(`tracker-${slugify(Niyam.ShantiPaath)}`);
     screen.getByTestId(`tracker-${slugify(Niyam.JanmangalNamavali)}`);
@@ -56,8 +56,8 @@ describe('ProgressTrackersPage', () => {
     });
     const { history } = renderPage();
 
-    userEvent.click(screen.getByRole('button', { name: /add your niyam progress/i }));
+    userEvent.click(screen.getByRole('button', { name: /add your niyam count/i }));
 
-    expect(history.location.pathname).toEqual('/add-your-niyam-progress');
+    expect(history.location.pathname).toEqual('/add-your-niyam-count');
   });
 });
