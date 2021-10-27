@@ -19,7 +19,7 @@ function App(): JSX.Element {
               <ScrollToTop />
               <Switch>
                 <Route exact path='/' component={ProgressTrackersPage} />
-                <Route exact path='/add-your-niyam-progress' component={AddNiyamProgressPage} />
+                <Route exact path='/add-your-niyam-count' component={AddNiyamProgressPage} />
                 <Route path='/niyam/:niyamId' component={NiyamPage} />
               </Switch>
             </Router>

@@ -10,14 +10,14 @@ describe('NiyamProgressInput', () => {
   test('should render input field for niyam progress input', () => {
     renderInputField(0, jest.fn());
 
-    screen.getByRole('spinbutton', { name: /progress/i });
+    screen.getByRole('spinbutton', { name: /niyam count/i });
   });
 
   test('should call setValue function when niyam progress is entered', () => {
     const setValueMock = jest.fn();
     renderInputField(null, setValueMock);
 
-    userEvent.type(screen.getByRole('spinbutton', { name: /progress/i }), '100');
+    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
 
     expect(setValueMock).toBeCalledWith(100);
   });
@@ -26,7 +26,7 @@ describe('NiyamProgressInput', () => {
     const setValueMock = jest.fn();
     renderInputField(800, setValueMock);
 
-    userEvent.clear(screen.getByRole('spinbutton', { name: /progress/i }));
+    userEvent.clear(screen.getByRole('spinbutton', { name: /niyam count/i }));
 
     expect(setValueMock).toBeCalledWith(null);
   });
@@ -34,6 +34,6 @@ describe('NiyamProgressInput', () => {
   test('should set value to be empty string if value is null', () => {
     renderInputField(null, jest.fn());
 
-    expect(screen.getByRole('spinbutton', { name: /progress/i })).toHaveDisplayValue('');
+    expect(screen.getByRole('spinbutton', { name: /niyam count/i })).toHaveDisplayValue('');
   });
 });

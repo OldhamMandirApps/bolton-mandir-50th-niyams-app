@@ -17,7 +17,7 @@ describe('AddNiyamProgressForm', () => {
 
   function renderForm() {
     const history = createMemoryHistory();
-    history.push('/add-your-niyam-progress');
+    history.push('/add-your-niyam-count');
     const app = render(
       <RecoilRoot>
         <Router history={history}>
@@ -80,7 +80,7 @@ describe('AddNiyamProgressForm', () => {
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /progress/i }), '100');
+    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
 
     userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
 
@@ -100,7 +100,7 @@ describe('AddNiyamProgressForm', () => {
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /progress/i }), '100');
+    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
 
     userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
 

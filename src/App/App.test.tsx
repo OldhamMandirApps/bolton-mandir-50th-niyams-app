@@ -16,7 +16,7 @@ describe('App', () => {
 
   test.each([
     { path: '/', testId: 'progress-trackers-page' },
-    { path: '/add-your-niyam-progress', testId: 'add-niyam-progress-page' },
+    { path: '/add-your-niyam-count', testId: 'add-niyam-progress-page' },
   ])('should display $testId at $path', ({ path, testId }) => {
     renderApp(path);
 
