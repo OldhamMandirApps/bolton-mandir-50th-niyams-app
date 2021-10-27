@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import { supportedNiyams } from '../niyams';
 
 import { janmangalNamavaliStotramEn, oradaNaPadsEn, shantiPaathEn } from './en';
-import { janmangalNamavaliStotramGu, oradaNaPadsGu } from './gu';
+import { janmangalNamavaliStotramGu, oradaNaPadsGu, shantiPaathGu } from './gu';
 
 export const resources = {
   en: {
@@ -14,6 +14,7 @@ export const resources = {
   gu: {
     'orada-na-pads': oradaNaPadsGu,
     'janmangal-namavali-stotram': janmangalNamavaliStotramGu,
+    'shanti-paath': shantiPaathGu,
   },
 } as const;
 
