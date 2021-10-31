@@ -49,7 +49,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
                 router.push(niyamLink, { tabIndex });
               }}
             >
-              <ChevronRightIcon sx={{ fontWeight: 500, color: 'white' }} />
+              <ChevronRightIcon sx={{ fontWeight: 800, color: 'white', fontSize: '2rem' }} />
             </IconButton>
           ) : null}
         </Grid>

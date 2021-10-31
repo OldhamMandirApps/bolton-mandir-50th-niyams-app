@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, styled } from '@mui/material';
+import { Button, Grid, styled, Typography } from '@mui/material';
 import { Niyam } from '../../config/niyams';
 import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
@@ -40,6 +40,9 @@ function ProgressTrackersPage(): JSX.Element {
         </Grid>
       </Grid>
 
+      <Typography paragraph textAlign='end' fontSize='14px'>
+        Click on the below arrows to read the niyams
+      </Typography>
       <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
         <ProgressTracker niyam={Niyam.ShantiPaath} niyamLink={niyamLinks.shantiPaath} />
         <ProgressTracker niyam={Niyam.JanmangalNamavali} niyamLink={niyamLinks.janmangal} tabIndex={0} />

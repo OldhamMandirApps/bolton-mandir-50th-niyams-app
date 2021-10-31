@@ -7,7 +7,7 @@ interface StyledTabProps {
 const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
   'textTransform': 'none',
   'fontWeight': theme.typography.fontWeightRegular,
-  'fontSize': theme.typography.pxToRem(15),
+  'fontSize': '1.1rem',
   'marginRight': theme.spacing(3),
   'paddingLeft': 0,
   'paddingRight': 0,
