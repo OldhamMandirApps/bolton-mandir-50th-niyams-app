@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import AddNiyamProgressPage from './AddNiyamProgressPage';
+import { RecoilRoot } from 'recoil';
 import useUpdateNiyamProgress from '../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import AddNiyamProgressPage from './AddNiyamProgressPage';
 
 jest.mock('../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress');
 describe('AddNiyamProgressPage', () => {
@@ -11,7 +12,11 @@ describe('AddNiyamProgressPage', () => {
   });
 
   function renderPage() {
-    return render(<AddNiyamProgressPage />);
+    return render(
+      <RecoilRoot>
+        <AddNiyamProgressPage />
+      </RecoilRoot>,
+    );
   }
 
   test('should render page heading and components to add niyam', () => {

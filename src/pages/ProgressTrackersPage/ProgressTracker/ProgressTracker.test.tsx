@@ -8,7 +8,7 @@ jest.mock('../../../hooks/useNiyamProgressInfo');
 
 describe('ProgressTracker', () => {
   function renderComponent(niyam: Niyam = Niyam.OradaNaPads) {
-    return render(<ProgressTracker niyam={niyam} />);
+    return render(<ProgressTracker niyam={niyam} niyamLink='/orada-na-pads' />);
   }
 
   const useNiyamProgressInfoMock = useNiyamProgressInfo as jest.Mock;
