@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled, Typography } from '@mui/material';
 import { Niyam } from '../../config/niyams';
 import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
@@ -42,8 +42,16 @@ function ProgressTrackersPage(): JSX.Element {
             </AddNiyamProgressButton>
           </Grid>
         </Grid>
+        <Box pb='16px'>
+          <Typography fontWeight='medium' fontSize='18px' pb='8px'>
+            Jay Shree Swaminarayan!
+          </Typography>
+          <Typography fontSize='18px'>
+            Below are the niyams for Shree Swaminarayan Mandir Oldham's Nutan Mandir Mahotsav
+          </Typography>
+        </Box>
 
-        <Typography paragraph textAlign='end' fontSize='14px'>
+        <Typography paragraph fontSize='14px'>
           Click on the below arrows to read the niyams
         </Typography>
         <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
