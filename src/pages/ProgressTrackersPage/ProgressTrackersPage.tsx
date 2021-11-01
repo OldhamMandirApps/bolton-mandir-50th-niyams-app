@@ -45,8 +45,7 @@ function ProgressTrackersPage(): JSX.Element {
       </Typography>
       <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
         <ProgressTracker niyam={Niyam.ShantiPaath} niyamLink={niyamLinks.shantiPaath} />
-        <ProgressTracker niyam={Niyam.JanmangalNamavali} niyamLink={niyamLinks.janmangal} tabIndex={0} />
-        <ProgressTracker niyam={Niyam.JanmangalStotram} niyamLink={niyamLinks.janmangal} tabIndex={1} />
+        <ProgressTracker niyam={Niyam.JanmangalNamavaliStotram} niyamLink={niyamLinks.janmangal} />
         <ProgressTracker niyam={Niyam.OradaNaPads} niyamLink={niyamLinks.oradaNaPads} />
       </TrackersGrid>
       <Snackbar />

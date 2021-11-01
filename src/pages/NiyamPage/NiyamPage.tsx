@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Namespace, useTranslation } from 'react-i18next';
 import { isSupportedNiyam } from '../../config/niyams';
 import NotFoundPage from '../404';
@@ -10,13 +10,8 @@ import Navbar from '../common/Navbar';
 import { useRecoilValue } from 'recoil';
 import { currentLanguageAtom, Language } from '../common/atoms';
 
-interface LocationState {
-  tabIndex?: number;
-}
-
 function NiyamPage(): JSX.Element {
   const { niyamId } = useParams<RouteParams>();
-  const history = useHistory<LocationState>();
   const currentLanguage = useRecoilValue(currentLanguageAtom);
 
   const { t, i18n } = useTranslation(niyamId as Namespace | undefined);
@@ -32,7 +27,7 @@ function NiyamPage(): JSX.Element {
         <Navbar />
         <PageContainer data-testid={niyamId}>
           <H1>{t('name')}</H1>
-          <TabsContainer tabs={t('tabs')} tabIndex={history.location.state?.tabIndex ?? 0} />
+          <TabsContainer tabs={t('tabs')} />
         </PageContainer>
       </div>
     );

@@ -6,7 +6,7 @@ const niyam: NiyamConfig = {
     {
       name: 'Janmangal Namavali',
       content: [
-        'śrījanamaṃgala nāmāvali',
+        '<b>śrījanamaṃgala nāmāvali</b>',
         '01. oṃ śrī śrīkṛṣṇāya namaḥ',
         '02. oṃ śrī śrīvāsudevāya namaḥ',
         '03. oṃ śrī naranārāyaṇāya namaḥ',
@@ -115,13 +115,13 @@ const niyam: NiyamConfig = {
         '106. oṃ śrī sadācārapriyatarāya namaḥ',
         '107. oṃ śrī puṇyaśravaṇakīrtanāya namaḥ',
         '108. oṃ śrī sarvamaṃgalasadrupa nānāguṇaviceṣṭitāya namaḥ',
-        '\n।। īti śrī janamaṃgala nāmāvali samāpta ।।',
+        '\n<b>।। īti śrī janamaṃgala nāmāvali samāpta ।।</b>',
       ],
     },
     {
       name: 'Janmangal Stotram',
       content: [
-        'śrījanamaṃgala stotram',
+        '<b>śrījanamaṃgala stotram</b>',
         'varṇiveṣaramaṇīyadarśanaṃ mandahāsarucirānanāmbujam ।\npūjitaṃ suranarottamairmudā dharmanandanamahaṃ vicintaye ॥1॥',
         'śrīkṛṣṇaḥ śrīvāsudevo naranārāyaṇaḥ prabhuḥ ।\nbhaktidharmātmajojanmā kṛṣṇo nārāyaṇo hariḥ ॥2॥',
         'harikṛṣṇo ghanaśyāmo dhārmiko bhaktinandanaḥ ।\nbṛhadvratadharaḥ śuddho rādhākṛṣṇeṣṭadaivataḥ ॥3॥',
@@ -147,7 +147,7 @@ const niyam: NiyamConfig = {
         'bhūtapretapiśācānāṃ ḍākinībrahmarākṣasām ।\nyoginīnāṃ tathā bālagrahādīnāmupadravaḥ ॥23॥',
         "abhicāro ripukṛto rogaścānyo'pyupadravaḥ ।\nayutāvartanādasya naśyatyeva na saṃśayaḥ ॥24॥",
         'daśāvṛtyā pratidinamasyābhīṣṭaṃ sukhaṃ bhavet ।\ngṛhibhistyāgibhiścāpi paṭhanīyamidaṃ tataḥ ॥25॥',
-        '।। iti śrīśatānandamuniviracitaṃ śrījanamaṃgalākhyaṃ śrīharyaṣṭottaraśatanāmastotraṃ saṃpūrṇam ।।',
+        '\n<b>।। iti śrīśatānandamuniviracitaṃ śrījanamaṃgalākhyaṃ śrīharyaṣṭottaraśatanāmastotraṃ saṃpūrṇam ।।</b>',
       ],
     },
   ],

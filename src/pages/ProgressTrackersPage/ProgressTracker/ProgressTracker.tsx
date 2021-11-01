@@ -1,10 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Niyam } from '../../../config/niyams';
 import { slugify } from '../../../utils/string';
 import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
-import { useHistory } from 'react-router-dom';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
@@ -13,7 +13,7 @@ interface ProgressTrackerProps {
 }
 
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
-  const { niyam, niyamLink, tabIndex } = props;
+  const { niyam, niyamLink } = props;
 
   const { data } = useNiyamProgressInfo(niyam);
   const router = useHistory();
@@ -46,7 +46,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
               disableRipple
               disableTouchRipple
               onClick={() => {
-                router.push(niyamLink, { tabIndex });
+                router.push(niyamLink);
               }}
             >
               <ChevronRightIcon sx={{ fontWeight: 800, color: 'white', fontSize: '2rem' }} />
