@@ -1,7 +1,8 @@
 export enum Niyam {
   ShantiPaath = 'Shanti Paath',
-  JanmangalNamavaliStotram = 'Janmangal Namavali and Stotram',
+  JanmangalNamavaliStotram = 'Janmangal Namavali/Stotram',
   OradaNaPads = 'Orada na Pads',
+  BhaktachintamaniVachanamrut = 'Bhaktachintamani/Vachanamrut',
 }
 
 export type NiyamOption = typeof supportedNiyams[number];

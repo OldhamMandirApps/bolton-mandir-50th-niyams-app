@@ -4,7 +4,13 @@ import { Translate } from '@mui/icons-material';
 import { useRecoilState } from 'recoil';
 import { currentLanguageAtom, Language } from './atoms';
 
-function Navbar(): JSX.Element {
+interface NavbarProps {
+  showLanguageToggle: boolean;
+}
+
+function Navbar(props: NavbarProps): JSX.Element {
+  const { showLanguageToggle } = props;
+
   const [currentLanguage, setCurrentLanguage] = useRecoilState(currentLanguageAtom);
 
   function toggleLanguage() {
@@ -22,9 +28,11 @@ function Navbar(): JSX.Element {
           <Typography variant='h5' sx={{ color: 'black', fontWeight: 500 }}>
             Nutan Utsav App
           </Typography>
-          <IconButton aria-label='change language' onClick={toggleLanguage}>
-            <Translate sx={{ fontWeight: 500 }} />
-          </IconButton>
+          {showLanguageToggle ? (
+            <IconButton aria-label='change language' onClick={toggleLanguage}>
+              <Translate sx={{ fontWeight: 500 }} />
+            </IconButton>
+          ) : null}
         </Grid>
       </Toolbar>
     </AppBar>

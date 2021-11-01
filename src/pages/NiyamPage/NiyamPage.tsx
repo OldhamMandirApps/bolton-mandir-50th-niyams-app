@@ -9,8 +9,9 @@ import { RouteParams } from '../../App/types';
 import Navbar from '../common/Navbar';
 import { useRecoilValue } from 'recoil';
 import { currentLanguageAtom, Language } from '../common/atoms';
+import { getCustomPage, isCustomPage } from './config';
 
-function NiyamPage(): JSX.Element {
+function NiyamPage(): JSX.Element | null {
   const { niyamId } = useParams<RouteParams>();
   const currentLanguage = useRecoilValue(currentLanguageAtom);
 
@@ -24,13 +25,15 @@ function NiyamPage(): JSX.Element {
   if (isSupportedNiyam(niyamId)) {
     return (
       <div>
-        <Navbar />
+        <Navbar showLanguageToggle />
         <PageContainer data-testid={niyamId}>
           <H1>{t('name')}</H1>
           <TabsContainer tabs={t('tabs')} />
         </PageContainer>
       </div>
     );
+  } else if (isCustomPage(niyamId)) {
+    return getCustomPage(niyamId);
   } else {
     return <NotFoundPage />;
   }

@@ -41,9 +41,9 @@ describe('ProgressTrackersPage', () => {
     screen.getByRole('button', { name: /add your niyam count/i });
 
     screen.getByTestId(`tracker-${slugify(Niyam.ShantiPaath)}`);
-    screen.getByTestId(`tracker-${slugify(Niyam.JanmangalNamavali)}`);
-    screen.getByTestId(`tracker-${slugify(Niyam.JanmangalStotram)}`);
+    screen.getByTestId(`tracker-${slugify(Niyam.JanmangalNamavaliStotram)}`);
     screen.getByTestId(`tracker-${slugify(Niyam.OradaNaPads)}`);
+    screen.getByTestId(`tracker-${slugify(Niyam.BhaktachintamaniVachanamrut)}`);
   });
 
   test('should send to add niyam progress page when clicking on add your niyam progress button', () => {
