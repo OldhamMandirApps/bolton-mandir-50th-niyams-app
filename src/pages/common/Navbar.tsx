@@ -71,11 +71,11 @@ function Navbar(props: NavbarProps): JSX.Element {
             </Grid>
           </Grid>
           <Grid container direction='column'>
-            <Typography fontStyle='italic' fontWeight='medium' color='black' pb='4px'>
-              Welcoming Maharaj To A New Home
+            <Typography fontStyle='italic' fontWeight='medium' color='gray' pb='4px'>
+              'Welcoming Maharaj To A New Home'
             </Typography>
-            <Typography fontStyle='italic' fontWeight='medium' color='black' pb='8px'>
-              Shyam Snehi Gher Avya...Ghanshyam Avya
+            <Typography fontStyle='italic' fontWeight='medium' color='gray' pb='8px'>
+              'Shyam Snehi Gher Avya...Ghanshyam Avya'
             </Typography>
           </Grid>
         </Grid>
