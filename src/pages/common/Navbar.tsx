@@ -26,8 +26,6 @@ function Navbar(props: NavbarProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
 
-  console.log('isVisible: ', isVisible);
-
   return (
     <>
       <AppBar sx={{ backgroundColor: 'white' }} elevation={isVisible ? 0 : 5}>
