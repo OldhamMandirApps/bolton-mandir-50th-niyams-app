@@ -62,7 +62,7 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return error when more than 1 document retrieved from firestore', () => {
-    const niyam = Niyam.JanmangalNamavali;
+    const niyam = Niyam.JanmangalNamavaliStotram;
     const error = new Error(`There were multiple documents found in the database for ${niyam}`);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
@@ -81,7 +81,7 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return data when 1 document retrieved from firestore', () => {
-    const niyam = Niyam.JanmangalNamavali;
+    const niyam = Niyam.JanmangalNamavaliStotram;
     const data = NiyamBuilder(niyam, 1000, 10000);
 
     useFirestoreDataMock.mockImplementationOnce(() => {

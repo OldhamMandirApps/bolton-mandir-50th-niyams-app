@@ -1947,6 +1947,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@jy95/material-ui-image@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@jy95/material-ui-image/-/material-ui-image-4.0.0.tgz#2b81233bb58709076c41fd57ecbf514348614f1a"
+  integrity sha512-C44f6hj68QzEPILiYuVCV3DiX1HfB2gn7uyt/Q37PNWvBEmCV+77LN5/n79xYWGPcH+4AW3ke5tp0pJSz/6ZFA==
+  dependencies:
+    prop-types "^15.5.8"
+
 "@mui/core@5.0.0-alpha.49":
   version "5.0.0-alpha.49"
   resolved "https://registry.yarnpkg.com/@mui/core/-/core-5.0.0-alpha.49.tgz#e74d6ec7f83f85b55d48aa05ea6b7cefff88ce1b"
@@ -10342,7 +10349,7 @@ prompts@2.4.0, prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==

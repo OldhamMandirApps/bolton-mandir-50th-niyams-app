@@ -4,12 +4,11 @@ import NiyamTabPanels from '../NiyamTabPanels';
 
 interface TabsContainerProps {
   tabs: Tab[] | undefined;
-  tabIndex: number | undefined;
 }
 
 function TabsContainer(props: TabsContainerProps): JSX.Element {
-  const { tabs, tabIndex = 0 } = props;
-  const [value, setValue] = React.useState<number>(tabIndex);
+  const { tabs } = props;
+  const [value, setValue] = React.useState<number>(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

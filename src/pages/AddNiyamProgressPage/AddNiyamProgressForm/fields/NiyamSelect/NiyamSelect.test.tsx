@@ -20,14 +20,14 @@ describe('NiyamSelect', () => {
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
 
     screen.getByRole('option', { name: /shanti paath/i });
-    screen.getByRole('option', { name: /janmangal namavali/i });
-    screen.getByRole('option', { name: /janmangal stotram/i });
+    screen.getByRole('option', { name: /janmangal namavali\/stotram/i });
+    screen.getByRole('option', { name: /bhaktachintamani\/vachanamrut/i });
     screen.getByRole('option', { name: /orada na pads/i });
   });
 
   test('should call setValue function when niyam is selected', () => {
     const setValueMock = jest.fn();
-    renderSelectField(Niyam.JanmangalNamavali, setValueMock);
+    renderSelectField(Niyam.JanmangalNamavaliStotram, setValueMock);
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(screen.getByRole('option', { name: /orada na pads/i }));

@@ -6,7 +6,7 @@ const niyam: NiyamConfig = {
     {
       name: 'Bhaktachintāmaņi Prakaran 29',
       content: [
-        '<b>Hari-Tapashcharya-Varşan</b>',
+        '<b>Hari - Tapashcharyā - Varnan</b>',
         '<b>Pūrvachhāyo</b>',
         'Tyār pachhīnī je vāratā, tame sambhaļo sahu sujān; \n Tyāg vairāgya je Nāthno, tenā shiyā karu hu vakhān. 1',
         'Bhūlye pan nij dehne, māne nahi koi din; \n Ishvar ichchhāe tan rahyu, pan pote na karyu jatana. 2',
@@ -75,7 +75,7 @@ const niyam: NiyamConfig = {
     {
       name: 'Bhaktachintāmaņi Prakaran 30',
       content: [
-        '<b>Shrī Hari Gopāl Yogine malyā</b>',
+        '<b>Shrī Hari Gopāļ Yogīne malyā</b>',
         '<b>Pūrvachhāyo</b>',
         'Tyār pachhī Krushnadevnī, kahu kathā ati rasāļ; \n Charchai thayā chālavā, uttar dishāmā dayāļ. 1',
         'Nāmī mastak Muktanāthne, pachhī nāmyu muktane shīsh; \n Prabhāte āthī padhāriyā, eh ashramthī Jagadīsh. 2',
@@ -134,7 +134,7 @@ const niyam: NiyamConfig = {
     {
       name: 'Bhaktachintāmaņi Prakaran 31',
       content: [
-        '<b>Shri Haricharitra - Gopal Yogine siddhagati</b>',
+        '<b>Shrī Haricharitra - Gopāļ Yogīne siddhagati</b>',
         '<b>Pūrvachhāyo</b>',
         'Vaļī kahu ek vāratā, suno sahu thai sävadhān; \n Krupānidhi Krushnadevnā, kahu charitra amrut samān. 1',
         'Nāth pratāpe nijātamā, dekhe akhand rūp anup; \n  Tenī brahma sāthe karī ekatā, pachhī thayā brahmaswarūp. 2',
@@ -198,7 +198,7 @@ const niyam: NiyamConfig = {
     {
       name: 'Bhaktachintāmaņi Prakaran 32',
       content: [
-        '<b>Shrī Haricharitra - Pībaik Akhyan</b>',
+        '<b>Shrī Haricharitra - Pībaik Akhyān</b>',
         '<b>Pūrvachhāyo</b>',
         'Shubhamati sahu sāmbhaļo, Hari-kathā kahu anup; \n Duşhtane dukhadāyī chhe, chhe santane sukharūp . 1',
         'Asur je avani rahyā, badalāvīne bijo vesh; \n Tene te arthe Shrī Hari, fare chhe desh pradesh. 2',

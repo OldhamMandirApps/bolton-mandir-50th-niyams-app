@@ -1,19 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Niyam } from '../../../config/niyams';
 import { slugify } from '../../../utils/string';
 import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
-import { useHistory } from 'react-router-dom';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
-  niyamLink?: string;
-  tabIndex?: number;
+  niyamLink: string;
 }
 
 function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
-  const { niyam, niyamLink, tabIndex } = props;
+  const { niyam, niyamLink } = props;
 
   const { data } = useNiyamProgressInfo(niyam);
   const router = useHistory();
@@ -32,26 +31,39 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           display: 'flex',
           flexDirection: 'column',
           p: 2.5,
-          pt: 1.0,
+          pt: 1.5,
         }}
       >
         <Grid container direction='row' justifyContent='space-between' alignItems='center' minHeight='40px'>
-          <Typography variant='h6' component='div' sx={{ fontWeight: 500, color: 'white' }}>
-            {niyam}
-          </Typography>
-          {niyamLink ? (
+          <Grid item xs={10}>
+            <Typography
+              variant='h6'
+              sx={{
+                fontWeight: 500,
+                fontSize: '18px',
+                color: 'white',
+                hyphens: 'auto',
+                overflowWrap: 'break-word',
+                wordWrap: 'break-word',
+              }}
+            >
+              {niyam}
+            </Typography>
+          </Grid>
+          <Grid container item xs={2} justifyContent='flex-end'>
             <IconButton
               aria-label='go to niyam'
               disableFocusRipple
               disableRipple
               disableTouchRipple
               onClick={() => {
-                router.push(niyamLink, { tabIndex });
+                router.push(niyamLink);
               }}
+              sx={{ padding: 0 }}
             >
               <ChevronRightIcon sx={{ fontWeight: 800, color: 'white', fontSize: '2rem' }} />
             </IconButton>
-          ) : null}
+          </Grid>
         </Grid>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
           <LinearProgress
