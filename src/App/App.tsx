@@ -8,6 +8,7 @@ import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
 import NiyamPage from '../pages/NiyamPage';
 import theme from './theme';
 import ScrollToTop from './ScrollToTop';
+import InstallPwaPrompt from './pwaPrompt/InstallPwaPrompt';
 
 function App(): JSX.Element {
   return (
@@ -16,6 +17,7 @@ function App(): JSX.Element {
         <FirebaseApp>
           <ThemeProvider theme={theme}>
             <Router>
+              <InstallPwaPrompt />
               <ScrollToTop />
               <Switch>
                 <Route exact path='/' component={ProgressTrackersPage} />
