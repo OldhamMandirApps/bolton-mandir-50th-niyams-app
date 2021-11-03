@@ -1,0 +1,36 @@
+project_name: nutan-utsav-app
+containers:
+  firebase-emulators:
+    build_directory: .batect/firebase
+    ports:
+      - 4000:4000
+      - 8080:8080
+tasks:
+  setup:
+    description: Install dependencies needed to build and run the application
+    run:
+      container: node-build-env
+      command: yarn install
+  build:
+    description: Build the application
+    prerequisites:
+      - setup
+    run:
+      container: node-build-env
+      command: yarn build
+  run:
+    description: Run the application
+    prerequisites:
+      - setup
+    dependencies:
+      - firebase-emulators
+    run:
+      container: node-build-env
+      command: yarn start
+      ports:
+        - local: 3000
+          container: 3000
+include:
+  - type: git
+    repo: https://github.com/batect/node-bundle.git
+    ref: 0.20.0
