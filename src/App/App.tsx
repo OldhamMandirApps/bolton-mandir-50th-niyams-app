@@ -16,7 +16,7 @@ function App(): JSX.Element {
       <RecoilRoot>
         <FirebaseApp>
           <ThemeProvider theme={theme}>
-            <Router>
+            <Router basename='/track-my-niyams'>
               <InstallPwaPrompt />
               <ScrollToTop />
               <Switch>
