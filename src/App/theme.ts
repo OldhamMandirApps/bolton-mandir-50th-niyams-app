@@ -1,17 +1,17 @@
 import { createTheme } from '@mui/material/styles';
 
 const primary = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#80BFFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
+  50: '#F3F3F3',
+  100: '#F4EEDD',
+  200: '#F5E9C8',
+  300: '#F6E3B2',
+  400: '#F7DE9C',
+  main: '#F9D987', // contrast 3.83:1
+  500: '#FAD471',
+  600: '#FBCF5B',
+  700: '#FCC945',
+  800: '#FDC430',
+  900: '#FEBF1A',
 };
 
 const theme = createTheme({
@@ -51,11 +51,11 @@ const theme = createTheme({
         root: {
           height: 10,
           borderRadius: 10,
-          backgroundColor: 'rgba(255,255,255,0.12)',
+          backgroundColor: '#ffffffb8',
         },
         bar: {
           borderRadius: 10,
-          backgroundColor: '#fff',
+          backgroundColor: '#105d9d',
         },
       },
     },

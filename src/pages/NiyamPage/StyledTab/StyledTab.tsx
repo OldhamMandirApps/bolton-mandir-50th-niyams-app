@@ -8,6 +8,7 @@ const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props
   'textTransform': 'none',
   'fontWeight': theme.typography.fontWeightRegular,
   'fontSize': '1.1rem',
+  'color': '#042139',
   'marginRight': theme.spacing(3),
   'paddingLeft': 0,
   'paddingRight': 0,
@@ -20,6 +21,9 @@ const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props
   },
   '&.Mui-selected': {
     fontWeight: theme.typography.fontWeightBold,
+  },
+  '&.MuiTab-root': {
+    color: '#10a194',
   },
 }));
 
