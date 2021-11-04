@@ -39,7 +39,7 @@ function Navbar(props: NavbarProps): JSX.Element {
             <Grid container item xs={2} justifyContent='flex-end'>
               {showLanguageToggle ? (
                 <IconButton aria-label='change language' onClick={toggleLanguage}>
-                  <Translate sx={{ fontWeight: 500 }} />
+                  <Translate sx={{ fontWeight: 500, color: '#042139' }} />
                 </IconButton>
               ) : null}
             </Grid>
@@ -49,6 +49,9 @@ function Navbar(props: NavbarProps): JSX.Element {
       <Toolbar
         ref={ref}
         sx={{
+          backgroundColor: '#042139',
+          paddingTop: '16px',
+          paddingBottom: '8px',
           boxShadow:
             'rgb(0 0 0 / 20%) 0px 2px 4px -1px, rgb(0 0 0 / 14%) 0px 4px 5px 0px, rgb(0 0 0 / 12%) 0px 1px 10px 0px',
         }}
@@ -63,16 +66,16 @@ function Navbar(props: NavbarProps): JSX.Element {
             <Grid container item xs={2} justifyContent='flex-end'>
               {showLanguageToggle ? (
                 <IconButton aria-label='change language' onClick={toggleLanguage}>
-                  <Translate sx={{ fontWeight: 500 }} />
+                  <Translate sx={{ fontWeight: 500, color: '#042139' }} />
                 </IconButton>
               ) : null}
             </Grid>
           </Grid>
           <Grid container direction='column'>
-            <Typography fontStyle='italic' fontWeight='medium' color='gray' pb='4px'>
+            <Typography fontStyle='italic' fontWeight='medium' color='#febf1a' pb='4px'>
               'Welcoming Maharaj To A New Home'
             </Typography>
-            <Typography fontStyle='italic' fontWeight='medium' color='gray' pb='8px'>
+            <Typography fontStyle='italic' fontWeight='medium' color='#febf1a' pb='8px'>
               'Shyam Snehi Gher Avya...Ghanshyam Avya'
             </Typography>
           </Grid>

@@ -20,6 +20,7 @@ function H1(props: TypographyProps<'h1', { component?: 'h1' }>): JSX.Element {
         hyphens: 'auto',
         overflowWrap: 'break-word',
         wordWrap: 'break-word',
+        color: '#042139',
       }}
       {...other}
     >

@@ -41,7 +41,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
               sx={{
                 fontWeight: 500,
                 fontSize: '18px',
-                color: 'white',
+                color: '#042139',
                 hyphens: 'auto',
                 overflowWrap: 'break-word',
                 wordWrap: 'break-word',
@@ -61,7 +61,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
               }}
               sx={{ padding: 0 }}
             >
-              <ChevronRightIcon sx={{ fontWeight: 800, color: 'white', fontSize: '2rem' }} />
+              <ChevronRightIcon sx={{ fontWeight: 800, color: '#042139', fontSize: '2rem' }} />
             </IconButton>
           </Grid>
         </Grid>
@@ -72,7 +72,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
             value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
-          <Typography color='#00C8FF' variant='body2' sx={{ ml: 2 }}>
+          <Typography color='#042139' variant='body2' sx={{ ml: 2 }}>
             <b>
               {data?.progress} / {data?.target}
             </b>
