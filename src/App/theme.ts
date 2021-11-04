@@ -39,6 +39,14 @@ const theme = createTheme({
         },
       ],
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: '#042139',
+          backgroundColor: '#FEBF1A',
+        },
+      },
+    },
     MuiAvatar: {
       styleOverrides: {
         root: {
