@@ -33,7 +33,8 @@ const theme = createTheme({
         {
           props: { variant: 'gradient' },
           style: {
-            background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
+            backgroundColor: '#FEBF1A',
+            // background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
             boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
           },
         },
