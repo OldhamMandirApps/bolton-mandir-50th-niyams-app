@@ -48,6 +48,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: '#007fff',
+        },
+      },
+    },
     MuiAvatar: {
       styleOverrides: {
         root: {
