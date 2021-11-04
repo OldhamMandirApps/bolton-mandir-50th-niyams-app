@@ -20,6 +20,7 @@ async function update(niyam: Niyam, progress: number, db: Firestore, documents: 
   const docId = getDocIdForNiyam(documents, niyam);
 
   if (docId) {
+    console.log(`Updating niyam progress for ${niyam} by ${progress}`);
     await updateNiyamProgress(db, docId, progress);
   } else {
     throw new Error('No document found for niyam: ' + niyam);
