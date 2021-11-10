@@ -55,8 +55,8 @@ function AddNiyamProgressForm(): JSX.Element {
       <form data-testid='add-niyam-progress-form' onSubmit={onSubmitHandler}>
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
-          {selectedNiyam === Niyam.BhaktachintamaniVachanamrut ? <NameInput value={name} setValue={setName} /> : null}
           <AddNiyamProgressInfoPanel niyam={selectedNiyam} />
+          {selectedNiyam === Niyam.BhaktachintamaniVachanamrut ? <NameInput value={name} setValue={setName} /> : null}
           <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
           <AddNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>
