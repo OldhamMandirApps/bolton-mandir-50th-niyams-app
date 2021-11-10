@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 import NameInput from './fields/NameInput';
+import AddNiyamProgressInfoPanel from './AddNiyamProgressInfoPanel';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -55,6 +56,7 @@ function AddNiyamProgressForm(): JSX.Element {
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
           {selectedNiyam === Niyam.BhaktachintamaniVachanamrut ? <NameInput value={name} setValue={setName} /> : null}
+          <AddNiyamProgressInfoPanel niyam={selectedNiyam} />
           <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
           <AddNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>
