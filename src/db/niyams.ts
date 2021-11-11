@@ -9,8 +9,8 @@ import {
   QueryDocumentSnapshot,
   QuerySnapshot,
   SnapshotOptions,
-  updateDoc,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
@@ -31,12 +31,30 @@ async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData
   return await getDocs(niyamsCollection);
 }
 
-async function updateNiyamProgress(db: Firestore, documentId: string, progress: number): Promise<void> {
-  const docRef = doc(db, 'niyams', documentId);
+async function updateNiyamProgress(
+  db: Firestore,
+  documentId: string,
+  name: string | null,
+  progress: number,
+): Promise<void> {
+  const batch = writeBatch(db);
+  const niyamDocRef = doc(db, 'niyams', documentId);
 
-  await updateDoc(docRef, {
+  batch.update(niyamDocRef, {
     progress: increment(progress),
   });
+
+  if (name) {
+    const niyamSubmissionsCollection = collection(db, 'niyam-submissions');
+    const bhaktachintamaniVachanamrutNiyamDocRef = doc(niyamSubmissionsCollection);
+    batch.set(bhaktachintamaniVachanamrutNiyamDocRef, {
+      niyam: Niyam.BhaktachintamaniVachanamrut,
+      name: name,
+      count: progress,
+    });
+  }
+
+  await batch.commit();
 }
 
 export { getNiyamQuery, getNiyamDocuments, updateNiyamProgress };

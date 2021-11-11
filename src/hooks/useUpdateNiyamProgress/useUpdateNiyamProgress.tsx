@@ -16,22 +16,24 @@ function getDocIdForNiyam(documents: NiyamDocument[], niyam: Niyam): string | nu
   }
 }
 
-async function update(niyam: Niyam, progress: number, db: Firestore, documents: NiyamDocument[]) {
+async function update(niyam: Niyam, name: string | null, progress: number, db: Firestore, documents: NiyamDocument[]) {
   const docId = getDocIdForNiyam(documents, niyam);
 
   if (docId) {
     console.log(`Updating niyam progress for ${niyam} by ${progress}`);
-    await updateNiyamProgress(db, docId, progress);
+    await updateNiyamProgress(db, docId, name, progress);
   } else {
     throw new Error('No document found for niyam: ' + niyam);
   }
 }
 
-function useUpdateNiyamProgress(): UseAsyncReturn<void, [niyam: Niyam, progress: number]> {
+function useUpdateNiyamProgress(): UseAsyncReturn<void, [niyam: Niyam, name: string | null, progress: number]> {
   const db = useFirestore();
   const documents = useNiyamDocuments();
 
-  return useAsyncCallback((niyam: Niyam, progress: number) => update(niyam, progress, db, documents));
+  return useAsyncCallback((niyam: Niyam, name: string | null, progress: number) =>
+    update(niyam, name, progress, db, documents),
+  );
 }
 
 export default useUpdateNiyamProgress;
