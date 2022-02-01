@@ -69,6 +69,7 @@ async function updateNiyamProgress(
         niyam: niyam,
         previousProgress: previousProgress,
         newProgress: newProgress,
+        count: progress,
         timestamp: serverTimestamp(),
       });
     });
