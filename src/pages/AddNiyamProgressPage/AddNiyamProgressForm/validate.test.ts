@@ -8,10 +8,10 @@ describe('validate progress form inputs', () => {
     { niyam: null, progress: 1 },
     { niyam: Niyam.JanmangalNamavaliStotram, progress: 0 },
   ])('should return false', ({ niyam, progress }) => {
-    expect(validate(niyam, progress)).toBe(false);
+    expect(validate(niyam, null, progress)).toBe(false);
   });
 
   test('should return true', () => {
-    expect(validate(Niyam.JanmangalNamavaliStotram, 1)).toBe(true);
+    expect(validate(Niyam.JanmangalNamavaliStotram, null, 1)).toBe(true);
   });
 });

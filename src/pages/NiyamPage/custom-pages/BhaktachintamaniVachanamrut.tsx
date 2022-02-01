@@ -11,7 +11,7 @@ function BhaktachintamaniVachanamrut(): JSX.Element {
         <H1>Bhaktachintamani/Vachanamrut</H1>
         <Box pt='16px' width='100%' sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
           <Typography fontWeight='medium' fontSize='18px' pt='8px'>
-            As part of our niyams for our Nutan Mandir Mahotsav, we have set a target to read 450 paaths of the
+            As part of our niyams for our Nutan Mandir Mahotsav, we have set a target to read 45 paaths of the
             Bhaktachintamani and Vachanamrut.
           </Typography>
           <Typography pb='8px' mt='4px' sx={{ color: 'gray', fontWeight: '600', fontSize: '18px' }}>

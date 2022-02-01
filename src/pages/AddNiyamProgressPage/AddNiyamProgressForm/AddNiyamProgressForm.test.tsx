@@ -85,7 +85,7 @@ describe('AddNiyamProgressForm', () => {
     userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
 
     expect(executeMock).toHaveBeenCalledTimes(1);
-    expect(executeMock).toBeCalledWith(Niyam.JanmangalNamavaliStotram, 100);
+    expect(executeMock).toBeCalledWith(Niyam.JanmangalNamavaliStotram, null, 100);
 
     await waitFor(() => {
       expect(history.location.pathname).toEqual('/');

@@ -6,6 +6,7 @@ function FirebaseApp(props: React.PropsWithChildren<unknown>): JSX.Element {
   const firebaseApp = useFirebaseApp();
   const firestoreInstance = getFirestore(firebaseApp);
 
+  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     connectFirestoreEmulator(firestoreInstance, 'localhost', 8080);
   }

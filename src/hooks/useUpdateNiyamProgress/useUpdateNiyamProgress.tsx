@@ -21,7 +21,7 @@ async function update(niyam: Niyam, name: string | null, progress: number, db: F
 
   if (docId) {
     console.log(`Updating niyam progress for ${niyam} by ${progress}`);
-    await updateNiyamProgress(db, docId, name, progress);
+    await updateNiyamProgress(db, docId, name, progress, niyam);
   } else {
     throw new Error('No document found for niyam: ' + niyam);
   }

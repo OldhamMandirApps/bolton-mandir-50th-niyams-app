@@ -3,14 +3,14 @@ import {
   doc,
   Firestore,
   getDocs,
-  increment,
   query,
   Query,
   QueryDocumentSnapshot,
   QuerySnapshot,
+  runTransaction,
+  serverTimestamp,
   SnapshotOptions,
   where,
-  writeBatch,
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
@@ -36,25 +36,46 @@ async function updateNiyamProgress(
   documentId: string,
   name: string | null,
   progress: number,
+  niyam: Niyam,
 ): Promise<void> {
-  const batch = writeBatch(db);
   const niyamDocRef = doc(db, 'niyams', documentId);
 
-  batch.update(niyamDocRef, {
-    progress: increment(progress),
-  });
+  try {
+    await runTransaction(db, async (transaction) => {
+      const niyamDoc = await transaction.get(niyamDocRef);
+      if (!niyamDoc.exists()) {
+        throw new Error('Document does not exist!');
+      }
 
-  if (name) {
-    const niyamSubmissionsCollection = collection(db, 'niyam-submissions');
-    const bhaktachintamaniVachanamrutNiyamDocRef = doc(niyamSubmissionsCollection);
-    batch.set(bhaktachintamaniVachanamrutNiyamDocRef, {
-      niyam: Niyam.BhaktachintamaniVachanamrut,
-      name: name,
-      count: progress,
+      const previousProgress = niyamDoc.data().progress;
+      const newProgress = previousProgress + progress;
+      transaction.update(niyamDocRef, {
+        progress: newProgress,
+      });
+
+      if (name) {
+        const niyamSubmissionsCollection = collection(db, 'niyam-submissions');
+        const bhaktachintamaniVachanamrutNiyamDocRef = doc(niyamSubmissionsCollection);
+        transaction.set(bhaktachintamaniVachanamrutNiyamDocRef, {
+          niyam: Niyam.BhaktachintamaniVachanamrut,
+          name: name,
+          count: progress,
+        });
+      }
+
+      const auditCollection = collection(db, 'audit');
+      const auditDocRef = doc(auditCollection);
+      transaction.set(auditDocRef, {
+        niyam: niyam,
+        previousProgress: previousProgress,
+        newProgress: newProgress,
+        timestamp: serverTimestamp(),
+      });
     });
+    console.log('Transaction successfully committed!');
+  } catch (e) {
+    console.log('Transaction failed: ', e);
   }
-
-  await batch.commit();
 }
 
 export { getNiyamQuery, getNiyamDocuments, updateNiyamProgress };
