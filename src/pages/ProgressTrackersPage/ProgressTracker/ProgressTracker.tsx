@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Niyam } from '../../../config/niyams';
@@ -15,7 +15,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   const { niyam, niyamLink } = props;
 
   const { data } = useNiyamProgressInfo(niyam);
-  const router = useHistory();
+  const navigate = useNavigate();
 
   function progressBarValue(progress: number, target: number) {
     const percentage = (progress / target) * 100;
@@ -57,7 +57,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
               disableRipple
               disableTouchRipple
               onClick={() => {
-                router.push(niyamLink);
+                navigate(niyamLink);
               }}
               sx={{ padding: 0 }}
             >

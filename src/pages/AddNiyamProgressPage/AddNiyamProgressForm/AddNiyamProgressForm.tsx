@@ -6,7 +6,7 @@ import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton'
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import { Niyam } from '../../../config/niyams';
 import validate from './validate';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 import NameInput from './fields/NameInput';
@@ -26,7 +26,7 @@ function AddNiyamProgressForm(): JSX.Element {
   const { execute, status } = useUpdateNiyamProgress();
   const setSnackbarState = useSetRecoilState(snackbarAtom);
 
-  const router = useHistory();
+  const navigate = useNavigate();
 
   async function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,14 +38,14 @@ function AddNiyamProgressForm(): JSX.Element {
           open: true,
           status: SnackbarStatus.successful,
         });
-        router.push('/');
+        navigate('/');
       } catch {
         setSnackbarState({
           message: 'Something went wrong whilst registering your niyam progress. Please try again later.',
           open: true,
           status: SnackbarStatus.error,
         });
-        router.push('/');
+        navigate('/');
       }
     }
   }

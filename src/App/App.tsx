@@ -1,11 +1,10 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import FirebaseApp from './FirebaseApp';
 import ProgressTrackersPage from '../pages/ProgressTrackersPage';
 import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
-import NiyamPage from '../pages/NiyamPage';
 import theme from './theme';
 import ScrollToTop from './ScrollToTop';
 import InstallPwaPrompt from './pwaPrompt/InstallPwaPrompt';
@@ -19,11 +18,10 @@ function App(): JSX.Element {
             <Router>
               <InstallPwaPrompt />
               <ScrollToTop />
-              <Switch>
-                <Route exact path='/' component={ProgressTrackersPage} />
-                <Route exact path='/add-your-niyam-count' component={AddNiyamProgressPage} />
-                <Route path='/niyam/:niyamId' component={NiyamPage} />
-              </Switch>
+              <Routes>
+                <Route path='/' element={<ProgressTrackersPage />} />
+                <Route path='/add-your-niyam-count' element={<AddNiyamProgressPage />} />
+              </Routes>
             </Router>
           </ThemeProvider>
         </FirebaseApp>

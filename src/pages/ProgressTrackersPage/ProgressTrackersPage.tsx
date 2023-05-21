@@ -4,7 +4,7 @@ import { Niyam } from '../../config/niyams';
 import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
 import Snackbar from './Snackbar';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { niyamLinks } from './config';
 import Navbar from '../common/Navbar';
 
@@ -21,7 +21,7 @@ const TrackersGrid = styled(Grid)(({ theme }) => ({
 }));
 
 function ProgressTrackersPage(): JSX.Element {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -35,7 +35,7 @@ function ProgressTrackersPage(): JSX.Element {
             <AddNiyamProgressButton
               variant='contained'
               onClick={() => {
-                history.push('/add-your-niyam-count');
+                navigate('/add-your-niyam-count');
               }}
             >
               Add your niyam count

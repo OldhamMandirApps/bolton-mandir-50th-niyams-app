@@ -1,7 +1,6 @@
-import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
-import { Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import AddNiyamProgressForm from './AddNiyamProgressForm';
 import Snackbar from '../../ProgressTrackersPage/Snackbar';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
@@ -16,17 +15,15 @@ describe('AddNiyamProgressForm/Snackbar Integration Test', () => {
   });
 
   function renderComponent() {
-    const history = createMemoryHistory();
-    history.push('/add-your-niyam-count');
-    const app = render(
+    const view = render(
       <RecoilRoot>
-        <Router history={history}>
+        <MemoryRouter initialEntries={['/add-your-niyam-count']}>
           <Snackbar />
           <AddNiyamProgressForm />
-        </Router>
+        </MemoryRouter>
       </RecoilRoot>,
     );
-    return { history, app };
+    return { view };
   }
 
   test('should display success snackbar if successful updating niyam progress', async () => {

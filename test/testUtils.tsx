@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { NiyamData } from '../src/types';
@@ -24,9 +24,9 @@ export const renderWithRouter = (
 ) => {
   return {
     ...render(
-      <Router history={history}>
+      <MemoryRouter initialEntries={[route]}>
         <Route path={routePattern}>{ui}</Route>
-      </Router>,
+      </MemoryRouter>,
     ),
     history,
   };
