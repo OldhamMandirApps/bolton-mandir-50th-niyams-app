@@ -33,6 +33,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRACK_MY_NIYAMS_OLDHAM_MANDIR }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BOLTON_50TH_NIYAMS_APP }}'
           channelId: live
-          projectId: track-my-niyams-oldham-mandir
+          projectId: bolton-50th-niyams-app

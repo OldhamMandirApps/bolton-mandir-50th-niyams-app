@@ -1,8 +1,8 @@
 {
   "projects": {
-    "default": "nutan-utsav-app-staging",
-    "prod": "track-my-niyams-oldham-mandir",
-    "staging": "nutan-utsav-app-staging"
+    "default": "bolton-50th-niyams-app-staging",
+    "prod": "bolton-50th-niyams-app",
+    "staging": "bolton-50th-niyams-app-staging"
   },
   "targets": {}
 }
