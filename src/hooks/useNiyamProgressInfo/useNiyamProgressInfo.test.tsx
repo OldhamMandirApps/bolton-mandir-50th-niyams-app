@@ -1,7 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useNiyamProgressInfo from './useNiyamProgressInfo';
 import useFirestoreData from '../useFirestoreData';
-import { Niyam } from '../../config/niyams';
 import { NiyamBuilder } from '../../../test/testUtils';
 
 jest.mock('../useFirestoreData');
@@ -17,7 +16,7 @@ describe('useNiyamProgressInfo', () => {
       };
     });
 
-    const { result } = renderHook(() => useNiyamProgressInfo(Niyam.OradaNaPads));
+    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '' }));
 
     expect(result.current.loading).toBeTruthy();
     expect(result.current.error).toBeNull();
@@ -35,7 +34,7 @@ describe('useNiyamProgressInfo', () => {
       };
     });
 
-    const { result } = renderHook(() => useNiyamProgressInfo(Niyam.OradaNaPads));
+    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '' }));
 
     expect(result.current.loading).toBeFalsy();
     expect(result.current.error).toBe(error);
@@ -43,8 +42,8 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return error when no document retrieved from firestore', () => {
-    const niyam = Niyam.ShantiPaath;
-    const error = new Error(`There was no document found in the database for ${niyam}`);
+    const niyam = { id: '', label: '' };
+    const error = new Error(`There was no document found in the database for ${niyam.id}`);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
       return {
@@ -62,13 +61,13 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return error when more than 1 document retrieved from firestore', () => {
-    const niyam = Niyam.JanmangalNamavaliStotram;
-    const error = new Error(`There were multiple documents found in the database for ${niyam}`);
+    const niyam = { id: '', label: '' };
+    const error = new Error(`There were multiple documents found in the database for ${niyam.id}`);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
       return {
         status: 'success',
-        data: [NiyamBuilder(niyam, 1000, 10000), NiyamBuilder(niyam, 2500, 15000)],
+        data: [NiyamBuilder(niyam.id, 1000, 10000), NiyamBuilder(niyam.id, 2500, 15000)],
         error: null,
       };
     });
@@ -81,8 +80,8 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return data when 1 document retrieved from firestore', () => {
-    const niyam = Niyam.JanmangalNamavaliStotram;
-    const data = NiyamBuilder(niyam, 1000, 10000);
+    const niyam = { id: '', label: '' };
+    const data = NiyamBuilder(niyam.id, 1000, 10000);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
       return {

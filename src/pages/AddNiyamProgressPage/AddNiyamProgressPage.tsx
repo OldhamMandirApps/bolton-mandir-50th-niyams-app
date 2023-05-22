@@ -6,7 +6,7 @@ import Navbar from '../common/Navbar';
 function AddNiyamProgressPage(): JSX.Element {
   return (
     <div>
-      <Navbar showLanguageToggle={false} />
+      <Navbar />
       <PageContainer data-testid='add-niyam-progress-page'>
         <H1>Add your niyam progress</H1>
         <AddNiyamProgressForm />

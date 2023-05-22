@@ -7,7 +7,7 @@ import { useFirestore } from 'reactfire';
 import { Firestore } from 'firebase/firestore';
 
 function getDocIdForNiyam(documents: NiyamDocument[], niyam: Niyam): string | null {
-  const document = documents.find((doc) => doc.name === niyam);
+  const document = documents.find((doc) => doc.name === niyam.id);
 
   if (document) {
     return document.id;
@@ -20,7 +20,7 @@ async function update(niyam: Niyam, name: string | null, progress: number, db: F
   const docId = getDocIdForNiyam(documents, niyam);
 
   if (docId) {
-    console.log(`Updating niyam progress for ${niyam} by ${progress}`);
+    console.log(`Updating niyam progress for ${niyam.id} by ${progress}`);
     await updateNiyamProgress(db, docId, name, progress, niyam);
   } else {
     throw new Error('No document found for niyam: ' + niyam);

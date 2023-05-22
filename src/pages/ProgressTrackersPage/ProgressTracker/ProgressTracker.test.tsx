@@ -7,19 +7,19 @@ import { NiyamBuilder } from '../../../../test/testUtils';
 jest.mock('../../../hooks/useNiyamProgressInfo');
 
 describe('ProgressTracker', () => {
-  function renderComponent(niyam: Niyam = Niyam.OradaNaPads) {
-    return render(<ProgressTracker niyam={niyam} niyamLink='/orada-na-pads' />);
+  function renderComponent(niyam: Niyam = { id: '', label: '' }) {
+    return render(<ProgressTracker niyam={niyam} />);
   }
 
   const useNiyamProgressInfoMock = useNiyamProgressInfo as jest.Mock;
 
   test('should render progress and target information for niyam', () => {
-    const niyam = Niyam.OradaNaPads;
+    const niyam = { id: '', label: '' };
     const progress = 10000;
     const target = 40000;
     useNiyamProgressInfoMock.mockImplementationOnce(() => {
       return {
-        data: NiyamBuilder(niyam, progress, target),
+        data: NiyamBuilder(niyam.id, progress, target),
         loading: false,
         error: null,
       };
@@ -27,7 +27,7 @@ describe('ProgressTracker', () => {
     renderComponent(niyam);
 
     screen.getByTestId('tracker-orada-na-pads');
-    screen.getByText(niyam);
+    screen.getByText(niyam.id);
     screen.getByText(`${progress} / ${target}`);
   });
 });

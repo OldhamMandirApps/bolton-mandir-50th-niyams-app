@@ -1,5 +1,3 @@
-import React from 'react';
-import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import FirebaseApp from './FirebaseApp';
@@ -8,6 +6,7 @@ import AddNiyamProgressPage from '../pages/AddNiyamProgressPage';
 import theme from './theme';
 import ScrollToTop from './ScrollToTop';
 import InstallPwaPrompt from './pwaPrompt/InstallPwaPrompt';
+import { RecoilRoot } from 'recoil';
 
 function App(): JSX.Element {
   return (

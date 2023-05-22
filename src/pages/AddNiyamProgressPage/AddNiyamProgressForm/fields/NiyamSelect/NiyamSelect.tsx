@@ -1,21 +1,16 @@
-import React, { useMemo } from 'react';
 import { FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { Niyam } from '../../../../../config/niyams';
+import { Niyam, niyams } from '../../../../../config/niyams';
 
 interface NiyamSelectProps {
   value: Niyam | null;
-  setValue: (value: Niyam) => void;
+  setValue: (value: Niyam | null) => void;
 }
 
 function NiyamSelect(props: NiyamSelectProps): JSX.Element {
   const { value, setValue } = props;
 
-  const niyams = useMemo(() => {
-    return Object.values(Niyam);
-  }, []);
-
   function onNiyamSelected(event: SelectChangeEvent) {
-    setValue(event.target.value as Niyam);
+    setValue(niyams.find((niyam) => niyam.id === event.target.value) ?? null);
   }
 
   return (
@@ -27,13 +22,13 @@ function NiyamSelect(props: NiyamSelectProps): JSX.Element {
           labelId='select-niyam-label'
           data-testid='niyam-select-field'
           label='Niyam'
-          value={value || ''}
+          value={value?.id}
           onChange={onNiyamSelected}
           inputProps={{ 'aria-label': 'select niyam' }}
         >
           {niyams.map((niyam) => (
-            <MenuItem key={niyam} value={niyam}>
-              {niyam}
+            <MenuItem key={niyam.id} value={niyam.id}>
+              {niyam.label}
             </MenuItem>
           ))}
         </Select>

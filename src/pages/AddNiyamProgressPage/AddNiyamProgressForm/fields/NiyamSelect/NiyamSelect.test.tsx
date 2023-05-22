@@ -27,11 +27,11 @@ describe('NiyamSelect', () => {
 
   test('should call setValue function when niyam is selected', () => {
     const setValueMock = jest.fn();
-    renderSelectField(Niyam.JanmangalNamavaliStotram, setValueMock);
+    renderSelectField({ id: '', label: '' }, setValueMock);
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(screen.getByRole('option', { name: /orada na pads/i }));
 
-    expect(setValueMock).toBeCalledWith(Niyam.OradaNaPads);
+    expect(setValueMock).toBeCalledWith({ id: '', label: '' });
   });
 });

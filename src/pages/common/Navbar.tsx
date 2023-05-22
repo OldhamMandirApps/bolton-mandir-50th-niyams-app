@@ -1,28 +1,9 @@
-import React, { useRef } from 'react';
-import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
-import { Translate } from '@mui/icons-material';
-import { useRecoilState } from 'recoil';
-import { currentLanguageAtom, Language } from './atoms';
+import { useRef } from 'react';
+import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
 import logo from '../../images/mandir-logo.png';
 import { useOnScreen } from './useOnScreen';
 
-interface NavbarProps {
-  showLanguageToggle: boolean;
-}
-
-function Navbar(props: NavbarProps): JSX.Element {
-  const { showLanguageToggle } = props;
-
-  const [currentLanguage, setCurrentLanguage] = useRecoilState(currentLanguageAtom);
-
-  function toggleLanguage() {
-    if (currentLanguage === Language.english) {
-      setCurrentLanguage(Language.gujarati);
-    } else {
-      setCurrentLanguage(Language.english);
-    }
-  }
-
+function Navbar(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
 
@@ -35,13 +16,6 @@ function Navbar(props: NavbarProps): JSX.Element {
               <a href='/'>
                 <img src={logo} alt='mandir logo' style={{ maxWidth: '300px', padding: '16px 0' }} />
               </a>
-            </Grid>
-            <Grid container item xs={2} justifyContent='flex-end'>
-              {showLanguageToggle ? (
-                <IconButton aria-label='change language' onClick={toggleLanguage}>
-                  <Translate sx={{ fontWeight: 500, color: '#042139' }} />
-                </IconButton>
-              ) : null}
             </Grid>
           </Grid>
         </Toolbar>
@@ -62,13 +36,6 @@ function Navbar(props: NavbarProps): JSX.Element {
               <a href='/'>
                 <img src={logo} alt='mandir logo' style={{ maxWidth: '300px', padding: '16px 0' }} />
               </a>
-            </Grid>
-            <Grid container item xs={2} justifyContent='flex-end'>
-              {showLanguageToggle ? (
-                <IconButton aria-label='change language' onClick={toggleLanguage}>
-                  <Translate sx={{ fontWeight: 500, color: '#042139' }} />
-                </IconButton>
-              ) : null}
             </Grid>
           </Grid>
           <Grid container direction='column'>

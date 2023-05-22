@@ -1,11 +1,9 @@
-import React from 'react';
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
-import { Niyam } from '../../config/niyams';
+import { niyams } from '../../config/niyams';
 import ProgressTracker from './ProgressTracker';
 import { H1, PageContainer } from '../common/components';
 import Snackbar from './Snackbar';
 import { useNavigate } from 'react-router-dom';
-import { niyamLinks } from './config';
 import Navbar from '../common/Navbar';
 
 const AddNiyamProgressButton = styled(Button)(({ theme }) => ({
@@ -25,7 +23,7 @@ function ProgressTrackersPage(): JSX.Element {
 
   return (
     <div>
-      <Navbar showLanguageToggle={false} />
+      <Navbar />
       <PageContainer data-testid='progress-trackers-page'>
         <Grid container mb={4} spacing={2}>
           <Grid item xs={12} sm={6}>
@@ -55,13 +53,9 @@ function ProgressTrackersPage(): JSX.Element {
           Click on the below arrows to read the niyams
         </Typography>
         <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
-          <ProgressTracker niyam={Niyam.ShantiPaath} niyamLink={niyamLinks.shantiPaath} />
-          <ProgressTracker niyam={Niyam.JanmangalNamavaliStotram} niyamLink={niyamLinks.janmangal} />
-          <ProgressTracker niyam={Niyam.OradaNaPads} niyamLink={niyamLinks.oradaNaPads} />
-          <ProgressTracker
-            niyam={Niyam.BhaktachintamaniVachanamrut}
-            niyamLink={niyamLinks.bhaktachintamaniVachanamrut}
-          />
+          {niyams.map((niyam) => (
+            <ProgressTracker niyam={niyam} />
+          ))}
         </TrackersGrid>
         <Snackbar />
       </PageContainer>

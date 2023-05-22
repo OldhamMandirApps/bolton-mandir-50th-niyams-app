@@ -5,8 +5,6 @@ function validate(niyam: Niyam | null, name: string | null, progress: number | n
     return false;
   } else if (progress && progress <= 0) {
     return false;
-  } else if (niyam === Niyam.BhaktachintamaniVachanamrut && !name) {
-    return false;
   } else {
     return true;
   }

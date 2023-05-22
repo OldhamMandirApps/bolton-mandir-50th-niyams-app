@@ -9,7 +9,6 @@ import validate from './validate';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
-import NameInput from './fields/NameInput';
 import AddNiyamProgressInfoPanel from './AddNiyamProgressInfoPanel';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
@@ -21,7 +20,7 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 function AddNiyamProgressForm(): JSX.Element {
   const [selectedNiyam, setSelectedNiyam] = useState<Niyam | null>(null);
   const [niyamProgress, setNiyamProgress] = useState<number | null>(null);
-  const [name, setName] = useState<string | null>(null);
+  const [name] = useState<string | null>(null);
 
   const { execute, status } = useUpdateNiyamProgress();
   const setSnackbarState = useSetRecoilState(snackbarAtom);
@@ -56,7 +55,6 @@ function AddNiyamProgressForm(): JSX.Element {
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect value={selectedNiyam} setValue={setSelectedNiyam} />
           <AddNiyamProgressInfoPanel niyam={selectedNiyam} />
-          {selectedNiyam === Niyam.BhaktachintamaniVachanamrut ? <NameInput value={name} setValue={setName} /> : null}
           <NiyamProgressInput value={niyamProgress} setValue={setNiyamProgress} />
           <AddNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>

@@ -1,21 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
 import { Niyam } from '../../../config/niyams';
 import { slugify } from '../../../utils/string';
 import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
-  niyamLink: string;
 }
 
-function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
-  const { niyam, niyamLink } = props;
-
+function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(niyam);
-  const navigate = useNavigate();
 
   function progressBarValue(progress: number, target: number) {
     const percentage = (progress / target) * 100;
@@ -23,7 +16,7 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
   }
 
   return (
-    <Grid item data-testid={`tracker-${slugify(niyam)}`}>
+    <Grid item data-testid={`tracker-${slugify(niyam.id)}`}>
       <Card
         raised
         variant='gradient'
@@ -47,22 +40,8 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
                 wordWrap: 'break-word',
               }}
             >
-              {niyam}
+              {niyam.label}
             </Typography>
-          </Grid>
-          <Grid container item xs={2} justifyContent='flex-end'>
-            <IconButton
-              aria-label='go to niyam'
-              disableFocusRipple
-              disableRipple
-              disableTouchRipple
-              onClick={() => {
-                navigate(niyamLink);
-              }}
-              sx={{ padding: 0 }}
-            >
-              <ChevronRightIcon sx={{ fontWeight: 800, color: '#042139', fontSize: '2rem' }} />
-            </IconButton>
           </Grid>
         </Grid>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>

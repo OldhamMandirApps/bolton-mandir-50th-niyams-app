@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import AddNiyamProgressForm from './AddNiyamProgressForm';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import userEvent from '@testing-library/user-event';
-import { Niyam } from '../../../config/niyams';
 import { RecoilRoot } from 'recoil';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -82,7 +81,7 @@ describe('AddNiyamProgressForm', () => {
     userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
 
     expect(executeMock).toHaveBeenCalledTimes(1);
-    expect(executeMock).toBeCalledWith(Niyam.JanmangalNamavaliStotram, null, 100);
+    expect(executeMock).toBeCalledWith({ id: '', label: '' }, null, 100);
 
     // await waitFor(() => {
     //   expect(history.location.pathname).toEqual('/');

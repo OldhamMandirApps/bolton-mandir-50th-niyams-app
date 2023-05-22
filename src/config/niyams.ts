@@ -1,17 +1,35 @@
-export enum Niyam {
-  ShantiPaath = 'Shanti Paath',
-  JanmangalNamavaliStotram = 'Janmangal Namavali/Stotram',
-  OradaNaPads = 'Orada na Pads',
-  BhaktachintamaniVachanamrut = 'Bhaktachintamani/Vachanamrut',
+export interface Niyam {
+  id: string;
+  label: string;
 }
 
-export type NiyamOption = typeof supportedNiyams[number];
-export const supportedNiyams = ['orada-na-pads', 'janmangal-namavali-stotram', 'shanti-paath'] as const;
-
-export function isSupportedNiyam(niyamId: NiyamOption | undefined): boolean {
-  if (niyamId) {
-    return supportedNiyams.includes(niyamId);
-  } else {
-    return false;
-  }
-}
+export const niyams: Niyam[] = [
+  {
+    id: 'HariSmruti',
+    label: 'Harismruti Recitals',
+  },
+  {
+    id: 'Dandvats',
+    label: 'Dandvat / Panchang Pranam',
+  },
+  {
+    id: 'Pradikshana',
+    label: 'Pradikshana',
+  },
+  {
+    id: 'Mala',
+    label: 'Mala',
+  },
+  {
+    id: 'Janmangal',
+    label: 'Janmangal Paat',
+  },
+  {
+    id: 'ReadingShastras',
+    label: 'Reading shastras/leelas (age 5+)',
+  },
+  {
+    id: 'Dhun',
+    label: 'Dhun (family niyam)',
+  },
+];

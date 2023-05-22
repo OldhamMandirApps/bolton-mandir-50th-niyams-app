@@ -7,20 +7,20 @@ interface AddNiyamProgressInfoPanelProps {
 }
 
 function AddNiyamProgressInfoPanel(props: AddNiyamProgressInfoPanelProps): JSX.Element | null {
-  function getNiyamInfoText(niyam: Niyam) {
-    switch (niyam) {
-      case Niyam.BhaktachintamaniVachanamrut:
-        return 'Once you have finished the <b>entire</b> granth from start to finish, add a count to this niyam.';
-      case Niyam.JanmangalNamavaliStotram:
-        return 'Once you have finished either the Janmangal Namavali <b>or</b> the Janmangal Stotram, add a count to this niyam.';
-      case Niyam.OradaNaPads:
-        return 'Once you have finished <b>all 4 pads</b>, add a count to this niyam.';
-      case Niyam.ShantiPaath:
-        return 'Once you have finished reading <b>all 5 prakarans</b> of the Shanti Paath, add a count to this niyam.';
-      default:
-        return '';
-    }
-  }
+  // function getNiyamInfoText(niyam: Niyam) {
+  //   switch (niyam) {
+  //     case Niyam.BhaktachintamaniVachanamrut:
+  //       return 'Once you have finished the <b>entire</b> granth from start to finish, add a count to this niyam.';
+  //     case Niyam.JanmangalNamavaliStotram:
+  //       return 'Once you have finished either the Janmangal Namavali <b>or</b> the Janmangal Stotram, add a count to this niyam.';
+  //     case Niyam.OradaNaPads:
+  //       return 'Once you have finished <b>all 4 pads</b>, add a count to this niyam.';
+  //     case Niyam.ShantiPaath:
+  //       return 'Once you have finished reading <b>all 5 prakarans</b> of the Shanti Paath, add a count to this niyam.';
+  //     default:
+  //       return '';
+  //   }
+  // }
 
   if (!props.niyam) {
     return null;
@@ -33,7 +33,7 @@ function AddNiyamProgressInfoPanel(props: AddNiyamProgressInfoPanelProps): JSX.E
               <InfoIcon htmlColor='#042139' />
             </Grid>
             <Grid item xs={11}>
-              <div dangerouslySetInnerHTML={{ __html: getNiyamInfoText(props.niyam) }} />
+              {/* <div dangerouslySetInnerHTML={{ __html: getNiyamInfoText(props.niyam) }} /> */}
             </Grid>
           </Grid>
         </Box>
