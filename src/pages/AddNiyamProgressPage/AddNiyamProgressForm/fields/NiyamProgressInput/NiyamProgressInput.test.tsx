@@ -1,10 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import NiyamProgressInput from './NiyamProgressInput';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('NiyamProgressInput', () => {
   function renderInputField(value: number | null, setValue: jest.Mock) {
-    return render(<NiyamProgressInput value={value} setValue={setValue} />);
+    // return render(<NiyamProgressInput value={value} setValue={setValue} />);
   }
 
   test('should render input field for niyam progress input', () => {

@@ -11,7 +11,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(niyam);
 
   function progressBarValue(progress: number, target: number) {
-    const percentage = (progress / target) * 100;
+    const percentage = Math.floor(progress / target) * 100;
     return percentage > 100 ? 100 : percentage;
   }
 
@@ -40,7 +40,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
                 wordWrap: 'break-word',
               }}
             >
-              {niyam.label}
+              {data?.label ?? niyam.label}
             </Typography>
           </Grid>
         </Grid>
@@ -53,7 +53,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
           />
           <Typography color='#042139' variant='body2' sx={{ ml: 2 }}>
             <b>
-              {data?.progress} / {data?.target}
+              {Math.floor(data?.progress ?? 0)} / {data?.target ?? 0}
             </b>
           </Typography>
         </Box>

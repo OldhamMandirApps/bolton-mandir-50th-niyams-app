@@ -1,6 +1,7 @@
 export interface Niyam {
   id: string;
   label: string;
+  timeBased?: boolean;
 }
 
 export const niyams: Niyam[] = [
@@ -26,10 +27,12 @@ export const niyams: Niyam[] = [
   },
   {
     id: 'ReadingShastras',
-    label: 'Reading shastras/leelas (age 5+)',
+    label: 'Reading shastras/leelas (age 5+) (hours)',
+    timeBased: true,
   },
   {
     id: 'Dhun',
-    label: 'Dhun (family niyam)',
+    label: 'Dhun (family niyam) (hours)',
+    timeBased: true,
   },
 ];

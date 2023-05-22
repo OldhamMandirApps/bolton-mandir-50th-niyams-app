@@ -1,14 +1,17 @@
 import {
   collection,
   doc,
+  increment,
   Firestore,
   getDocs,
   query,
   Query,
   QueryDocumentSnapshot,
   QuerySnapshot,
+  runTransaction,
   SnapshotOptions,
   where,
+  serverTimestamp,
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
@@ -33,48 +36,34 @@ async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData
   return await getDocs(niyamsCollection);
 }
 
-async function updateNiyamProgress(
-  db: Firestore,
-  documentId: string,
-  name: string | null,
-  progress: number,
-  niyam: Niyam,
-): Promise<void> {
-  // const niyamDocRef = doc(db, 'niyams', documentId);
-  // try {
-  //   await runTransaction(db, async (transaction) => {
-  //     const niyamDoc = await transaction.get(niyamDocRef);
-  //     if (!niyamDoc.exists()) {
-  //       throw new Error('Document does not exist!');
-  //     }
-  //     const previousProgress = niyamDoc.data().progress;
-  //     const newProgress = previousProgress + progress;
-  //     transaction.update(niyamDocRef, {
-  //       progress: newProgress,
-  //     });
-  //     if (name) {
-  //       const niyamSubmissionsCollection = collection(db, 'niyam-submissions');
-  //       const bhaktachintamaniVachanamrutNiyamDocRef = doc(niyamSubmissionsCollection);
-  //       transaction.set(bhaktachintamaniVachanamrutNiyamDocRef, {
-  //         niyam: Niyam.BhaktachintamaniVachanamrut,
-  //         name: name,
-  //         count: progress,
-  //       });
-  //     }
-  //     const auditCollection = collection(db, 'audit');
-  //     const auditDocRef = doc(auditCollection);
-  //     transaction.set(auditDocRef, {
-  //       niyam: niyam,
-  //       previousProgress: previousProgress,
-  //       newProgress: newProgress,
-  //       count: progress,
-  //       timestamp: serverTimestamp(),
-  //     });
-  //   });
-  //   console.log('Transaction successfully committed!');
-  // } catch (e) {
-  //   console.log('Transaction failed: ', e);
-  // }
+async function updateNiyamProgress(db: Firestore, niyam: Niyam, progress: number): Promise<void> {
+  const niyamDocRef = doc(db, 'niyams', niyam.id);
+  try {
+    await runTransaction(db, async (transaction) => {
+      const niyamDoc = await transaction.get(niyamDocRef);
+      if (!niyamDoc.exists()) {
+        throw new Error('Document does not exist!');
+      }
+      const previousProgress = niyamDoc.data().progress;
+      const newProgress = previousProgress + progress;
+      transaction.update(niyamDocRef, {
+        progress: increment(progress),
+      });
+
+      const auditCollection = collection(db, 'audit');
+      const auditDocRef = doc(auditCollection);
+      transaction.set(auditDocRef, {
+        niyam: niyam.label,
+        previousProgress: previousProgress,
+        newProgress: newProgress,
+        progressEntered: progress,
+        timestamp: serverTimestamp(),
+      });
+    });
+    console.log('Transaction successfully committed!');
+  } catch (e) {
+    console.log('Transaction failed: ', e);
+  }
 }
 
 export { getNiyamQuery, getNiyamDocuments, updateNiyamProgress, getNiyamDocument };

@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { NiyamData } from '../src/types';
 
-export const NiyamBuilder = (name: string, progress: number, target: number): NiyamData => {
+export const NiyamBuilder = (label: string, progress: number, target: number): NiyamData => {
   return {
-    name,
+    label,
     progress,
     target,
   };
