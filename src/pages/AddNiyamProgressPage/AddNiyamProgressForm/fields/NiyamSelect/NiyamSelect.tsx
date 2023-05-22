@@ -31,7 +31,7 @@ function NiyamSelect(props: NiyamSelectProps): JSX.Element {
               {...field}
             >
               {niyams.map((niyam) => (
-                <MenuItem key={niyam.id} value={niyam.id}>
+                <MenuItem key={niyam.id} value={JSON.stringify(niyam)}>
                   {niyam.label}
                 </MenuItem>
               ))}

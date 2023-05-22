@@ -16,7 +16,7 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 }));
 
 export type NiyamFormInputs = {
-  niyam: Niyam;
+  niyam: string;
   progressEntered: number;
 };
 
@@ -30,7 +30,7 @@ function AddNiyamProgressForm(): JSX.Element {
 
   async function onSubmitHandler(data: NiyamFormInputs) {
     try {
-      await execute(data.niyam, data.progressEntered);
+      await execute(JSON.parse(data.niyam) as Niyam, data.progressEntered);
       setSnackbarState({
         message: 'You have successfully registered your niyam progress!',
         open: true,
