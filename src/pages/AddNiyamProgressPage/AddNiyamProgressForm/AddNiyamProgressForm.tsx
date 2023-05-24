@@ -20,7 +20,7 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 }));
 
 export type NiyamFormInputs = {
-  niyam: string;
+  niyam: Niyam;
   progressEntered: number;
   ageGroup: AgeGroupOptions;
 };
@@ -36,7 +36,7 @@ function AddNiyamProgressForm(): JSX.Element {
   async function onSubmitHandler(data: NiyamFormInputs) {
     try {
       const formSubmission: NiyamFormSubmission = {
-        niyam: JSON.parse(data.niyam) as Niyam,
+        niyam: data.niyam,
         progress: data.progressEntered,
         ageGroup: data.ageGroup,
       };
