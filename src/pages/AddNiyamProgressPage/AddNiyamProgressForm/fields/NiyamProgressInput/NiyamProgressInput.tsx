@@ -1,7 +1,7 @@
-import React from 'react';
 import { Grid, TextField } from '@mui/material';
 import { Controller, Control, RegisterOptions, FieldPath } from 'react-hook-form';
 import { NiyamFormInputs } from '../../AddNiyamProgressForm';
+import { Niyam } from '../../../../../config/niyams';
 
 interface NiyamProgressInputProps {
   name: FieldPath<NiyamFormInputs>;
@@ -10,9 +10,11 @@ interface NiyamProgressInputProps {
     RegisterOptions<NiyamFormInputs, FieldPath<NiyamFormInputs>>,
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
   >;
+  selectedNiyam: Niyam;
 }
 
 function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
+  const { selectedNiyam } = props;
   return (
     <Grid item>
       <Controller
@@ -23,7 +25,9 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
           <TextField
             id='niyam-progress-input'
             data-testid='niyam-progress-input-field'
-            label='Niyam Count'
+            label={
+              selectedNiyam && selectedNiyam.timeBased === false ? 'Niyam Count' : 'Number of minutes spent on niyam'
+            }
             variant='outlined'
             type='number'
             required
@@ -34,7 +38,9 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             }}
             fullWidth
             {...field}
-            onChange={(event) => field.onChange(parseInt(event.target.value))}
+            onChange={(event) =>
+              field.onChange({ ...event, target: { value: parseInt(event.target.value), name: field.name } })
+            }
           />
         )}
       />

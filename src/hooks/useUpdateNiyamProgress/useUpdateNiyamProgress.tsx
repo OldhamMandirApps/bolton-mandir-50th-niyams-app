@@ -12,8 +12,9 @@ export type NiyamFormSubmission = {
 };
 
 async function update(form: NiyamFormSubmission, db: Firestore) {
-  console.log(`Updating niyam progress for ${form.niyam.id} by ${form.progress}`);
-  await updateNiyamProgress(db, form.niyam, form.progress, form.ageGroup);
+  const progress = form.niyam.timeBased ? form.progress / 60 : form.progress;
+  console.log(`Updating niyam progress for ${form.niyam.id} by ${progress}`);
+  await updateNiyamProgress(db, form.niyam, progress, form.ageGroup);
 }
 
 function useUpdateNiyamProgress(): UseAsyncReturn<void, [NiyamFormSubmission]> {

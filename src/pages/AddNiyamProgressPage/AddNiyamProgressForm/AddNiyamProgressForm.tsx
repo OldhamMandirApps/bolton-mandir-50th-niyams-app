@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { Box, Grid, styled } from '@mui/material';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
@@ -27,6 +27,10 @@ export type NiyamFormInputs = {
 
 function AddNiyamProgressForm(): JSX.Element {
   const { control, handleSubmit } = useForm<NiyamFormInputs>();
+  const [selectedNiyam] = useWatch({
+    control,
+    name: ['niyam'],
+  });
 
   const { execute, status } = useUpdateNiyamProgress();
   const setSnackbarState = useSetRecoilState(snackbarAtom);
@@ -62,7 +66,18 @@ function AddNiyamProgressForm(): JSX.Element {
       <form data-testid='add-niyam-progress-form' onSubmit={handleSubmit(onSubmitHandler)}>
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect name='niyam' control={control} rules={{ required: 'Select a niyam' }} />
-          <NiyamProgressInput name='progressEntered' control={control} rules={{ min: 0, required: 'Enter a number' }} />
+          <NiyamProgressInput
+            name='progressEntered'
+            control={control}
+            rules={{
+              min: 1,
+              required:
+                selectedNiyam && selectedNiyam.timeBased === true
+                  ? 'Enter the number of minutes you have spent on the selected niyam'
+                  : 'Enter your progress on the selected niyam',
+            }}
+            selectedNiyam={selectedNiyam}
+          />
           <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
           <AddNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>
