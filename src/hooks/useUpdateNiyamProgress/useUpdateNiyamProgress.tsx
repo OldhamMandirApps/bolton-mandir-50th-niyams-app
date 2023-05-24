@@ -3,15 +3,22 @@ import { Firestore } from 'firebase/firestore';
 import { useAsyncCallback, UseAsyncReturn } from 'react-async-hook';
 import { Niyam } from '../../config/niyams';
 import { updateNiyamProgress } from '../../db/niyams';
+import { AgeGroupOptions } from '../../pages/AddNiyamProgressPage/AddNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
 
-async function update(niyam: Niyam, progress: number, db: Firestore) {
-  console.log(`Updating niyam progress for ${niyam.id} by ${progress}`);
-  await updateNiyamProgress(db, niyam, progress);
+export type NiyamFormSubmission = {
+  niyam: Niyam;
+  progress: number;
+  ageGroup: AgeGroupOptions;
+};
+
+async function update(form: NiyamFormSubmission, db: Firestore) {
+  console.log(`Updating niyam progress for ${form.niyam.id} by ${form.progress}`);
+  await updateNiyamProgress(db, form.niyam, form.progress, form.ageGroup);
 }
 
-function useUpdateNiyamProgress(): UseAsyncReturn<void, [niyam: Niyam, progress: number]> {
+function useUpdateNiyamProgress(): UseAsyncReturn<void, [NiyamFormSubmission]> {
   const db = useFirestore();
-  return useAsyncCallback((niyam: Niyam, progress: number) => update(niyam, progress, db));
+  return useAsyncCallback((form) => update(form, db));
 }
 
 export default useUpdateNiyamProgress;

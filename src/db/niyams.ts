@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
+import { AgeGroupOptions } from '../pages/AddNiyamProgressPage/AddNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
 
 const niyamConverter = {
   toFirestore: (data: NiyamData) => data,
@@ -36,7 +37,12 @@ async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData
   return await getDocs(niyamsCollection);
 }
 
-async function updateNiyamProgress(db: Firestore, niyam: Niyam, progress: number): Promise<void> {
+async function updateNiyamProgress(
+  db: Firestore,
+  niyam: Niyam,
+  progress: number,
+  ageGroup: AgeGroupOptions,
+): Promise<void> {
   const niyamDocRef = doc(db, 'niyams', niyam.id);
   try {
     await runTransaction(db, async (transaction) => {
@@ -54,6 +60,7 @@ async function updateNiyamProgress(db: Firestore, niyam: Niyam, progress: number
       const auditDocRef = doc(auditCollection);
       transaction.set(auditDocRef, {
         niyam: niyam.label,
+        ageGroup: ageGroup,
         previousProgress: previousProgress,
         newProgress: newProgress,
         progressEntered: progress,

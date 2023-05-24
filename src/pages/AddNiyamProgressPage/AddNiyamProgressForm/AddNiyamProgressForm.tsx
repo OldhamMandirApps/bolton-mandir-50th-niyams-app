@@ -5,9 +5,13 @@ import { Box, Grid, styled } from '@mui/material';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
 import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
-import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import useUpdateNiyamProgress, {
+  NiyamFormSubmission,
+} from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import { Niyam } from '../../../config/niyams';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
+import AgeGroupSelect from './fields/AgeGroupSelect';
+import { AgeGroupOptions } from './fields/AgeGroupSelect/AgeGroupSelect';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -18,6 +22,7 @@ const FormContainer = styled(Grid)(({ theme }) => ({
 export type NiyamFormInputs = {
   niyam: string;
   progressEntered: number;
+  ageGroup: AgeGroupOptions;
 };
 
 function AddNiyamProgressForm(): JSX.Element {
@@ -30,7 +35,12 @@ function AddNiyamProgressForm(): JSX.Element {
 
   async function onSubmitHandler(data: NiyamFormInputs) {
     try {
-      await execute(JSON.parse(data.niyam) as Niyam, data.progressEntered);
+      const formSubmission: NiyamFormSubmission = {
+        niyam: JSON.parse(data.niyam) as Niyam,
+        progress: data.progressEntered,
+        ageGroup: data.ageGroup,
+      };
+      await execute(formSubmission);
       setSnackbarState({
         message: 'You have successfully registered your niyam progress!',
         open: true,
@@ -53,6 +63,7 @@ function AddNiyamProgressForm(): JSX.Element {
         <FormContainer container spacing={2} direction='column'>
           <NiyamSelect name='niyam' control={control} rules={{ required: 'Select a niyam' }} />
           <NiyamProgressInput name='progressEntered' control={control} rules={{ min: 0, required: 'Enter a number' }} />
+          <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
           <AddNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>
       </form>
