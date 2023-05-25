@@ -16,7 +16,7 @@ describe('useNiyamProgressInfo', () => {
       };
     });
 
-    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '' }));
+    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '', timeBased: false }));
 
     expect(result.current.loading).toBeTruthy();
     expect(result.current.error).toBeNull();
@@ -34,7 +34,7 @@ describe('useNiyamProgressInfo', () => {
       };
     });
 
-    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '' }));
+    const { result } = renderHook(() => useNiyamProgressInfo({ id: '', label: '', timeBased: false }));
 
     expect(result.current.loading).toBeFalsy();
     expect(result.current.error).toBe(error);
@@ -42,7 +42,7 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return error when no document retrieved from firestore', () => {
-    const niyam = { id: '', label: '' };
+    const niyam = { id: '', label: '', timeBased: false };
     const error = new Error(`There was no document found in the database for ${niyam.id}`);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
@@ -61,7 +61,7 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return error when more than 1 document retrieved from firestore', () => {
-    const niyam = { id: '', label: '' };
+    const niyam = { id: '', label: '', timeBased: false };
     const error = new Error(`There were multiple documents found in the database for ${niyam.id}`);
 
     useFirestoreDataMock.mockImplementationOnce(() => {
@@ -80,7 +80,7 @@ describe('useNiyamProgressInfo', () => {
   });
 
   test('should return data when 1 document retrieved from firestore', () => {
-    const niyam = { id: '', label: '' };
+    const niyam = { id: '', label: '', timeBased: false };
     const data = NiyamBuilder(niyam.id, 1000, 10000);
 
     useFirestoreDataMock.mockImplementationOnce(() => {

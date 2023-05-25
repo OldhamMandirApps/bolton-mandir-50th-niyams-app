@@ -26,7 +26,7 @@ describe('NiyamSelect', () => {
 
   test('should call setValue function when niyam is selected', () => {
     const setValueMock = jest.fn();
-    renderSelectField({ id: '', label: '' }, setValueMock);
+    renderSelectField({ id: '', label: '', timeBased: false }, setValueMock);
 
     userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
     userEvent.click(screen.getByRole('option', { name: /orada na pads/i }));
