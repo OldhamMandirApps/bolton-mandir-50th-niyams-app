@@ -54,7 +54,7 @@ function ProgressTrackersPage(): JSX.Element {
         </Typography>
         <TrackersGrid data-testid='trackers' container direction='column' spacing={2}>
           {niyams.map((niyam) => (
-            <ProgressTracker niyam={niyam} />
+            <ProgressTracker key={niyam.id} niyam={niyam} />
           ))}
         </TrackersGrid>
         <Snackbar />

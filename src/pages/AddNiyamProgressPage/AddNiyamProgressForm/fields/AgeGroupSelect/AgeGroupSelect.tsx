@@ -31,6 +31,7 @@ function AgeGroupSelect(props: AgeGroupSelectProps): JSX.Element {
               label='Age group'
               inputProps={{ 'aria-label': 'select age group' }}
               {...field}
+              value={field.value ?? ''}
             >
               {ageGroups.map((ageGroup) => (
                 <MenuItem key={ageGroup} value={ageGroup}>

@@ -26,7 +26,7 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             id='niyam-progress-input'
             data-testid='niyam-progress-input-field'
             label={
-              selectedNiyam && selectedNiyam.timeBased === false ? 'Niyam Count' : 'Number of minutes spent on niyam'
+              selectedNiyam && selectedNiyam.timeBased === true ? 'Number of minutes spent on niyam' : 'Niyam Count'
             }
             variant='outlined'
             type='number'
@@ -38,6 +38,7 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             }}
             fullWidth
             {...field}
+            value={field.value}
             onChange={(event) =>
               field.onChange({ ...event, target: { value: parseInt(event.target.value), name: field.name } })
             }

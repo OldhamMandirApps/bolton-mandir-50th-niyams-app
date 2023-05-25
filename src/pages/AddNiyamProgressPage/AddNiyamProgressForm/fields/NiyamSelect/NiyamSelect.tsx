@@ -29,10 +29,10 @@ function NiyamSelect(props: NiyamSelectProps): JSX.Element {
               label='Niyam'
               inputProps={{ 'aria-label': 'select niyam' }}
               {...field}
-              value={JSON.stringify(field.value)}
-              onChange={(e) =>
-                field.onChange({ ...e, target: { value: JSON.parse(field.value as string), name: field.name } })
-              }
+              value={field.value ? JSON.stringify(field.value) : ''}
+              onChange={(e) => {
+                field.onChange({ ...e, target: { value: JSON.parse(e.target.value as string), name: field.name } });
+              }}
             >
               {niyams.map((niyam) => (
                 <MenuItem key={niyam.id} value={JSON.stringify(niyam)}>

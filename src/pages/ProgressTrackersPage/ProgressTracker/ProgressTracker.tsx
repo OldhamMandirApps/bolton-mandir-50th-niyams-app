@@ -11,7 +11,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(niyam);
 
   function progressBarValue(progress: number, target: number) {
-    const percentage = Math.floor(progress / target) * 100;
+    const percentage = Math.floor((progress / target) * 100);
     return percentage > 100 ? 100 : percentage;
   }
 
