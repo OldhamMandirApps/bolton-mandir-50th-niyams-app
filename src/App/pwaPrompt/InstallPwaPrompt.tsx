@@ -1,7 +1,7 @@
 import useIosInstallPrompt from './useIosInstallPrompt';
 import useWebInstallPrompt from './useWebInstallPrompt';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
-import appIcon from '../../images/app-icon.png';
+import appIcon from '../../images/app-icon.svg';
 import navigationIconIos from '../../images/navigation-action-ios.png';
 
 function InstallPwaPrompt(): JSX.Element | null {
