@@ -38,10 +38,11 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             }}
             fullWidth
             {...field}
-            value={field.value}
-            onChange={(event) =>
-              field.onChange({ ...event, target: { value: parseInt(event.target.value), name: field.name } })
-            }
+            value={field.value ?? ''}
+            onChange={(event) => {
+              const progress = event.target.value === '' ? '' : parseInt(event.target.value);
+              field.onChange({ ...event, target: { value: progress, name: field.name } });
+            }}
           />
         )}
       />

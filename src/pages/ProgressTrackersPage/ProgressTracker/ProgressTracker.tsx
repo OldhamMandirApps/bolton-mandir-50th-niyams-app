@@ -15,6 +15,17 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
     return percentage > 100 ? 100 : percentage;
   }
 
+  function getTimeLabel(progress: number) {
+    const numberHours = Math.floor(progress);
+    const numberMinutes = Math.floor((progress - numberHours) * 60);
+    const hoursLabel = `${numberHours} ${numberHours > 1 ? 'hours' : 'hour'}`;
+    const minutesLabel = `${numberMinutes} minutes`;
+
+    return numberHours === 0 && numberMinutes === 0 ? '' : `${hoursLabel} ${minutesLabel}`;
+  }
+
+  const timeLabel = getTimeLabel(data?.progress ?? 0);
+
   return (
     <Grid item data-testid={`tracker-${slugify(niyam.id)}`}>
       <Card
@@ -27,24 +38,35 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
           pt: 1.5,
         }}
       >
-        <Grid container direction='row' justifyContent='space-between' alignItems='center' minHeight='40px'>
-          <Grid item xs={10}>
-            <Typography
-              variant='h6'
-              sx={{
-                fontWeight: 500,
-                fontSize: '18px',
-                color: '#042139',
-                hyphens: 'auto',
-                overflowWrap: 'break-word',
-                wordWrap: 'break-word',
-              }}
-            >
-              {data?.label ?? niyam.label}
+        <Typography
+          variant='h6'
+          sx={{
+            fontWeight: 500,
+            fontSize: '18px',
+            color: '#042139',
+            hyphens: 'auto',
+            overflowWrap: 'break-word',
+            wordWrap: 'break-word',
+            py: '8px',
+          }}
+        >
+          {data?.label ?? niyam.label}
+        </Typography>
+        {niyam.timeBased && timeLabel !== '' && (
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+            <Typography color='gray' variant='body2'>
+              {timeLabel}
             </Typography>
-          </Grid>
-        </Grid>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
+          </Box>
+        )}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mb: niyam.timeBased && timeLabel !== '' ? 0 : -0.5,
+            mt: niyam.timeBased && timeLabel !== '' ? 0 : 2,
+          }}
+        >
           <LinearProgress
             aria-label='Niyam Progress'
             variant='determinate'
