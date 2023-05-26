@@ -3,7 +3,7 @@ import { Firestore } from 'firebase/firestore';
 import { useAsyncCallback, UseAsyncReturn } from 'react-async-hook';
 import { Niyam } from '../../config/niyams';
 import { updateNiyamProgress } from '../../db/niyams';
-import { AgeGroupOptions } from '../../pages/AddNiyamProgressPage/AddNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
+import { AgeGroupOptions } from '../../pages/SubmitNiyamProgressPage/SubmitNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
 
 export type NiyamFormSubmission = {
   niyam: Niyam;

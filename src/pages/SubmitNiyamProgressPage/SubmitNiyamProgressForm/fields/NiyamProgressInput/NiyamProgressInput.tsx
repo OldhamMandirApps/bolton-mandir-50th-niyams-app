@@ -1,6 +1,6 @@
 import { Grid, TextField } from '@mui/material';
 import { Controller, Control, RegisterOptions, FieldPath } from 'react-hook-form';
-import { NiyamFormInputs } from '../../AddNiyamProgressForm';
+import { NiyamFormInputs } from '../../SubmitNiyamProgressForm';
 import { Niyam } from '../../../../../config/niyams';
 
 interface NiyamProgressInputProps {

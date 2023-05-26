@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
-interface AddNiyamProgressSubmitButtonProps {
+interface SubmitNiyamProgressSubmitButtonProps {
   loading: boolean;
 }
 
-function AddNiyamProgressSubmitButton(props: AddNiyamProgressSubmitButtonProps): JSX.Element {
+function SubmitNiyamProgressSubmitButton(props: SubmitNiyamProgressSubmitButtonProps): JSX.Element {
   return (
     <Grid item>
       <LoadingButton
@@ -15,10 +15,10 @@ function AddNiyamProgressSubmitButton(props: AddNiyamProgressSubmitButtonProps):
         aria-label='submit niyam progress'
         loading={props.loading}
       >
-        Submit your niyam progress
+        Submit
       </LoadingButton>
     </Grid>
   );
 }
 
-export default AddNiyamProgressSubmitButton;
+export default SubmitNiyamProgressSubmitButton;

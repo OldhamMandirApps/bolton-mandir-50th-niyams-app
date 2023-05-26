@@ -6,11 +6,6 @@ export interface Niyam {
 
 export const niyams: Niyam[] = [
   {
-    id: 'HariSmruti',
-    label: 'Harismruti Recitals',
-    timeBased: false,
-  },
-  {
     id: 'Dandvats',
     label: 'Dandvat / Panchang Pranam',
     timeBased: false,
@@ -33,11 +28,6 @@ export const niyams: Niyam[] = [
   {
     id: 'ReadingShastras',
     label: 'Reading shastras/leelas (age 5+) (hours)',
-    timeBased: true,
-  },
-  {
-    id: 'Dhun',
-    label: 'Dhun (family niyam) (hours)',
     timeBased: true,
   },
 ];

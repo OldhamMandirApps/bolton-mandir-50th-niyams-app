@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AddNiyamProgressForm from './AddNiyamProgressForm';
+import AddNiyamProgressForm from './SubmitNiyamProgressForm';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import userEvent from '@testing-library/user-event';
 import { RecoilRoot } from 'recoil';

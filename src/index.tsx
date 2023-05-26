@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { firebaseConfig } from './config';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
-import './index.css';
+import { CssBaseline } from '@mui/material';
 
 const container = document.getElementById('root');
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
@@ -13,6 +13,7 @@ root.render(
   <React.StrictMode>
     <ServiceWorkerWrapper />
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <CssBaseline />
       <App />
     </FirebaseAppProvider>
   </React.StrictMode>,

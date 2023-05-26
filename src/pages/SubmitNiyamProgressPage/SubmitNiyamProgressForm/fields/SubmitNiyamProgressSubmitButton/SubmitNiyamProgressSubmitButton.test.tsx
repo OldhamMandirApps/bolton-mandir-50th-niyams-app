@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import AddNiyamProgressSubmitButton from './AddNiyamProgressSubmitButton';
+import SubmitNiyamProgressSubmitButton from './SubmitNiyamProgressSubmitButton';
 
 describe('AddNiyamSubmitButton', () => {
   function renderSubmitButton() {
-    return render(<AddNiyamProgressSubmitButton loading={false} />);
+    return render(<SubmitNiyamProgressSubmitButton loading={false} />);
   }
 
   test('should render submit button', () => {

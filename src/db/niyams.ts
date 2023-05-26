@@ -15,7 +15,7 @@ import {
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
-import { AgeGroupOptions } from '../pages/AddNiyamProgressPage/AddNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
+import { AgeGroupOptions } from '../pages/SubmitNiyamProgressPage/SubmitNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
 
 const niyamConverter = {
   toFirestore: (data: NiyamData) => data,

@@ -4,7 +4,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { Box, Grid, styled } from '@mui/material';
 import NiyamSelect from './fields/NiyamSelect';
 import NiyamProgressInput from './fields/NiyamProgressInput';
-import AddNiyamProgressSubmitButton from './fields/AddNiyamProgressSubmitButton';
+import SubmitNiyamProgressSubmitButton from './fields/SubmitNiyamProgressSubmitButton';
 import useUpdateNiyamProgress, {
   NiyamFormSubmission,
 } from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
@@ -79,7 +79,7 @@ function AddNiyamProgressForm(): JSX.Element {
             selectedNiyam={selectedNiyam}
           />
           <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
-          <AddNiyamProgressSubmitButton loading={status === 'loading'} />
+          <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />
         </FormContainer>
       </form>
     </Box>

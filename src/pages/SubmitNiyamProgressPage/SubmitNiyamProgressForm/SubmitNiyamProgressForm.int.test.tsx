@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
 import { MemoryRouter } from 'react-router-dom';
-import AddNiyamProgressForm from './AddNiyamProgressForm';
+import AddNiyamProgressForm from './SubmitNiyamProgressForm';
 import Snackbar from '../../ProgressTrackersPage/Snackbar';
 import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import userEvent from '@testing-library/user-event';

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
 import useUpdateNiyamProgress from '../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
-import AddNiyamProgressPage from './AddNiyamProgressPage';
+import SubmitNiyamProgressPage from './SubmitNiyamProgressPage';
 
 jest.mock('../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress');
 describe('AddNiyamProgressPage', () => {
@@ -14,7 +14,7 @@ describe('AddNiyamProgressPage', () => {
   function renderPage() {
     return render(
       <RecoilRoot>
-        <AddNiyamProgressPage />
+        <SubmitNiyamProgressPage />
       </RecoilRoot>,
     );
   }

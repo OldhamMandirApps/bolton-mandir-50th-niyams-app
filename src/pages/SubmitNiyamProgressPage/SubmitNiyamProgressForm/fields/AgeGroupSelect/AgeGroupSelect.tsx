@@ -1,6 +1,6 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import { Controller, Control, RegisterOptions, FieldPath } from 'react-hook-form';
-import { NiyamFormInputs } from '../../AddNiyamProgressForm';
+import { NiyamFormInputs } from '../../SubmitNiyamProgressForm';
 
 interface AgeGroupSelectProps {
   name: FieldPath<NiyamFormInputs>;
