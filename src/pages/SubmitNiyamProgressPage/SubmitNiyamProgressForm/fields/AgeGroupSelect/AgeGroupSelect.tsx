@@ -11,7 +11,7 @@ interface AgeGroupSelectProps {
   >;
 }
 
-const ageGroups = ['0 - 10', '11 - 20', '21 - 30', '31 - 40', '41 - 50', '50+'] as const;
+export const ageGroups = ['0 - 10', '11 - 20', '21 - 30', '31 - 40', '41 - 50', '50+'] as const;
 export type AgeGroupOptions = (typeof ageGroups)[number];
 
 function AgeGroupSelect(props: AgeGroupSelectProps): JSX.Element {
