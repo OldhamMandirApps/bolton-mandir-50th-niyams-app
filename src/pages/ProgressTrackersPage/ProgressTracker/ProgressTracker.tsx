@@ -43,7 +43,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
           sx={{
             fontWeight: 600,
             fontSize: '18px',
-            color: '#042139',
+            color: '#BC3606',
             hyphens: 'auto',
             overflowWrap: 'break-word',
             wordWrap: 'break-word',
@@ -73,7 +73,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
             value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
-          <Typography color='#042139' variant='body2' sx={{ ml: 2, fontWeight: '700' }}>
+          <Typography color='#BC3606' variant='body2' sx={{ ml: 2, fontWeight: '700' }}>
             {Math.floor(data?.progress ?? 0)} / {data?.target ?? 0}
           </Typography>
         </Box>

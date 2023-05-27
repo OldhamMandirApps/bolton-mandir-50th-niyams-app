@@ -1,21 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-const primary = {
-  50: '#F3F3F3',
-  100: '#F4EEDD',
-  200: '#F5E9C8',
-  300: '#F6E3B2',
-  400: '#F7DE9C',
-  main: '#F9D987', // contrast 3.83:1
-  500: '#FAD471',
-  600: '#FBCF5B',
-  700: '#FCC945',
-  800: '#FDC430',
-  900: '#FEBF1A',
-};
-
 const theme = createTheme({
-  palette: { primary },
   shape: {
     borderRadius: 10,
   },
@@ -33,8 +18,7 @@ const theme = createTheme({
         {
           props: { variant: 'gradient' },
           style: {
-            backgroundColor: '#FEBF1A',
-            // background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
+            backgroundColor: '#EDBC63',
             boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
           },
         },
@@ -43,8 +27,13 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: '#042139',
-          backgroundColor: '#FEBF1A',
+          'color': '#BC3606',
+          'fontWeight': '700',
+          'backgroundColor': '#DAA54C',
+          'minWidth': '150px',
+          ':hover': {
+            backgroundColor: '#EDBC63',
+          },
         },
       },
     },
@@ -64,7 +53,7 @@ const theme = createTheme({
         },
         bar: {
           borderRadius: 10,
-          backgroundColor: '#105d9d',
+          backgroundColor: '#8d0200',
         },
       },
     },

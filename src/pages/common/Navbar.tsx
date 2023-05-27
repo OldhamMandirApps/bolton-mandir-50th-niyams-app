@@ -27,7 +27,7 @@ function Navbar(): JSX.Element {
   return (
     <>
       <ElevationScroll>
-        <AppBar sx={{ backgroundColor: 'white' }}>
+        <AppBar sx={{ backgroundColor: '#efecec' }}>
           <Toolbar>
             <NavItemsContainer sx={{ width: '100%' }}>
               <a href='/'>
