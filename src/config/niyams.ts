@@ -27,7 +27,7 @@ export const niyams: Niyam[] = [
   },
   {
     id: 'ReadingShastras',
-    label: 'Reading shastras/leelas (age 5+) (hours)',
+    label: 'Reading shastras/leelas (hours)',
     timeBased: true,
   },
 ];

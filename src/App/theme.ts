@@ -27,12 +27,12 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          'color': '#BC3606',
+          'color': '#EDBC63',
           'fontWeight': '700',
-          'backgroundColor': '#DAA54C',
+          'backgroundColor': '#BC3606',
           'minWidth': '150px',
           ':hover': {
-            backgroundColor: '#EDBC63',
+            backgroundColor: '#8D0200',
           },
         },
       },

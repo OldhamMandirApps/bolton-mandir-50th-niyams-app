@@ -11,7 +11,7 @@ import useUpdateNiyamProgress, {
 import { Niyam } from '../../../config/niyams';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 import AgeGroupSelect from './fields/AgeGroupSelect';
-import { AgeGroupOptions } from './fields/AgeGroupSelect/AgeGroupSelect';
+import { AgeGroupOptions, ageGroups } from './fields/AgeGroupSelect/AgeGroupSelect';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -25,8 +25,17 @@ export type NiyamFormInputs = {
   ageGroup: AgeGroupOptions;
 };
 
+function isAgeGroup(maybeAgeGroup: unknown): maybeAgeGroup is AgeGroupOptions {
+  return typeof maybeAgeGroup === 'string' && ageGroups.includes(maybeAgeGroup as AgeGroupOptions);
+}
+
 function AddNiyamProgressForm(): JSX.Element {
-  const { control, handleSubmit } = useForm<NiyamFormInputs>();
+  const ageGroupCached = localStorage.getItem('ageGroup');
+  const { control, handleSubmit } = useForm<NiyamFormInputs>({
+    defaultValues: {
+      ageGroup: isAgeGroup(ageGroupCached) ? (ageGroupCached as AgeGroupOptions) : undefined,
+    },
+  });
   const [selectedNiyam] = useWatch({
     control,
     name: ['niyam'],
@@ -39,6 +48,7 @@ function AddNiyamProgressForm(): JSX.Element {
 
   async function onSubmitHandler(data: NiyamFormInputs) {
     try {
+      localStorage.setItem('ageGroup', data.ageGroup);
       const formSubmission: NiyamFormSubmission = {
         niyam: data.niyam,
         progress: data.progressEntered,
@@ -79,7 +89,9 @@ function AddNiyamProgressForm(): JSX.Element {
             selectedNiyam={selectedNiyam}
           />
           <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
-          <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />
+          <Grid item container justifyContent='flex-end'>
+            <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />
+          </Grid>
         </FormContainer>
       </form>
     </Box>

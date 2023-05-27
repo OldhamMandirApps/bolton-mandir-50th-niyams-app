@@ -35,7 +35,6 @@ function InstallPwaPrompt(): JSX.Element | null {
               py: '16px',
               textAlign: 'center',
               fontWeight: 'medium',
-              fontFamily: "'Merriweather Sans', sans-serif",
             }}
           >
             Install App
