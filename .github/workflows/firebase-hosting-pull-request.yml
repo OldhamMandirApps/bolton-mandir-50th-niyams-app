@@ -31,5 +31,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUTAN_UTSAV_APP_STAGING }}'
-          projectId: nutan-utsav-app-staging
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BOLTON_50TH_NIYAMS_APP_STAGING }}'
+          projectId: bolton-50th-niyams-app-staging

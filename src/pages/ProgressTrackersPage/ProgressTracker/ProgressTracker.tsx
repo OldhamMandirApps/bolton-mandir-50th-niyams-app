@@ -1,29 +1,33 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Box, Card, Grid, IconButton, LinearProgress, Typography } from '@mui/material';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Box, Card, Grid, LinearProgress, Typography } from '@mui/material';
 import { Niyam } from '../../../config/niyams';
 import { slugify } from '../../../utils/string';
 import useNiyamProgressInfo from '../../../hooks/useNiyamProgressInfo';
 
 interface ProgressTrackerProps {
   niyam: Niyam;
-  niyamLink: string;
 }
 
-function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
-  const { niyam, niyamLink } = props;
-
+function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(niyam);
-  const router = useHistory();
 
   function progressBarValue(progress: number, target: number) {
-    const percentage = (progress / target) * 100;
+    const percentage = Math.floor((progress / target) * 100);
     return percentage > 100 ? 100 : percentage;
   }
 
+  function getTimeLabel(progress: number) {
+    const numberHours = Math.floor(progress);
+    const numberMinutes = Math.floor((progress - numberHours) * 60);
+    const hoursLabel = `${numberHours} ${numberHours > 1 ? 'hours' : 'hour'}`;
+    const minutesLabel = `${numberMinutes} minutes`;
+
+    return numberHours === 0 && numberMinutes === 0 ? '' : `${hoursLabel} ${minutesLabel}`;
+  }
+
+  const timeLabel = getTimeLabel(data?.progress ?? 0);
+
   return (
-    <Grid item data-testid={`tracker-${slugify(niyam)}`}>
+    <Grid item data-testid={`tracker-${slugify(niyam.id)}`}>
       <Card
         raised
         variant='gradient'
@@ -34,48 +38,43 @@ function ProgressTracker(props: ProgressTrackerProps): JSX.Element {
           pt: 1.5,
         }}
       >
-        <Grid container direction='row' justifyContent='space-between' alignItems='center' minHeight='40px'>
-          <Grid item xs={10}>
-            <Typography
-              variant='h6'
-              sx={{
-                fontWeight: 500,
-                fontSize: '18px',
-                color: '#042139',
-                hyphens: 'auto',
-                overflowWrap: 'break-word',
-                wordWrap: 'break-word',
-              }}
-            >
-              {niyam}
+        <Typography
+          variant='h6'
+          sx={{
+            fontWeight: 600,
+            fontSize: '18px',
+            color: '#BC3606',
+            hyphens: 'auto',
+            overflowWrap: 'break-word',
+            wordWrap: 'break-word',
+            py: '8px',
+          }}
+        >
+          {data?.label ?? niyam.label}
+        </Typography>
+        {niyam.timeBased && timeLabel !== '' && (
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+            <Typography color='gray' variant='body2'>
+              {timeLabel}
             </Typography>
-          </Grid>
-          <Grid container item xs={2} justifyContent='flex-end'>
-            <IconButton
-              aria-label='go to niyam'
-              disableFocusRipple
-              disableRipple
-              disableTouchRipple
-              onClick={() => {
-                router.push(niyamLink);
-              }}
-              sx={{ padding: 0 }}
-            >
-              <ChevronRightIcon sx={{ fontWeight: 800, color: '#042139', fontSize: '2rem' }} />
-            </IconButton>
-          </Grid>
-        </Grid>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 2 }}>
+          </Box>
+        )}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mb: niyam.timeBased && timeLabel !== '' ? 0 : -0.5,
+            mt: niyam.timeBased && timeLabel !== '' ? 0 : 2,
+          }}
+        >
           <LinearProgress
             aria-label='Niyam Progress'
             variant='determinate'
             value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
-          <Typography color='#042139' variant='body2' sx={{ ml: 2 }}>
-            <b>
-              {data?.progress} / {data?.target}
-            </b>
+          <Typography color='#BC3606' variant='body2' sx={{ ml: 2, fontWeight: '700' }}>
+            {Math.floor(data?.progress ?? 0)} / {data?.target ?? 0}
           </Typography>
         </Box>
       </Card>

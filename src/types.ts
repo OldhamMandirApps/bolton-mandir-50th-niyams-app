@@ -1,5 +1,5 @@
 export interface NiyamData {
-  name: string;
+  label: string;
   progress: number;
   target: number;
 }

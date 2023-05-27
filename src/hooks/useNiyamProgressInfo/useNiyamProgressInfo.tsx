@@ -17,7 +17,7 @@ function useNiyamProgressInfo(niyam: Niyam): ProgressInfo {
     case 'error':
       return error(dbError);
     case 'success':
-      return success(data, niyam);
+      return success(data, niyam.id);
   }
 }
 
@@ -29,13 +29,11 @@ const error = (err: Optional<Error>): ProgressInfo => {
   return response(false, err, null);
 };
 
-const success = (data: NiyamData[], niyam: string): ProgressInfo => {
-  if (data.length === 0) {
+const success = (data: NiyamData, niyam: string): ProgressInfo => {
+  if (data === null) {
     return error(new Error(`There was no document found in the database for ${niyam}`));
-  } else if (data.length > 1) {
-    return error(new Error(`There were multiple documents found in the database for ${niyam}`));
   } else {
-    return response(false, null, data[0]);
+    return response(false, null, data);
   }
 };
 

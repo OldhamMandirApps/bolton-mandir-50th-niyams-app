@@ -16,6 +16,7 @@ function H1(props: TypographyProps<'h1', { component?: 'h1' }>): JSX.Element {
     <Typography
       variant='h4'
       sx={{
+        fontFamily: "'Merriweather Sans', sans-serif",
         fontWeight: 700,
         hyphens: 'auto',
         overflowWrap: 'break-word',

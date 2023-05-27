@@ -1,7 +1,7 @@
 import useIosInstallPrompt from './useIosInstallPrompt';
 import useWebInstallPrompt from './useWebInstallPrompt';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
-import appIcon from '../../images/app-icon.png';
+import appIcon from '../../images/app-icon.svg';
 import navigationIconIos from '../../images/navigation-action-ios.png';
 
 function InstallPwaPrompt(): JSX.Element | null {
@@ -29,17 +29,25 @@ function InstallPwaPrompt(): JSX.Element | null {
           width='100px'
         />
         <Box>
-          <Typography variant='h5' mt='16px' sx={{ textAlign: 'center', fontWeight: 'medium' }}>
+          <Typography
+            variant='h5'
+            sx={{
+              py: '16px',
+              textAlign: 'center',
+              fontWeight: 'medium',
+              fontFamily: "'Merriweather Sans', sans-serif",
+            }}
+          >
             Install App
           </Typography>
           {iosInstallPrompt ? (
             <>
-              <Typography paragraph mt='24px' sx={{ textAlign: 'center' }}>
+              <Typography paragraph sx={{ textAlign: 'center' }}>
                 Tap
                 <img
                   src={navigationIconIos}
                   alt='navigation action ios'
-                  style={{ margin: 'auto 8px 8px', display: 'inline-block' }}
+                  style={{ marginLeft: '8px', marginRight: '8px' }}
                   width='20'
                 />
                 then &quot;Add to Home Screen&quot;
@@ -54,11 +62,11 @@ function InstallPwaPrompt(): JSX.Element | null {
           {webInstallPrompt ? (
             <>
               <Grid container justifyContent='space-around' mt='24px'>
-                <Button variant='contained' color='primary' onClick={handleWebInstallAccepted}>
-                  Install
-                </Button>
                 <Button variant='contained' onClick={handleWebInstallDeclined}>
                   Close
+                </Button>
+                <Button variant='contained' color='primary' onClick={handleWebInstallAccepted}>
+                  Install
                 </Button>
               </Grid>
             </>
