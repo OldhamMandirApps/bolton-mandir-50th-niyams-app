@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Catamaran';
+  src: local('Catamaran'), url(./fonts/Catamaran/Catamaran-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local('Merriweather Sans'),
+    url(./fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf) format('truetype');
+}

@@ -21,7 +21,7 @@ const theme = createTheme({
   },
   spacing: 10,
   typography: {
-    fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
+    fontFamily: ['Catamaran', 'sans-serif', '-apple-system', 'BlinkMacSystemFont'].join(','),
     h6: {
       lineHeight: 1.2,
       fontWeight: 700,
@@ -52,13 +52,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: '#007fff',
-        },
-      },
-    },
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          border: '1px solid #fff',
         },
       },
     },
