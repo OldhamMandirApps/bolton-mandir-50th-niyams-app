@@ -26,8 +26,11 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
             id='niyam-progress-input'
             data-testid='niyam-progress-input-field'
             label={
-              selectedNiyam && selectedNiyam.timeBased === true ? 'Number of minutes spent on niyam' : 'Niyam Count'
+              selectedNiyam && selectedNiyam.timeBased === true
+                ? 'Number of minutes spent on niyam'
+                : 'Number completed'
             }
+            helperText='Please only submit completed niyams and not your target'
             variant='outlined'
             type='number'
             required

@@ -79,7 +79,9 @@ function AddNiyamProgressForm(): JSX.Element {
             selectedNiyam={selectedNiyam}
           />
           <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
-          <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />
+          <Grid item container justifyContent='flex-end'>
+            <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />
+          </Grid>
         </FormContainer>
       </form>
     </Box>
