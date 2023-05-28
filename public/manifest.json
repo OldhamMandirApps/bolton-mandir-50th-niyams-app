@@ -3,7 +3,7 @@
   "name": "Samarpan Niyams",
   "icons": [
     {
-      "src": "assets/manifest-icon-512.maskable.png",
+      "src": "assets/test-icon.png",
       "sizes": "any"
     }
   ],
