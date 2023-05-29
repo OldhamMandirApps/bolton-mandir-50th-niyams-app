@@ -24,6 +24,7 @@ function ProgressTrackersPage(): JSX.Element {
   return (
     <>
       <SocialBanner />
+      <hr style={{ width: '65vw', border: '1px solid lightgrey' }} />
       <PageContainer data-testid='progress-trackers-page'>
         <Grid container mb={4} spacing={2}>
           <Grid item xs={12} sm={6}>
