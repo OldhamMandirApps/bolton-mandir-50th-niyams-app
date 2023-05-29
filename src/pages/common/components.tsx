@@ -4,7 +4,7 @@ import { Container, Typography, TypographyProps } from '@mui/material';
 function PageContainer(props: React.PropsWithChildren<unknown>): JSX.Element {
   const { children, ...other } = props;
   return (
-    <Container maxWidth={false} sx={{ mt: 2, p: 2, mx: 0 }} {...other}>
+    <Container maxWidth={false} sx={{ p: 2, mx: 0 }} {...other}>
       {children}
     </Container>
   );
