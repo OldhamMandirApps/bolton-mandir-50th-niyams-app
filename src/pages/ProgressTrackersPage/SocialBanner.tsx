@@ -27,7 +27,7 @@ function SocialBanner() {
         <Typography
           variant='h6'
           sx={{
-            fontWeight: 600,
+            fontWeight: 500,
             fontSize: '18px',
             color: '#BC3606',
             py: '8px',
