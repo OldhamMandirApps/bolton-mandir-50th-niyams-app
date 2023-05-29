@@ -73,7 +73,7 @@ function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
             value={data ? progressBarValue(data.progress, data.target) : 0}
             sx={{ flexGrow: 1 }}
           />
-          <Typography color='#BC3606' variant='body2' sx={{ ml: 2, fontWeight: '700' }}>
+          <Typography color='#BC3606' variant='body2' sx={{ ml: 2, fontWeight: '500' }}>
             {Math.floor(data?.progress ?? 0)} / {data?.target ?? 0}
           </Typography>
         </Box>
