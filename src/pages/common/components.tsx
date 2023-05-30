@@ -17,7 +17,7 @@ function H1(props: TypographyProps<'h1', { component?: 'h1' }>): JSX.Element {
       variant='h4'
       sx={{
         fontWeight: 700,
-        fontSize: '1.875rem',
+        fontSize: '1.65rem',
         hyphens: 'auto',
         overflowWrap: 'break-word',
         wordWrap: 'break-word',
