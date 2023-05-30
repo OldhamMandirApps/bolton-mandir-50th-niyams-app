@@ -7,7 +7,8 @@ import theme from './theme';
 import ScrollToTop from './ScrollToTop';
 import InstallPwaPrompt from './pwaPrompt/InstallPwaPrompt';
 import { RecoilRoot } from 'recoil';
-import Navbar from '../pages/common/Navbar';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 function App(): JSX.Element {
   return (
@@ -23,6 +24,7 @@ function App(): JSX.Element {
                 <Route path='/' element={<ProgressTrackersPage />} />
                 <Route path='/submit-niyam-progress' element={<SubmitNiyamProgressPage />} />
               </Routes>
+              <Footer />
             </Router>
           </ThemeProvider>
         </FirebaseApp>

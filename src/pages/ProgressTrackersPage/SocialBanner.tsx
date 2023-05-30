@@ -30,7 +30,6 @@ function SocialBanner() {
             fontWeight: 500,
             fontSize: '18px',
             color: '#BC3606',
-            py: '8px',
             textAlign: 'center',
           }}
         >
@@ -41,7 +40,6 @@ function SocialBanner() {
           sx={{
             fontWeight: 600,
             fontSize: '18px',
-            color: '#BC3606',
             textAlign: 'center',
           }}
         >
