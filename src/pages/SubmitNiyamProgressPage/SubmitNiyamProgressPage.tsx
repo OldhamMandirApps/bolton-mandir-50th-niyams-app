@@ -5,7 +5,7 @@ import SubmitNiyamProgressForm from './SubmitNiyamProgressForm';
 function SubmitNiyamProgressPage(): JSX.Element {
   return (
     <PageContainer data-testid='submit-niyam-progress-page'>
-      <Box sx={{ pb: 2 }}>
+      <Box sx={{ py: 1 }}>
         <Link href='/' color='inherit' underline='none'>
           <Typography sx={{ fontWeight: 700 }}>
             <>&larr;</> Go back
