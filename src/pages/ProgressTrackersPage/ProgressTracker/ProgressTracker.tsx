@@ -7,21 +7,21 @@ interface ProgressTrackerProps {
   niyam: Niyam;
 }
 
+export function getTimeLabel(progress: number) {
+  const numberHours = Math.floor(progress);
+  const numberMinutes = Math.floor((progress - numberHours) * 60);
+  const hoursLabel = `${numberHours} ${numberHours > 1 ? 'hours' : 'hour'}`;
+  const minutesLabel = `${numberMinutes} minutes`;
+
+  return numberHours === 0 && numberMinutes === 0 ? '' : `${hoursLabel} ${minutesLabel}`;
+}
+
 function ProgressTracker({ niyam }: ProgressTrackerProps): JSX.Element {
   const { data } = useNiyamProgressInfo(niyam);
 
   function progressBarValue(progress: number, target: number) {
     const percentage = Math.floor((progress / target) * 100);
     return percentage > 100 ? 100 : percentage;
-  }
-
-  function getTimeLabel(progress: number) {
-    const numberHours = Math.floor(progress);
-    const numberMinutes = Math.floor((progress - numberHours) * 60);
-    const hoursLabel = `${numberHours} ${numberHours > 1 ? 'hours' : 'hour'}`;
-    const minutesLabel = `${numberMinutes} minutes`;
-
-    return numberHours === 0 && numberMinutes === 0 ? '' : `${hoursLabel} ${minutesLabel}`;
   }
 
   const timeLabel = getTimeLabel(data?.progress ?? 0);

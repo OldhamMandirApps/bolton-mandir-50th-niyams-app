@@ -13,6 +13,8 @@ import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackba
 import AgeGroupSelect from './fields/AgeGroupSelect';
 import { AgeGroupOptions, ageGroups } from './fields/AgeGroupSelect/AgeGroupSelect';
 import GenericTextInput from './fields/GenericTextInput';
+import React from 'react';
+import ConfirmSubmissionDialog from './ConfirmSubmissionDialog';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -33,6 +35,9 @@ function isAgeGroup(maybeAgeGroup: unknown): maybeAgeGroup is AgeGroupOptions {
 }
 
 function AddNiyamProgressForm(): JSX.Element {
+  const [confirmDialogOpen, setConfirmDialogOpen] = React.useState(false);
+  const [submissionData, setSubmissionData] = React.useState<NiyamFormSubmission | null>(null);
+
   const ageGroupCached = localStorage.getItem('ageGroup');
 
   const { control, handleSubmit } = useForm<NiyamFormInputs>({
@@ -58,17 +63,9 @@ function AddNiyamProgressForm(): JSX.Element {
     localStorage.setItem('mandirName', data.mandirName);
   }
 
-  async function onSubmitHandler(data: NiyamFormInputs) {
-    cacheFieldValues(data);
+  async function onConfirmSubmission() {
     try {
-      const formSubmission: NiyamFormSubmission = {
-        niyam: data.niyam,
-        progress: data.progressEntered,
-        ageGroup: data.ageGroup,
-        fullName: data.fullName,
-        mandirName: data.mandirName,
-      };
-      await execute(formSubmission);
+      await execute(submissionData!);
       setSnackbarState({
         message: 'You have successfully registered your niyam progress!',
         open: true,
@@ -83,6 +80,24 @@ function AddNiyamProgressForm(): JSX.Element {
       });
       navigate('/');
     }
+  }
+
+  function onCancel() {
+    setConfirmDialogOpen(false);
+  }
+
+  async function onSubmitHandler(data: NiyamFormInputs) {
+    cacheFieldValues(data);
+
+    const formSubmission: NiyamFormSubmission = {
+      niyam: data.niyam,
+      progress: data.progressEntered,
+      ageGroup: data.ageGroup,
+      fullName: data.fullName,
+      mandirName: data.mandirName,
+    };
+    setSubmissionData(formSubmission);
+    setConfirmDialogOpen(true);
   }
 
   return (
@@ -122,6 +137,14 @@ function AddNiyamProgressForm(): JSX.Element {
           </Grid>
         </FormContainer>
       </form>
+      {confirmDialogOpen === true ? (
+        <ConfirmSubmissionDialog
+          open={confirmDialogOpen}
+          handleCancel={onCancel}
+          handleOk={onConfirmSubmission}
+          formSubmission={submissionData!}
+        />
+      ) : null}
     </Box>
   );
 }
