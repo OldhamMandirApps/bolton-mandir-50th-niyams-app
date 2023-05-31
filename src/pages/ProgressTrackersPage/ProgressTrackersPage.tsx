@@ -37,7 +37,7 @@ function ProgressTrackersPage(): JSX.Element {
                 navigate('/submit-niyam-progress');
               }}
             >
-              Add your niyam progress
+              Submit your niyam progress
             </SubmitNiyamProgressButton>
           </Grid>
         </Grid>

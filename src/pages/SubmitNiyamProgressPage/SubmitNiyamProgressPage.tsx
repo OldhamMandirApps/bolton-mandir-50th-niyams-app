@@ -12,7 +12,7 @@ function SubmitNiyamProgressPage(): JSX.Element {
           </Typography>
         </Link>
       </Box>
-      <H1>Add your niyam progress</H1>
+      <H1>Submit your niyam progress</H1>
       <SubmitNiyamProgressForm />
     </PageContainer>
   );
