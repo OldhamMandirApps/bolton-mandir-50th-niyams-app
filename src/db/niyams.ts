@@ -39,9 +39,12 @@ async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData
 
 async function updateNiyamProgress(
   db: Firestore,
-  niyam: Niyam,
-  progress: number,
-  ageGroup: AgeGroupOptions,
+  {
+    niyam,
+    progress,
+    ageGroup,
+    fullName,
+  }: { niyam: Niyam; progress: number; ageGroup: AgeGroupOptions; fullName: string },
 ): Promise<void> {
   const niyamDocRef = doc(db, 'niyams', niyam.id);
   try {
@@ -60,6 +63,7 @@ async function updateNiyamProgress(
       const auditDocRef = doc(auditCollection);
       transaction.set(auditDocRef, {
         niyam: niyam.label,
+        fullName: fullName,
         ageGroup: ageGroup,
         previousProgress: previousProgress,
         newProgress: newProgress,

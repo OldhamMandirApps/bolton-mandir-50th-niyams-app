@@ -9,12 +9,18 @@ export type NiyamFormSubmission = {
   niyam: Niyam;
   progress: number;
   ageGroup: AgeGroupOptions;
+  fullName: string;
 };
 
 async function update(form: NiyamFormSubmission, db: Firestore) {
   const progress = form.niyam.timeBased ? form.progress / 60 : form.progress;
   console.log(`Updating niyam progress for ${form.niyam.id} by ${progress}`);
-  await updateNiyamProgress(db, form.niyam, progress, form.ageGroup);
+  await updateNiyamProgress(db, {
+    niyam: form.niyam,
+    progress,
+    ageGroup: form.ageGroup,
+    fullName: form.fullName,
+  });
 }
 
 function useUpdateNiyamProgress(): UseAsyncReturn<void, [NiyamFormSubmission]> {
