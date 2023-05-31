@@ -31,7 +31,7 @@ function NiyamSelect(props: NiyamSelectProps): JSX.Element {
               {...field}
               value={field.value ? JSON.stringify(field.value) : ''}
               onChange={(e) => {
-                field.onChange({ ...e, target: { value: JSON.parse(e.target.value as string), name: field.name } });
+                field.onChange(JSON.parse(e.target.value as string));
               }}
             >
               {niyams.map((niyam) => (

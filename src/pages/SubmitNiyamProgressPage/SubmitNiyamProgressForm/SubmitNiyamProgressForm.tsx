@@ -23,6 +23,8 @@ export type NiyamFormInputs = {
   niyam: Niyam;
   progressEntered: number;
   ageGroup: AgeGroupOptions;
+  fullName: string;
+  mandirName: string;
 };
 
 function isAgeGroup(maybeAgeGroup: unknown): maybeAgeGroup is AgeGroupOptions {
