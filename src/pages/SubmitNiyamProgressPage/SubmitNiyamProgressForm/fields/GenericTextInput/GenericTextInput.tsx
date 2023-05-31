@@ -2,7 +2,10 @@ import { Grid, TextField } from '@mui/material';
 import { Control, Controller, FieldPath, RegisterOptions } from 'react-hook-form';
 import { NiyamFormInputs } from '../../SubmitNiyamProgressForm';
 
-interface FullNameInputProps {
+interface GenericTextInputProps {
+  id: string;
+  dataTestId?: string;
+  label: string;
   name: FieldPath<NiyamFormInputs>;
   control: Control<NiyamFormInputs>;
   rules: Omit<
@@ -11,7 +14,7 @@ interface FullNameInputProps {
   >;
 }
 
-function FullNameInput(props: FullNameInputProps): JSX.Element {
+function GenericTextInput(props: GenericTextInputProps): JSX.Element {
   return (
     <Grid item>
       <Controller
@@ -20,9 +23,9 @@ function FullNameInput(props: FullNameInputProps): JSX.Element {
         rules={props.rules}
         render={({ field }) => (
           <TextField
-            id='name-input'
-            data-testid='name-input-field'
-            label='Your name'
+            id={props.id}
+            data-testid={props.dataTestId}
+            label={props.label}
             variant='outlined'
             required
             fullWidth
@@ -34,4 +37,4 @@ function FullNameInput(props: FullNameInputProps): JSX.Element {
   );
 }
 
-export default FullNameInput;
+export default GenericTextInput;

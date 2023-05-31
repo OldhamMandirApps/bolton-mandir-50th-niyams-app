@@ -44,7 +44,8 @@ async function updateNiyamProgress(
     progress,
     ageGroup,
     fullName,
-  }: { niyam: Niyam; progress: number; ageGroup: AgeGroupOptions; fullName: string },
+    mandirName,
+  }: { niyam: Niyam; progress: number; ageGroup: AgeGroupOptions; fullName: string; mandirName: string },
 ): Promise<void> {
   const niyamDocRef = doc(db, 'niyams', niyam.id);
   try {
@@ -63,10 +64,11 @@ async function updateNiyamProgress(
       const auditDocRef = doc(auditCollection);
       transaction.set(auditDocRef, {
         niyam: niyam.label,
-        fullName: fullName,
-        ageGroup: ageGroup,
-        previousProgress: previousProgress,
-        newProgress: newProgress,
+        fullName,
+        mandirName,
+        ageGroup,
+        previousProgress,
+        newProgress,
         progressEntered: progress,
         timestamp: serverTimestamp(),
       });

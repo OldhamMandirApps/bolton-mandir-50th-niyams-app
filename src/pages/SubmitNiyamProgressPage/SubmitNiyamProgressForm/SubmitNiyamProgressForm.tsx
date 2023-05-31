@@ -12,7 +12,7 @@ import { Niyam } from '../../../config/niyams';
 import snackbarAtom, { SnackbarStatus } from '../../ProgressTrackersPage/Snackbar/snackbarAtom';
 import AgeGroupSelect from './fields/AgeGroupSelect';
 import { AgeGroupOptions, ageGroups } from './fields/AgeGroupSelect/AgeGroupSelect';
-import FullNameInput from './fields/FullNameInput';
+import GenericTextInput from './fields/GenericTextInput';
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -34,12 +34,12 @@ function isAgeGroup(maybeAgeGroup: unknown): maybeAgeGroup is AgeGroupOptions {
 
 function AddNiyamProgressForm(): JSX.Element {
   const ageGroupCached = localStorage.getItem('ageGroup');
-  const fullNameCached = localStorage.getItem('fullName');
 
   const { control, handleSubmit } = useForm<NiyamFormInputs>({
     defaultValues: {
       ageGroup: isAgeGroup(ageGroupCached) ? (ageGroupCached as AgeGroupOptions) : undefined,
-      fullName: fullNameCached ?? '',
+      fullName: localStorage.getItem('fullName') ?? '',
+      mandirName: localStorage.getItem('mandirName') ?? '',
     },
   });
   const [selectedNiyam] = useWatch({
@@ -55,6 +55,7 @@ function AddNiyamProgressForm(): JSX.Element {
   function cacheFieldValues(data: NiyamFormInputs) {
     localStorage.setItem('ageGroup', data.ageGroup);
     localStorage.setItem('fullName', data.fullName);
+    localStorage.setItem('mandirName', data.mandirName);
   }
 
   async function onSubmitHandler(data: NiyamFormInputs) {
@@ -65,6 +66,7 @@ function AddNiyamProgressForm(): JSX.Element {
         progress: data.progressEntered,
         ageGroup: data.ageGroup,
         fullName: data.fullName,
+        mandirName: data.mandirName,
       };
       await execute(formSubmission);
       setSnackbarState({
@@ -100,7 +102,20 @@ function AddNiyamProgressForm(): JSX.Element {
             }}
             selectedNiyam={selectedNiyam}
           />
-          <FullNameInput name='fullName' control={control} rules={{ required: 'Enter your full name' }} />
+          <GenericTextInput
+            id='full-name-input'
+            label='Full name'
+            name='fullName'
+            control={control}
+            rules={{ required: 'Enter your full name' }}
+          />
+          <GenericTextInput
+            id='mandir-name-input'
+            label='Mandir name'
+            name='mandirName'
+            control={control}
+            rules={{ required: 'Enter which mandir you usually attend' }}
+          />
           <AgeGroupSelect name='ageGroup' control={control} rules={{ required: 'Select your age group' }} />
           <Grid item container justifyContent='flex-end'>
             <SubmitNiyamProgressSubmitButton loading={status === 'loading'} />

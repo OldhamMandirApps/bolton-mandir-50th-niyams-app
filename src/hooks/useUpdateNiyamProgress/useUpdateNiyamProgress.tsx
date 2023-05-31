@@ -10,6 +10,7 @@ export type NiyamFormSubmission = {
   progress: number;
   ageGroup: AgeGroupOptions;
   fullName: string;
+  mandirName: string;
 };
 
 async function update(form: NiyamFormSubmission, db: Firestore) {
@@ -20,6 +21,7 @@ async function update(form: NiyamFormSubmission, db: Firestore) {
     progress,
     ageGroup: form.ageGroup,
     fullName: form.fullName,
+    mandirName: form.mandirName,
   });
 }
 
