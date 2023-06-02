@@ -1,6 +1,7 @@
 import {
   collection,
   doc,
+  increment,
   Firestore,
   getDocs,
   query,
@@ -8,12 +9,13 @@ import {
   QueryDocumentSnapshot,
   QuerySnapshot,
   runTransaction,
-  serverTimestamp,
   SnapshotOptions,
   where,
+  serverTimestamp,
 } from 'firebase/firestore';
 import { NiyamData } from '../types';
 import { Niyam } from '../config/niyams';
+import { AgeGroupOptions } from '../pages/SubmitNiyamProgressPage/SubmitNiyamProgressForm/fields/AgeGroupSelect/AgeGroupSelect';
 
 const niyamConverter = {
   toFirestore: (data: NiyamData) => data,
@@ -25,6 +27,10 @@ function getNiyamQuery(db: Firestore, niyam: Niyam): Query<NiyamData> {
   return query(niyamsCollection, where('name', '==', niyam));
 }
 
+function getNiyamDocument(db: Firestore, niyam: Niyam) {
+  return doc(db, 'niyams', niyam.id).withConverter(niyamConverter);
+}
+
 async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData>> {
   const niyamsCollection = collection(db, 'niyams').withConverter(niyamConverter);
 
@@ -33,43 +39,37 @@ async function getNiyamDocuments(db: Firestore): Promise<QuerySnapshot<NiyamData
 
 async function updateNiyamProgress(
   db: Firestore,
-  documentId: string,
-  name: string | null,
-  progress: number,
-  niyam: Niyam,
+  {
+    niyam,
+    progress,
+    ageGroup,
+    fullName,
+    mandirName,
+  }: { niyam: Niyam; progress: number; ageGroup: AgeGroupOptions; fullName: string; mandirName: string },
 ): Promise<void> {
-  const niyamDocRef = doc(db, 'niyams', documentId);
-
+  const niyamDocRef = doc(db, 'niyams', niyam.id);
   try {
     await runTransaction(db, async (transaction) => {
       const niyamDoc = await transaction.get(niyamDocRef);
       if (!niyamDoc.exists()) {
         throw new Error('Document does not exist!');
       }
-
       const previousProgress = niyamDoc.data().progress;
       const newProgress = previousProgress + progress;
       transaction.update(niyamDocRef, {
-        progress: newProgress,
+        progress: increment(progress),
       });
-
-      if (name) {
-        const niyamSubmissionsCollection = collection(db, 'niyam-submissions');
-        const bhaktachintamaniVachanamrutNiyamDocRef = doc(niyamSubmissionsCollection);
-        transaction.set(bhaktachintamaniVachanamrutNiyamDocRef, {
-          niyam: Niyam.BhaktachintamaniVachanamrut,
-          name: name,
-          count: progress,
-        });
-      }
 
       const auditCollection = collection(db, 'audit');
       const auditDocRef = doc(auditCollection);
       transaction.set(auditDocRef, {
-        niyam: niyam,
-        previousProgress: previousProgress,
-        newProgress: newProgress,
-        count: progress,
+        niyam: niyam.label,
+        fullName,
+        mandirName,
+        ageGroup,
+        previousProgress,
+        newProgress,
+        progressEntered: progress,
         timestamp: serverTimestamp(),
       });
     });
@@ -79,4 +79,4 @@ async function updateNiyamProgress(
   }
 }
 
-export { getNiyamQuery, getNiyamDocuments, updateNiyamProgress };
+export { getNiyamQuery, getNiyamDocuments, updateNiyamProgress, getNiyamDocument };

@@ -4,6 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
+Object.defineProperty(window, 'scrollTo', { value: jest.fn(), writable: true });
+
 beforeEach(() => {
   const mockIntersectionObserver = jest.fn();
   mockIntersectionObserver.mockReturnValue({

@@ -1,19 +1,13 @@
-import { useFirestore, useFirestoreCollectionData } from 'reactfire';
-import { getNiyamQuery } from '../../db/niyams';
+import { ObservableStatus, useFirestore, useFirestoreDocData } from 'reactfire';
+import { getNiyamDocument } from '../../db/niyams';
 import { NiyamData } from '../../types';
 import { Niyam } from '../../config/niyams';
 
-interface UseFirestoreData {
-  status: 'loading' | 'error' | 'success';
-  data: NiyamData[];
-  error: Error | undefined;
-}
-
-function useFirestoreData(niyam: Niyam): UseFirestoreData {
+function useFirestoreData(niyam: Niyam): ObservableStatus<NiyamData> {
   const firestore = useFirestore();
-  const niyamQuery = getNiyamQuery(firestore, niyam);
+  const document = getNiyamDocument(firestore, niyam);
 
-  return useFirestoreCollectionData(niyamQuery);
+  return useFirestoreDocData(document);
 }
 
 export default useFirestoreData;

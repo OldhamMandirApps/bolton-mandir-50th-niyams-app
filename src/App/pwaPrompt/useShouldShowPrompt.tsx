@@ -1,4 +1,3 @@
-import { differenceInDays, formatISO } from 'date-fns';
 import { useState } from 'react';
 
 function getInstallPromptLastSeenAt(promptName: string): string | null {
@@ -6,8 +5,17 @@ function getInstallPromptLastSeenAt(promptName: string): string | null {
 }
 
 function setInstallPromptSeenToday(promptName: string): void {
-  const today = formatISO(new Date());
+  const today = new Date().toISOString();
   localStorage.setItem(promptName, today);
+}
+
+function differenceInDays(a: Date, b: Date) {
+  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+  // Discard the time and time-zone information.
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+  return Math.abs((utc2 - utc1) / _MS_PER_DAY);
 }
 
 function shouldUserBePromptedToInstall(promptName: string, daysToWaitBeforePromptingAgain: number): boolean {
