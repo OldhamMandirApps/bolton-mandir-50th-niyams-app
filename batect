@@ -8,8 +8,8 @@
     # You should commit this file to version control alongside the rest of your project. It should not be installed globally.
     # For more information, visit https://github.com/batect/batect.
 
-    VERSION="0.75.0"
-    CHECKSUM="${BATECT_DOWNLOAD_CHECKSUM:-7750a274008a3f3bdc18e80b8beb58f1e20048332eaf5a5279cd2650e3e33fc8}"
+    VERSION="0.83.7"
+    CHECKSUM="${BATECT_DOWNLOAD_CHECKSUM:-1d97e1b0ac3c6586689d5ea7006fcbab7e20960688c218029125b6f9672de83a}"
     DOWNLOAD_URL_ROOT=${BATECT_DOWNLOAD_URL_ROOT:-"https://updates.batect.dev/v1/files"}
     DOWNLOAD_URL=${BATECT_DOWNLOAD_URL:-"$DOWNLOAD_URL_ROOT/$VERSION/batect-$VERSION.jar"}
     QUIET_DOWNLOAD=${BATECT_QUIET_DOWNLOAD:-false}
@@ -42,10 +42,10 @@
         temp_file=$(mktemp)
 
         if [[ $QUIET_DOWNLOAD == 'true' ]]; then
-            curl --silent --fail --show-error --location --output "$temp_file" "$DOWNLOAD_URL"
+            curl --silent --fail --show-error --location --output "$temp_file" --retry 3 --retry-connrefused "$DOWNLOAD_URL"
         else
             echo "Downloading Batect version $VERSION from $DOWNLOAD_URL..."
-            curl -# --fail --show-error --location --output "$temp_file" "$DOWNLOAD_URL"
+            curl -# --fail --show-error --location --output "$temp_file" --retry 3 --retry-connrefused "$DOWNLOAD_URL"
         fi
 
         mv "$temp_file" "$JAR_PATH"

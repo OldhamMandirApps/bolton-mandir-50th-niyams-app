@@ -50,7 +50,14 @@ function ProgressTrackersPage(): JSX.Element {
           <Typography sx={{ fontSize: '18px' }}>
             Join us every Sunday evening for our collective Niyam of reciting Harismruti.
           </Typography>
-          <Button sx={{ mt: '4px' }}>Open Harismruti</Button>
+          <Button
+            sx={{ mt: '4px' }}
+            href='https://open.swaminarayan.faith/link/2ZQU'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Open Harismruti
+          </Button>
         </Box>
         <Snackbar />
       </PageContainer>
