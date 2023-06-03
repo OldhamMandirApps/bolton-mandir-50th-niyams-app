@@ -1,4 +1,4 @@
-import { Button, Grid, styled } from '@mui/material';
+import { Box, Button, Grid, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { niyams } from '../../config/niyams';
 import ProgressTracker from './ProgressTracker';
@@ -46,6 +46,12 @@ function ProgressTrackersPage(): JSX.Element {
             <ProgressTracker key={niyam.id} niyam={niyam} />
           ))}
         </TrackersGrid>
+        <Box mt={3} textAlign='center'>
+          <Typography sx={{ fontSize: '18px' }}>
+            Join us every Sunday evening for our collective Niyam of reciting Harismruti.
+          </Typography>
+          <Button sx={{ mt: '4px' }}>Open Harismruti</Button>
+        </Box>
         <Snackbar />
       </PageContainer>
     </>
