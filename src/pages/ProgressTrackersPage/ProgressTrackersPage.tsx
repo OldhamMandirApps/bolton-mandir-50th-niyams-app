@@ -18,8 +18,17 @@ const TrackersGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
+function isAndroid() {
+  const userAgent = navigator.userAgent;
+  if (/android/i.test(userAgent)) {
+    return true;
+  }
+  return false;
+}
+
 function ProgressTrackersPage(): JSX.Element {
   const navigate = useNavigate();
+  const deviceIsAndroid = isAndroid();
 
   return (
     <>
@@ -52,7 +61,11 @@ function ProgressTrackersPage(): JSX.Element {
           </Typography>
           <Button
             sx={{ mt: '4px' }}
-            href='https://open.swaminarayan.faith/link/2ZQU'
+            href={
+              deviceIsAndroid
+                ? 'https://open.swaminarayan.faith/link/2ZQU'
+                : 'https://www.swaminarayan.faith/scriptures/gu/nishkulanand_kavya/harismruti/1'
+            }
             target='_blank'
             rel='noopener noreferrer'
           >
