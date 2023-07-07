@@ -143,6 +143,7 @@ function AddNiyamProgressForm(): JSX.Element {
           handleCancel={onCancel}
           handleOk={onConfirmSubmission}
           formSubmission={submissionData!}
+          formStatus={status}
         />
       ) : null}
     </Box>

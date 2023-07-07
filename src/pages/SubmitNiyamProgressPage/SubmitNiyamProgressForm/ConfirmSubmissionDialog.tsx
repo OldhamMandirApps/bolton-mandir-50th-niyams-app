@@ -1,12 +1,14 @@
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
 import { NiyamFormSubmission } from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import { getTimeLabel } from '../../ProgressTrackersPage/ProgressTracker/ProgressTracker';
+import { AsyncStateStatus } from 'react-async-hook';
 
 interface ConfirmSubmissionDialogProps {
   open: boolean;
   handleCancel: () => void;
   handleOk: () => void;
   formSubmission: NiyamFormSubmission;
+  formStatus: AsyncStateStatus;
 }
 
 function ConfirmSubmissionDialog(props: ConfirmSubmissionDialogProps) {
@@ -28,7 +30,7 @@ function ConfirmSubmissionDialog(props: ConfirmSubmissionDialogProps) {
         <Button autoFocus onClick={props.handleCancel} sx={{ minWidth: '75px' }}>
           No
         </Button>
-        <Button onClick={props.handleOk} sx={{ minWidth: '75px' }}>
+        <Button disabled={props.formStatus === 'loading'} onClick={props.handleOk} sx={{ minWidth: '75px' }}>
           Yes
         </Button>
       </DialogActions>
