@@ -33,7 +33,7 @@ function SocialBanner() {
             textAlign: 'center',
           }}
         >
-          Stay up to date with utsav announcements via
+          Celebrating 200 years of Vandu pads
         </Typography>
         <Typography
           variant='h6'
@@ -50,7 +50,7 @@ function SocialBanner() {
             underline='none'
             sx={{ color: '#CD9048' }}
           >
-            nnd.link/bolton50
+            nnd.link/vandu200
           </Link>
         </Typography>
       </Grid>

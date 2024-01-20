@@ -1,5 +1,5 @@
 import { Box, Grid, Toolbar, Typography, styled } from '@mui/material';
-import logo from '../images/nav-logo.svg';
+import logo from '../images/mandir-logo.png';
 
 const NavItemsContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {

@@ -6,28 +6,8 @@ export interface Niyam {
 
 export const niyams: Niyam[] = [
   {
-    id: 'Dandvats',
-    label: 'Dandvat / Panchang Pranam',
+    id: 'VanduPads',
+    label: 'Vandu pads recited',
     timeBased: false,
-  },
-  {
-    id: 'Pradikshana',
-    label: 'Pradikshana',
-    timeBased: false,
-  },
-  {
-    id: 'Mala',
-    label: 'Mala',
-    timeBased: false,
-  },
-  {
-    id: 'Janmangal',
-    label: 'Janmangal Paat',
-    timeBased: false,
-  },
-  {
-    id: 'ReadingShastras',
-    label: 'Reading shastras/leelas (hours)',
-    timeBased: true,
   },
 ];
