@@ -18,14 +18,6 @@ const TrackersGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
-function isAndroid() {
-  const userAgent = navigator.userAgent;
-  if (/android/i.test(userAgent)) {
-    return true;
-  }
-  return false;
-}
-
 function ProgressTrackersPage(): JSX.Element {
   const navigate = useNavigate();
 

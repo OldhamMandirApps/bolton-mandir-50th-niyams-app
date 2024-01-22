@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { ReactComponent as InstagramIcon } from '../../images/instagram-icon.svg';
 import { ReactComponent as FacebookIcon } from '../../images/facebook-icon.svg';
 import { ReactComponent as YouTubeIcon } from '../../images/youtube-icon.svg';
