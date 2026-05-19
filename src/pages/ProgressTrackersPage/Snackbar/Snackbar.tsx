@@ -19,7 +19,7 @@ function Snackbar(): JSX.Element | null {
             horizontal: 'center',
           }}
           open={snackbarData.open}
-          autoHideDuration={SnackbarStatus.successful ? 2500 : null}
+          autoHideDuration={snackbarData.status === SnackbarStatus.successful ? 2500 : null}
           onClose={handleClose}
         >
           <Alert onClose={handleClose} severity={snackbarData.status as AlertColor} data-testid='status-snackbar-text'>

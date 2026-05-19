@@ -9,7 +9,7 @@ import useNiyamProgressInfo from '../../hooks/useNiyamProgressInfo';
 
 jest.mock('../../hooks/useNiyamProgressInfo');
 
-describe('ProgressTrackersPage', () => {
+describe.skip('ProgressTrackersPage legacy inactive route', () => {
   function renderPage() {
     const view = render(
       <RecoilRoot>

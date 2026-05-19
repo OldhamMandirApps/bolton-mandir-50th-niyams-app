@@ -1,7 +1,8 @@
-import { Grid, TextField } from '@mui/material';
+import { Grid, InputAdornment, TextField } from '@mui/material';
 import { Controller, Control, RegisterOptions, FieldPath } from 'react-hook-form';
 import { NiyamFormInputs } from '../../SubmitNiyamProgressForm';
 import { Niyam } from '../../../../../config/niyams';
+import NumberStepperControls from '../NumberStepperControls';
 
 interface NiyamProgressInputProps {
   name: FieldPath<NiyamFormInputs>;
@@ -21,33 +22,61 @@ function NiyamProgressInput(props: NiyamProgressInputProps): JSX.Element {
         name={props.name}
         control={props.control}
         rules={props.rules}
-        render={({ field }) => (
-          <TextField
-            id='niyam-progress-input'
-            data-testid='niyam-progress-input-field'
-            label={
-              selectedNiyam && selectedNiyam.timeBased === true
-                ? 'Number of minutes spent on niyam'
-                : 'Number completed'
-            }
-            helperText='Please only submit completed niyams and not your target'
-            variant='outlined'
-            type='number'
-            required
-            InputProps={{
-              inputProps: {
-                min: 1,
-              },
-            }}
-            fullWidth
-            {...field}
-            value={field.value ?? ''}
-            onChange={(event) => {
-              const progress = event.target.value === '' ? '' : parseInt(event.target.value);
-              field.onChange(progress);
-            }}
-          />
-        )}
+        render={({ field }) => {
+          const currentValue = typeof field.value === 'number' ? field.value : 0;
+          const updateValue = (nextValue: number) => {
+            field.onChange(Math.max(1, nextValue));
+          };
+
+          return (
+            <TextField
+              id='niyam-progress-input'
+              data-testid='niyam-progress-input-field'
+              label={
+                selectedNiyam && selectedNiyam.timeBased === true
+                  ? 'Number of minutes spent on niyam'
+                  : 'Number of Naam Japs completed'
+              }
+              helperText='Enter your completed Naam Japs, not your target.'
+              variant='outlined'
+              type='number'
+              required
+              InputProps={{
+                inputProps: {
+                  min: 1,
+                },
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <NumberStepperControls
+                      decreaseLabel='Decrease Naam Jap total'
+                      increaseLabel='Increase Naam Jap total'
+                      onChange={updateValue}
+                      value={currentValue}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+              InputLabelProps={{ shrink: true }}
+              sx={{
+                '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button':
+                  {
+                    WebkitAppearance: 'none',
+                    margin: 0,
+                  },
+                '& input[type=number]': {
+                  MozAppearance: 'textfield',
+                },
+              }}
+              fullWidth
+              {...field}
+              value={field.value ?? ''}
+              onChange={(event) => {
+                const progress = event.target.value === '' ? '' : parseInt(event.target.value);
+                field.onChange(progress);
+              }}
+            />
+          );
+        }}
       />
     </Grid>
   );

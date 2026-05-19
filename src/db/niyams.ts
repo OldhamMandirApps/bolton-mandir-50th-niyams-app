@@ -76,6 +76,7 @@ async function updateNiyamProgress(
     console.log('Transaction successfully committed!');
   } catch (e) {
     console.log('Transaction failed: ', e);
+    throw e;
   }
 }
 

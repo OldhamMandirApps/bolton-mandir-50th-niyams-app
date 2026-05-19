@@ -4,10 +4,12 @@ export interface Niyam {
   timeBased: boolean;
 }
 
+export const defaultSankalpTarget = 2000000;
+
 export const niyams: Niyam[] = [
   {
-    id: 'VanduPads',
-    label: 'Vandu pads recited',
+    id: 'Mahamantra',
+    label: 'Swaminarayan Mahamantra Jap',
     timeBased: false,
   },
 ];

@@ -9,6 +9,6 @@ describe('AddNiyamSubmitButton', () => {
   test('should render submit button', () => {
     renderSubmitButton();
 
-    screen.getByRole('button', { name: /submit niyam progress/i });
+    screen.getByRole('button', { name: /submit Naam Jap total/i });
   });
 });

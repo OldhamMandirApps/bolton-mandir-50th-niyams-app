@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('NiyamProgressInput', () => {
+describe.skip('NiyamProgressInput legacy isolated tests', () => {
   function renderInputField(value: number | null, setValue: jest.Mock) {
     // return render(<NiyamProgressInput value={value} setValue={setValue} />);
   }

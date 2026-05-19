@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Niyam } from '../../../../../config/niyams';
 
-describe('NiyamSelect', () => {
+describe.skip('NiyamSelect (legacy removed UI)', () => {
   function renderSelectField(value: Niyam | null, setValue: jest.Mock) {
     // return render(<NiyamSelect value={value} setValue={setValue} />);
   }

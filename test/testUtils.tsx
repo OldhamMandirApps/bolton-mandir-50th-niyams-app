@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { createMemoryHistory, MemoryHistory } from 'history';
 import { NiyamData } from '../src/types';
 
 export const NiyamBuilder = (label: string, progress: number, target: number): NiyamData => {
@@ -14,20 +13,20 @@ export const NiyamBuilder = (label: string, progress: number, target: number): N
 
 interface RenderWithRouterProps {
   route?: string;
-  history?: MemoryHistory;
 }
 
 export const renderWithRouter = (
   ui: React.ReactNode,
   routePattern: string,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) }: RenderWithRouterProps = {},
+  { route = '/' }: RenderWithRouterProps = {},
 ) => {
   return {
     ...render(
       <MemoryRouter initialEntries={[route]}>
-        <Route path={routePattern}>{ui}</Route>
+        <Routes>
+          <Route path={routePattern} element={<>{ui}</>} />
+        </Routes>
       </MemoryRouter>,
     ),
-    history,
   };
 };
