@@ -1,4 +1,4 @@
-project_name: nutan-utsav-app
+project_name: naam-jap-sankalp-app
 containers:
   firebase-emulators:
     build_directory: .batect/firebase

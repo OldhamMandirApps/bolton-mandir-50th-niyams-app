@@ -39,7 +39,7 @@ function ProgressTrackersPage(): JSX.Element {
                 navigate('/submit-niyam-progress');
               }}
             >
-              Submit your Vandu pad recital progress
+              Submit your Naam Jap total
             </SubmitNiyamProgressButton>
           </Grid>
         </Grid>

@@ -25,7 +25,7 @@ function Navbar(): JSX.Element {
       <Toolbar sx={{ backgroundColor: '#EFECEC', borderBottom: '4px solid #BC3606' }}>
         <NavItemsContainer sx={{ width: '100%', textAlign: 'center' }}>
           <a href='/'>
-            <img src={logo} alt='utsav logo' style={{ maxHeight: '125px' }} />
+            <img src={logo} alt='Bolton Mandir logo' style={{ maxHeight: '125px' }} />
           </a>
         </NavItemsContainer>
       </Toolbar>
