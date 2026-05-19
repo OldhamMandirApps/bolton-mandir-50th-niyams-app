@@ -26,14 +26,10 @@ type FormFeedback = {
 
 const FormContainer = styled(Grid)(({ theme }) => ({
   width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    maxWidth: '560px',
-  },
 }));
 
 const FormCard = styled(Box)(({ theme }) => ({
   width: '100%',
-  maxWidth: '640px',
   border: '1px solid rgba(174, 52, 8, 0.12)',
   borderRadius: '28px',
   background: 'linear-gradient(145deg, rgba(255, 253, 247, 0.96) 0%, rgba(255, 246, 224, 0.92) 100%)',
