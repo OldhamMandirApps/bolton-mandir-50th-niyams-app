@@ -8,7 +8,6 @@ import InstallPwaPrompt from './pwaPrompt/InstallPwaPrompt';
 import { RecoilRoot } from 'recoil';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import FirestoreTargetBanner from './FirestoreTargetBanner';
 import Snackbar from '../pages/ProgressTrackersPage/Snackbar';
 
 function App(): JSX.Element {
@@ -20,7 +19,6 @@ function App(): JSX.Element {
             <Router>
               <InstallPwaPrompt />
               <ScrollToTop />
-              <FirestoreTargetBanner />
               <Navbar />
               <Routes>
                 <Route path='/' element={<SubmitNiyamProgressPage />} />

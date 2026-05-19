@@ -1,7 +1,6 @@
 import React from 'react';
 import { FirestoreProvider, useFirebaseApp } from 'reactfire';
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
-import { firestoreTarget, shouldUseFirestoreEmulator } from '../config/firestoreTarget';
 
 let firestoreEmulatorConnected = false;
 
@@ -9,8 +8,8 @@ function FirebaseApp(props: React.PropsWithChildren<unknown>): JSX.Element {
   const firebaseApp = useFirebaseApp();
   const firestoreInstance = getFirestore(firebaseApp);
 
-  console.log(`Environment: ${process.env.NODE_ENV}; Firestore target: ${firestoreTarget}`);
-  if (shouldUseFirestoreEmulator && firestoreEmulatorConnected === false) {
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  if (process.env.NODE_ENV === 'development' && firestoreEmulatorConnected === false) {
     connectFirestoreEmulator(firestoreInstance, 'localhost', 8080);
     firestoreEmulatorConnected = true;
   }
