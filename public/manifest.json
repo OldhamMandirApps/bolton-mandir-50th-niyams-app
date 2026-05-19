@@ -1,6 +1,6 @@
 {
-  "short_name": "Vandu 200 Niyams",
-  "name": "Vandu 200 Niyams",
+  "short_name": "Naam Jap",
+  "name": "Swaminarayan Mahamantra Naam Jap Sankalp",
   "icons": [
     {
       "src": "assets/manifest-icon-192.maskable.png",
@@ -29,6 +29,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#BC3606",
-  "background_color": "#ffffff"
+  "theme_color": "#AE3408",
+  "background_color": "#FFF8EA"
 }
