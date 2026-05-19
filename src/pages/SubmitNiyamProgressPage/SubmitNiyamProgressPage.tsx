@@ -3,6 +3,7 @@ import { H1, PageContainer } from '../common/components';
 import SubmitNiyamProgressForm from './SubmitNiyamProgressForm';
 import useNiyamProgressInfo from '../../hooks/useNiyamProgressInfo';
 import { defaultSankalpTarget, niyams } from '../../config/niyams';
+import { NiyamData } from '../../types';
 
 function getProgressPercentage(progress: number, target: number) {
   if (target <= 0) {
@@ -12,9 +13,20 @@ function getProgressPercentage(progress: number, target: number) {
   return Math.min(100, Math.floor((progress / target) * 100));
 }
 
+function hasProgressData(data: unknown): data is NiyamData {
+  if (data === null || data === undefined || typeof data !== 'object') {
+    return false;
+  }
+
+  const progressData = data as Partial<NiyamData>;
+
+  return typeof progressData.progress === 'number' && typeof progressData.target === 'number';
+}
+
 function SubmitNiyamProgressPage(): JSX.Element {
   const { data, error, loading } = useNiyamProgressInfo(niyams[0]);
-  const hasLoadedTotal = loading === false && error === null && data !== null;
+  const hasLoadedTotal = loading === false && error === null && hasProgressData(data);
+  const hasTotalLoadError = loading === false && hasLoadedTotal === false;
   const currentTotal = hasLoadedTotal ? Math.floor(data.progress) : null;
   const target = hasLoadedTotal && data.target > 0 ? data.target : defaultSankalpTarget;
   const percentage = currentTotal === null ? 0 : getProgressPercentage(currentTotal, target);
@@ -72,7 +84,7 @@ function SubmitNiyamProgressPage(): JSX.Element {
                 p: { xs: 1.8, sm: 2.2 },
               }}
             >
-              {error !== null ? (
+              {hasTotalLoadError ? (
                 <Alert severity='error' sx={{ mb: 1.6 }}>
                   We couldn't load the current total. Please refresh and try again.
                 </Alert>

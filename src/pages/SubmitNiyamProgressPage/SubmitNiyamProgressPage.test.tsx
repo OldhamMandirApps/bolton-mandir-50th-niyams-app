@@ -72,4 +72,18 @@ describe('SubmitNiyamProgressPage', () => {
     expect(screen.getAllByText('--')).toHaveLength(3);
     screen.getByText('Goal: -- Naam Japs');
   });
+
+  test('shows an error message instead of crashing when total data is missing', () => {
+    useNiyamProgressInfoMock.mockReturnValue({
+      data: undefined,
+      error: null,
+      loading: false,
+    });
+
+    renderPage();
+
+    screen.getByText("We couldn't load the current total. Please refresh and try again.");
+    expect(screen.getAllByText('--')).toHaveLength(3);
+    screen.getByText('Goal: -- Naam Japs');
+  });
 });
