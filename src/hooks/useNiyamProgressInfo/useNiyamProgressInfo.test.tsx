@@ -48,7 +48,7 @@ describe('useNiyamProgressInfo', () => {
     useFirestoreDataMock.mockImplementationOnce(() => {
       return {
         status: 'success',
-        data: [],
+        data: null,
         error: null,
       };
     });
@@ -60,7 +60,26 @@ describe('useNiyamProgressInfo', () => {
     expect(result.current.data).toBeNull();
   });
 
-  test('should return error when more than 1 document retrieved from firestore', () => {
+  test('should return error when firestore returns undefined document data', () => {
+    const niyam = { id: 'Mahamantra', label: 'Swaminarayan Mahamantra Jap', timeBased: false };
+    const error = new Error(`There was no document found in the database for ${niyam.id}`);
+
+    useFirestoreDataMock.mockImplementationOnce(() => {
+      return {
+        status: 'success',
+        data: undefined,
+        error: null,
+      };
+    });
+
+    const { result } = renderHook(() => useNiyamProgressInfo(niyam));
+
+    expect(result.current.loading).toBeFalsy();
+    expect(result.current.error).toStrictEqual(error);
+    expect(result.current.data).toBeNull();
+  });
+
+  test.skip('should return error when more than 1 document retrieved from firestore', () => {
     const niyam = { id: '', label: '', timeBased: false };
     const error = new Error(`There were multiple documents found in the database for ${niyam.id}`);
 
@@ -86,7 +105,7 @@ describe('useNiyamProgressInfo', () => {
     useFirestoreDataMock.mockImplementationOnce(() => {
       return {
         status: 'success',
-        data: [data],
+        data,
         error: null,
       };
     });

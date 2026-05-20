@@ -33,16 +33,7 @@ function SocialBanner() {
             textAlign: 'center',
           }}
         >
-          Celebrating 200 years of Vandu pads
-        </Typography>
-        <Typography
-          variant='h6'
-          sx={{
-            fontWeight: 600,
-            fontSize: '18px',
-            textAlign: 'center',
-          }}
-        >
+          Join the Swaminarayan Mahamantra Naam Jap Sankalp
         </Typography>
       </Grid>
     </Grid>

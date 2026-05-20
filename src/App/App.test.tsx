@@ -1,25 +1,29 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { FirebaseAppProvider } from 'reactfire';
-import { firebaseConfig } from '../config';
+
+jest.mock('./FirebaseApp', () => ({ children }: { children: React.ReactNode }) => <>{children}</>);
+jest.mock('../pages/SubmitNiyamProgressPage', () => () => <div data-testid='submit-niyam-progress-page' />);
+jest.mock('../pages/ProgressTrackersPage/Snackbar', () => () => <div data-testid='global-snackbar' />);
 
 describe('App', () => {
   function renderApp(route: string) {
     window.history.replaceState({}, 'Test page', route);
-    return render(
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <App />
-      </FirebaseAppProvider>,
-    );
+    return render(<App />);
   }
 
   test.each([
-    { path: '/', testId: 'progress-trackers-page' },
-    { path: '/add-your-niyam-count', testId: 'add-niyam-progress-page' },
+    { path: '/', testId: 'submit-niyam-progress-page' },
+    { path: '/submit-niyam-progress', testId: 'submit-niyam-progress-page' },
   ])('should display $testId at $path', ({ path, testId }) => {
     renderApp(path);
 
     screen.getByTestId(testId);
+  });
+
+  test('mounts the global snackbar shell', () => {
+    renderApp('/');
+
+    screen.getByTestId('global-snackbar');
   });
 });

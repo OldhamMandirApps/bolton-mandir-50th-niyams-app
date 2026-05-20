@@ -1,107 +1,128 @@
-import { render, screen } from '@testing-library/react';
-import AddNiyamProgressForm from './SubmitNiyamProgressForm';
-import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { RecoilRoot } from 'recoil';
 import { MemoryRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import Snackbar from '../../ProgressTrackersPage/Snackbar';
+import AddNiyamProgressForm from './SubmitNiyamProgressForm';
 
 jest.mock('../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress');
+
 describe('AddNiyamProgressForm', () => {
   const useUpdateNiyamProgressMock = useUpdateNiyamProgress as jest.Mock;
 
   beforeEach(() => {
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: jest.fn() });
+    localStorage.clear();
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: jest.fn(), status: 'not-requested' });
   });
 
   function renderForm() {
-    const view = render(
-      <RecoilRoot>
-        <MemoryRouter initialEntries={['/add-your-niyam-count']}>
-          <AddNiyamProgressForm />
-        </MemoryRouter>
-      </RecoilRoot>,
-    );
-    return { view };
+    return {
+      user: userEvent.setup(),
+      ...render(
+        <RecoilRoot>
+          <MemoryRouter>
+            <Snackbar />
+            <AddNiyamProgressForm />
+          </MemoryRouter>
+        </RecoilRoot>,
+      ),
+    };
   }
 
-  test('should render select and input fields and submit button', () => {
-    renderForm();
+  async function fillFullName(user: ReturnType<typeof userEvent.setup>) {
+    await user.type(screen.getByRole('textbox', { name: /full name/i }), 'Test Bhakta');
+  }
 
-    screen.getByTestId('niyam-select-field');
-    screen.getByTestId('niyam-progress-input-field');
-    screen.getByTestId('niyam-progress-submit-button');
+  async function confirmSubmission(user: ReturnType<typeof userEvent.setup>) {
+    await user.click(await screen.findByRole('button', { name: /^yes$/i }));
+  }
+
+  test('keeps Naam Jap submit disabled until a positive number is entered', async () => {
+    const { user } = renderForm();
+    const submitButton = screen.getByRole('button', { name: /submit Naam Jap total/i });
+
+    expect(submitButton).toBeDisabled();
+
+    await user.type(screen.getByRole('spinbutton', { name: /number of Naam Japs completed/i }), '12');
+
+    expect(submitButton).toBeEnabled();
   });
 
-  test('should not update niyam progress if progress has not been inputted or niyam has not been selected', () => {
-    const executeMock = jest.fn();
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
+  test('submits a Naam Jap total with the Mahamantra backend payload', async () => {
+    const executeMock = jest.fn().mockResolvedValue(undefined);
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock, status: 'not-requested' });
+    const { user } = renderForm();
 
-    renderForm();
+    await fillFullName(user);
+    await user.type(screen.getByRole('spinbutton', { name: /number of Naam Japs completed/i }), '12');
+    await user.click(screen.getByRole('button', { name: /submit Naam Jap total/i }));
+    await confirmSubmission(user);
 
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-
-    expect(executeMock).not.toBeCalled();
+    await waitFor(() => expect(executeMock).toHaveBeenCalledTimes(1));
+    expect(executeMock).toHaveBeenCalledWith({
+      ageGroup: 'Not collected',
+      fullName: 'Test Bhakta',
+      mandirName: 'Not collected',
+      niyam: {
+        id: 'Mahamantra',
+        label: 'Swaminarayan Mahamantra Jap',
+        timeBased: false,
+      },
+      progress: 12,
+    });
   });
 
-  test('should not update niyam progress if niyam has not been picked', () => {
-    const executeMock = jest.fn();
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
+  test('converts malas to Naam Japs before submitting', async () => {
+    const executeMock = jest.fn().mockResolvedValue(undefined);
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock, status: 'not-requested' });
+    const { user } = renderForm();
 
-    renderForm();
+    await fillFullName(user);
+    await user.click(screen.getByRole('tab', { name: /malas/i }));
+    await user.type(screen.getByRole('spinbutton', { name: /number of malas/i }), '3');
+    screen.getByText('324 japs');
 
-    userEvent.type(screen.getByTestId('niyam-progress-input-field'), '100');
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
+    await user.click(screen.getByRole('button', { name: /submit malas as Naam Jap total/i }));
+    await confirmSubmission(user);
 
-    expect(executeMock).not.toBeCalled();
+    await waitFor(() => expect(executeMock).toHaveBeenCalledTimes(1));
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fullName: 'Test Bhakta',
+        progress: 324,
+      }),
+    );
   });
 
-  test('should not update niyam progress if progress has not been inputted', async () => {
-    const executeMock = jest.fn();
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
+  test('shows success feedback and clears the submitted Naam Jap count', async () => {
+    const executeMock = jest.fn().mockResolvedValue(undefined);
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock, status: 'not-requested' });
+    const { user } = renderForm();
 
-    renderForm();
+    await fillFullName(user);
+    const progressInput = screen.getByRole('spinbutton', { name: /number of Naam Japs completed/i });
+    await user.type(progressInput, '20');
+    await user.click(screen.getByRole('button', { name: /submit Naam Jap total/i }));
+    await confirmSubmission(user);
 
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
-    userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-
-    expect(executeMock).not.toBeCalled();
+    await screen.findAllByText('Added 20 Naam Japs. Thank you for contributing to the sankalp.');
+    await waitFor(() => expect(progressInput).toHaveDisplayValue(''));
+    expect(screen.getByRole('textbox', { name: /full name/i })).toHaveDisplayValue('Test Bhakta');
   });
 
-  test.skip('should update niyam progress when both niyam has been selected and progress has been inputted', async () => {
-    const executeMock = jest.fn().mockImplementation(() => Promise.resolve());
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
+  test('shows error feedback and preserves the entered count when submit fails', async () => {
+    const executeMock = jest.fn().mockRejectedValue(new Error('Firestore failed'));
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock, status: 'not-requested' });
+    const { user } = renderForm();
 
-    renderForm();
+    await fillFullName(user);
+    const progressInput = screen.getByRole('spinbutton', { name: /number of Naam Japs completed/i });
+    await user.type(progressInput, '55');
+    await user.click(screen.getByRole('button', { name: /submit Naam Jap total/i }));
+    await confirmSubmission(user);
 
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
-    userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
-
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-
-    expect(executeMock).toHaveBeenCalledTimes(1);
-    expect(executeMock).toBeCalledWith({ id: '', label: '' }, null, 100);
-
-    // await waitFor(() => {
-    //   expect(history.location.pathname).toEqual('/');
-    // });
-  });
-
-  test.skip('should navigate to progress trackers page if niyam progress update was unsuccessful', async () => {
-    const executeMock = jest.fn().mockImplementation(() => Promise.reject());
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
-
-    renderForm();
-
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
-    userEvent.click(await screen.findByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
-
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-
-    // await waitFor(() => {
-    //   expect(history.location.pathname).toEqual('/');
-    // });
+    await screen.findAllByText("We couldn't save your Naam Japs. Please try again. Your entered number is still here.");
+    expect(progressInput).toHaveDisplayValue('55');
   });
 });

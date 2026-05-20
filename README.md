@@ -1,4 +1,4 @@
-# Bolton Mandir 50th Utsav Niyams App
+# Bolton Mandir Naam Jap Sankalp App
 
 ## Deployment instructions
 

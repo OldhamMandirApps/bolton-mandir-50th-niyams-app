@@ -1,5 +1,5 @@
 {
-  "name": "nutan-utsav-app",
+  "name": "naam-jap-sankalp-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "craco build",
     "test": "craco test --watchAll=false",
     "test:watch": "craco test",
-    "generate:images": "yarn pwa-asset-generator ./src/images/vandu-logo.png ./public/assets -t png",
+    "generate:images": "yarn pwa-asset-generator ./src/images/app-icon.png ./public/assets -t png --background '#FFF8EA' --padding '18%' --favicon --scrape false",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint --ext .js,.ts,.tsx ."

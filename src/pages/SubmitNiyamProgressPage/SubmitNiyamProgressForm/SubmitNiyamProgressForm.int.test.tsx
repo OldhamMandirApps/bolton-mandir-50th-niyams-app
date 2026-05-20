@@ -1,58 +1,67 @@
 import { render, screen } from '@testing-library/react';
-import { RecoilRoot } from 'recoil';
-import { MemoryRouter } from 'react-router-dom';
-import AddNiyamProgressForm from './SubmitNiyamProgressForm';
-import Snackbar from '../../ProgressTrackersPage/Snackbar';
-import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import useUpdateNiyamProgress from '../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress';
+import Snackbar from '../../ProgressTrackersPage/Snackbar';
+import AddNiyamProgressForm from './SubmitNiyamProgressForm';
 
 jest.mock('../../../hooks/useUpdateNiyamProgress/useUpdateNiyamProgress');
+
 describe('AddNiyamProgressForm/Snackbar Integration Test', () => {
   const useUpdateNiyamProgressMock = useUpdateNiyamProgress as jest.Mock;
 
   beforeEach(() => {
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: jest.fn() });
+    localStorage.clear();
+    useUpdateNiyamProgressMock.mockReturnValue({ execute: jest.fn(), status: 'not-requested' });
   });
 
   function renderComponent() {
-    const view = render(
-      <RecoilRoot>
-        <MemoryRouter initialEntries={['/add-your-niyam-count']}>
-          <Snackbar />
-          <AddNiyamProgressForm />
-        </MemoryRouter>
-      </RecoilRoot>,
-    );
-    return { view };
+    return {
+      user: userEvent.setup(),
+      ...render(
+        <RecoilRoot>
+          <MemoryRouter>
+            <Snackbar />
+            <AddNiyamProgressForm />
+          </MemoryRouter>
+        </RecoilRoot>,
+      ),
+    };
   }
 
-  test('should display success snackbar if successful updating niyam progress', async () => {
-    const executeMock = jest.fn().mockImplementation(() => Promise.resolve());
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
-    renderComponent();
+  async function submitNaamJap(user: ReturnType<typeof userEvent.setup>) {
+    await user.type(screen.getByRole('textbox', { name: /full name/i }), 'Test Bhakta');
+    await user.type(screen.getByRole('spinbutton', { name: /number of Naam Japs completed/i }), '7');
+    await user.click(screen.getByRole('button', { name: /submit Naam Jap total/i }));
+    await user.click(await screen.findByRole('button', { name: /^yes$/i }));
+  }
 
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
-    userEvent.click(screen.getByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
+  test('displays success snackbar after successful update', async () => {
+    useUpdateNiyamProgressMock.mockReturnValue({
+      execute: jest.fn().mockResolvedValue(undefined),
+      status: 'not-requested',
+    });
+    const { user } = renderComponent();
 
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
+    await submitNaamJap(user);
 
-    await screen.findByRole('alert');
-    screen.getByText('You have successfully registered your niyam progress!');
+    expect(await screen.findAllByText('Added 7 Naam Japs. Thank you for contributing to the sankalp.')).toHaveLength(2);
   });
 
-  test('should display error snackbar if error updating niyam progress', async () => {
-    const executeMock = jest.fn().mockImplementation(() => Promise.reject());
-    useUpdateNiyamProgressMock.mockReturnValue({ execute: executeMock });
-    renderComponent();
+  test('displays error snackbar after failed update', async () => {
+    useUpdateNiyamProgressMock.mockReturnValue({
+      execute: jest.fn().mockRejectedValue(new Error('Firestore failed')),
+      status: 'not-requested',
+    });
+    const { user } = renderComponent();
 
-    userEvent.click(screen.getByRole('button', { name: /select niyam/i }));
-    userEvent.click(screen.getByRole('option', { name: /janmangal namavali/i }));
-    userEvent.type(screen.getByRole('spinbutton', { name: /niyam count/i }), '100');
+    await submitNaamJap(user);
 
-    userEvent.click(screen.getByTestId('niyam-progress-submit-button'));
-
-    await screen.findByRole('alert');
-    screen.getByText('Something went wrong whilst registering your niyam progress. Please try again later.');
+    expect(
+      await screen.findAllByText(
+        "We couldn't save your Naam Japs. Please try again. Your entered number is still here.",
+      ),
+    ).toHaveLength(2);
   });
 });

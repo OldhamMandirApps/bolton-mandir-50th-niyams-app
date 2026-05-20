@@ -11198,6 +11198,45 @@ __metadata:
   languageName: node
   linkType: hard
 
+"naam-jap-sankalp-app@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "naam-jap-sankalp-app@workspace:."
+  dependencies:
+    "@craco/craco": ^7.1.0
+    "@emotion/react": ^11.11.0
+    "@emotion/styled": ^11.11.0
+    "@mui/icons-material": ^5.11.16
+    "@mui/lab": ^5.0.0-alpha.131
+    "@mui/material": ^5.13.2
+    "@testing-library/jest-dom": ^5.16.5
+    "@testing-library/react": ^14.0.0
+    "@testing-library/react-hooks": ^8.0.1
+    "@testing-library/user-event": ^14.4.3
+    "@types/jest": ^29.5.1
+    "@types/node": ^20.2.5
+    "@types/react": ^18.2.7
+    "@types/react-dom": ^18.2.4
+    "@types/react-router-dom": ^5.3.3
+    eslint-config-prettier: ^8.8.0
+    firebase: ^9.22.1
+    husky: ^8.0.3
+    lint-staged: ^13.2.2
+    prettier: ^2.8.8
+    pretty-quick: ^3.1.3
+    pwa-asset-generator: ^6.3.1
+    react: ^18.2.0
+    react-async-hook: ^4.0.0
+    react-dom: ^18.2.0
+    react-hook-form: ^7.44.1
+    react-router-dom: ^6.11.2
+    react-scripts: 5.0.1
+    reactfire: ^4.2.2
+    recoil: ^0.7.7
+    typescript: ^5.0.4
+    web-vitals: ^3.3.1
+  languageName: unknown
+  linkType: soft
+
 "nanoid@npm:^3.3.6":
   version: 3.3.6
   resolution: "nanoid@npm:3.3.6"
@@ -11414,45 +11453,6 @@ __metadata:
   checksum: 5afc3dafcd1573b08877ca8e6148c52abd565f1d06b1eb08caf982e3fa289a82f2cae697ffb55b5021e146d60443f1590a5d6b944844e944714a5b549675bcd3
   languageName: node
   linkType: hard
-
-"nutan-utsav-app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "nutan-utsav-app@workspace:."
-  dependencies:
-    "@craco/craco": ^7.1.0
-    "@emotion/react": ^11.11.0
-    "@emotion/styled": ^11.11.0
-    "@mui/icons-material": ^5.11.16
-    "@mui/lab": ^5.0.0-alpha.131
-    "@mui/material": ^5.13.2
-    "@testing-library/jest-dom": ^5.16.5
-    "@testing-library/react": ^14.0.0
-    "@testing-library/react-hooks": ^8.0.1
-    "@testing-library/user-event": ^14.4.3
-    "@types/jest": ^29.5.1
-    "@types/node": ^20.2.5
-    "@types/react": ^18.2.7
-    "@types/react-dom": ^18.2.4
-    "@types/react-router-dom": ^5.3.3
-    eslint-config-prettier: ^8.8.0
-    firebase: ^9.22.1
-    husky: ^8.0.3
-    lint-staged: ^13.2.2
-    prettier: ^2.8.8
-    pretty-quick: ^3.1.3
-    pwa-asset-generator: ^6.3.1
-    react: ^18.2.0
-    react-async-hook: ^4.0.0
-    react-dom: ^18.2.0
-    react-hook-form: ^7.44.1
-    react-router-dom: ^6.11.2
-    react-scripts: 5.0.1
-    reactfire: ^4.2.2
-    recoil: ^0.7.7
-    typescript: ^5.0.4
-    web-vitals: ^3.3.1
-  languageName: unknown
-  linkType: soft
 
 "nwsapi@npm:^2.2.0":
   version: 2.2.4

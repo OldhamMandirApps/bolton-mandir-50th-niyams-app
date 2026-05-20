@@ -23,7 +23,7 @@ function ConfirmSubmissionDialog(props: ConfirmSubmissionDialogProps) {
       <DialogTitle>Confirm your submission</DialogTitle>
       <DialogContent>
         <Typography>
-          Are you sure you want to add <b>{progressText}</b> to the <b>{niyam.label}</b> niyam?
+          Are you sure you want to add <b>{progressText}</b> Naam Japs to the <b>{niyam.label}</b> sankalp?
         </Typography>
       </DialogContent>
       <DialogActions>
